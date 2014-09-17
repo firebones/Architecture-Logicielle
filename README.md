@@ -1,2 +1,2 @@
-Architectue-Logicielle--Laval
+Architecture-Logicielle--Laval
 =============================
