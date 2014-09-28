@@ -1,6 +1,7 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
@@ -10,6 +11,10 @@ public class UserEntry {
 	private String hashedPassword;
 	private String role;
 	private List<TaskEntry> tasks;
+	
+	public UserEntry() {
+		tasks = new ArrayList<TaskEntry>();
+	}
 	
 	public String getName() {
 		return name;

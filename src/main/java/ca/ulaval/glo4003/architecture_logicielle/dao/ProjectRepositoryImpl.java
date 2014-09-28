@@ -25,7 +25,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		parseXml();
 		
 		Element docElement = doc.getDocumentElement();
-		NodeList nodeList = docElement.getElementsByTagName("employee");
+		NodeList nodeList = docElement.getElementsByTagName("project");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {

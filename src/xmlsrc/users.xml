@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+	<user>
+		<name>Joe</name>
+		<email>joe@gmail.com</email>
+		<role>employee</role>
+		<hashedPassword>1234</hashedPassword>
+		<tasks>
+			<taskId>3</taskId>
+			<taskId>4</taskId>
+		</tasks>
+	</user>
+	<user>
+		<name>Jane</name>
+		<email>jane@gmail.com</email>
+		<role>manager</role>
+		<hashedPassword>1234</hashedPassword>
+		<tasks>
+			<taskId>4</taskId>
+		</tasks>
+	</user>
+</users>

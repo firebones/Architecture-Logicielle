@@ -19,4 +19,10 @@ public class TaskEntry {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public boolean equals(Object object) {
+		return (this.id == ((TaskEntry) object).getId() &&
+				this.name == ((TaskEntry) object).getName());
+	}
 }

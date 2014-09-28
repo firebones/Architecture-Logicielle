@@ -26,7 +26,7 @@ public class UserRepositoryImpl implements UserRepository {
 		parseXml();
 		
 		Element docElement = doc.getDocumentElement();
-		NodeList nodeList = docElement.getElementsByTagName("employee");
+		NodeList nodeList = docElement.getElementsByTagName("user");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
@@ -68,7 +68,7 @@ public class UserRepositoryImpl implements UserRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+			doc = docBuilder.parse(new File("src/xmlsrc/users.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {

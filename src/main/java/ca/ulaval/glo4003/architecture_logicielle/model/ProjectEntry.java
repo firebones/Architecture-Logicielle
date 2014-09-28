@@ -1,6 +1,7 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
@@ -8,6 +9,10 @@ public class ProjectEntry {
 	private Integer id;
 	private String name;
 	private List<TaskEntry> tasks;
+	
+	public ProjectEntry() {
+		tasks = new ArrayList<TaskEntry>();
+	}
 	
 	public Integer getId() {
 		return id;
