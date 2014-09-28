@@ -9,8 +9,12 @@ public class ProjectEntry {
 	private String name;
 	private List<TaskEntry> tasks;
 	
-	public Integer getid() {
+	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public String getName() {

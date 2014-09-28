@@ -4,8 +4,12 @@ public class TaskEntry {
 	private Integer id;
 	private String name;
 	
-	public Integer getid() {
+	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	public String getName() {

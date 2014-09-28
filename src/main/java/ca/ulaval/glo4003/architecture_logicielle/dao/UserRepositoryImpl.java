@@ -20,7 +20,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 public class UserRepositoryImpl implements UserRepository {
 	Document doc;
 	
-	public ArrayList<UserEntry> getAllUser() {
+	public ArrayList<UserEntry> getAllUsers() {
 		ArrayList<UserEntry> userList = new ArrayList<UserEntry>();
 		
 		parseXml();
@@ -40,6 +40,11 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	public UserEntry getUserByEmail(String email) {
+		ArrayList<UserEntry> users = getAllUsers();
+		for (int i = 0; i < users.size(); i++) {
+				if (users.get(i).getEmail() == email)
+					return users.get(i);
+		}
 		return null;
 	}
 	
@@ -79,7 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
 		user.setEmail(getStringValue(element, "email"));
 		user.setHashedPassword(getStringValue(element, "hashedPassword"));
 		user.setRole(getStringValue(element, "role"));
-		//user.updateTasks(getTaskEntryValue(element));
+		user.updateTasks(getTaskListValue(element, "tasks"));
 		return user;
 	}
 	
@@ -95,22 +100,20 @@ public class UserRepositoryImpl implements UserRepository {
 		return str;
 	}
 	
-	// A completer...
-	/*private List<TaskEntry> getTaskEntryValue(Element element) {
-		List<TaskEntry> taskList;
-		TaskEntry task = null;
+	private List<TaskEntry> getTaskListValue(Element element, String tag) {
+		List<TaskEntry> taskList = new ArrayList<TaskEntry>();
 		ProjectRepository projects = new ProjectRepositoryImpl();
 		NodeList nodeList = element.getElementsByTagName("taskId");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Element tagElement = (Element) nodeList.item(i);
-				String stringTaskId = tagElement.getFirstChild().getNodeValue();
-				task = projects.getById(Integer.parseInt(stringTaskId));
+				int taskId = Integer.parseInt(tagElement.getFirstChild().getNodeValue());
+				TaskEntry task = projects.getTaskById(taskId);
 				taskList.add(task);
 			}
 		}
 		
-		return null;
-	}*/
+		return taskList;
+	}
 }
