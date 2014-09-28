@@ -7,6 +7,8 @@ import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 public class UserEntry {
 	private String name;
 	private String email;
+	private String hashedPassword;
+	private String role;
 	private List<TaskEntry> tasks;
 	
 	public String getName() {
@@ -21,8 +23,24 @@ public class UserEntry {
 		return email;
 	}
 	
-	public String setEmail() {
-		return email;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getHashedPassword() {
+		return hashedPassword;
+	}
+	
+	public void setHashedPassword(String hashedPassword) {
+		this.hashedPassword = hashedPassword;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	public List<TaskEntry> getTasks() {
