@@ -1,20 +1,28 @@
 package ca.ulaval.glo4003.architecture_logicielle.web.controllers;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeService;
+
+import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepository;
+import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepositoryImp;
 import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+
+
 
 
 @Controller
 public class HelloWorldController 
 {
-	private EmployeeService employeService;
 	
+	
+	private EmployeeRepository employeRepository;
+	
+
 	@RequestMapping("/")
 	public String index() {
 		return "login";
@@ -39,7 +47,10 @@ public class HelloWorldController
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddNewEmployeeForm(@ModelAttribute("newEmploye") Employe newEmploye) {
-	   employeService.addEmployee(newEmploye);
-	   return "redirect:/employees";
+	   //employeService.addEmployee(newEmploye);
+		employeRepository = new EmployeeRepositoryImp();
+	   employeRepository.addEmployee(newEmploye);
+	   return "redirect:/addEmployee";
 	}
+
 }

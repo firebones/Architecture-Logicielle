@@ -46,7 +46,7 @@ public class GestionFichierXML {
 					Element unElement = (Element) employe;
 
 					Employe objEmploye = new Employe();
-					objEmploye.setId(obtenirNoeudValeur("id", unElement));
+					
 					objEmploye.setNom(obtenirNoeudValeur("nom", unElement));
 					objEmploye.setPrenom(obtenirNoeudValeur("prenom", unElement));
 					objEmploye.setEmail(obtenirNoeudValeur("email", unElement));
@@ -78,8 +78,6 @@ public class GestionFichierXML {
 		//adition d'étiquette
 		Element nouvelEmploye = doc.createElement("employe");
 		//étiquettes filles
-		Element nouvelId = doc.createElement("id");
-		nouvelId.setTextContent(employe.getId());
 		
 		Element nouvelNom = doc.createElement("nom");
 		nouvelNom.setTextContent(employe.getNom());
@@ -93,7 +91,7 @@ public class GestionFichierXML {
 		Element nouvelAddress = doc.createElement("address");
 		nouvelAddress.setTextContent(employe.getAddress());
 		
-		nouvelEmploye.appendChild(nouvelId);
+		
 		nouvelEmploye.appendChild(nouvelNom);
 		nouvelEmploye.appendChild(nouvelPrenom);
 		nouvelEmploye.appendChild(nouvelEmail);

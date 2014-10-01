@@ -34,7 +34,7 @@ public class TestXML {
 		String email = "michael@ulaval.ca";
 		String address = "rue street";
 		
-		employe.setId(id);
+		
 		employe.setNom(nom);
 		employe.setPrenom(prenom);
 		employe.setEmail(email);

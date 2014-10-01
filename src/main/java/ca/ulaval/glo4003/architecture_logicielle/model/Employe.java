@@ -1,11 +1,11 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
 public class Employe {
-	private String id, nom, prenom, email, address;
+	private String  nom, prenom, email, address;
 
-	public Employe(String id, String nom, String prenom, String email, String address) {
+	public Employe( String nom, String prenom, String email, String address) {
 		super();
-		this.id = id;
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -14,14 +14,7 @@ public class Employe {
 	
 	public Employe(){}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
+	
 	public String getNom() {
 		return nom;
 	}

@@ -39,13 +39,13 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 		try{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("src/xmlsrc/xmlFile.xml"));
+			Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
 			
 			doc.getDocumentElement().normalize();
 			
 			Node noeudRacine = doc.getDocumentElement();
 			//adition d'étiquette
-			Element nouvelEmploye = doc.createElement("employe");
+			Element nouvelEmploye = doc.createElement("employee");
 			//étiquettes filles
 			
 			Element nouvelNom = doc.createElement("nom");
@@ -72,7 +72,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("src/xmlsrc/xmlFile.xml"));
+			StreamResult result = new StreamResult(new File("src/xmlsrc/employees.xml"));
 			transformer.transform(source, result);
 			
 			 
