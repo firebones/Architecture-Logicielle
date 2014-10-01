@@ -50,7 +50,7 @@ public class HelloWorldController
 	   //employeService.addEmployee(newEmploye);
 		employeRepository = new EmployeeRepositoryImp();
 	   employeRepository.addEmployee(newEmploye);
-	   return "redirect:/addEmployee";
+	   return "redirect:/";
 	}
 
 }
