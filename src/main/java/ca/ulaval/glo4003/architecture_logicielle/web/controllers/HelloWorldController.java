@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepository;
 import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepositoryImp;
+import ca.ulaval.glo4003.architecture_logicielle.delegate.BusinessDelegate;
 import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
 
 
@@ -21,6 +21,7 @@ public class HelloWorldController
 	
 	
 	private EmployeeRepository employeRepository;
+	private BusinessDelegate delegate;
 	
 
 	@RequestMapping("/")
@@ -47,10 +48,9 @@ public class HelloWorldController
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddNewEmployeeForm(@ModelAttribute("newEmploye") Employe newEmploye) {
-	   //employeService.addEmployee(newEmploye);
-		employeRepository = new EmployeeRepositoryImp();
-	   employeRepository.addEmployee(newEmploye);
-	   return "redirect:/";
+		delegate = new BusinessDelegate();
+		delegate.addEmployee(newEmploye);
+	   return "addEmployee";
 	}
 
 }
