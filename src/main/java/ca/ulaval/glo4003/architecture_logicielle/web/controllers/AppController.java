@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepository;
-import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepositoryImp;
 import ca.ulaval.glo4003.architecture_logicielle.delegate.BusinessDelegate;
 import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
 
@@ -16,11 +14,8 @@ import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
 
 
 @Controller
-public class HelloWorldController 
+public class AppController 
 {
-	
-	
-	private EmployeeRepository employeRepository;
 	private BusinessDelegate delegate;
 	
 
