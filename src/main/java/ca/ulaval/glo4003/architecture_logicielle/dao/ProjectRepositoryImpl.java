@@ -17,7 +17,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
 public class ProjectRepositoryImpl implements ProjectRepository {
-	Document doc;
+	private Document doc;
 	
 	public ArrayList<ProjectEntry> getAllProjects() {
 		ArrayList<ProjectEntry> projectList = new ArrayList<ProjectEntry>();

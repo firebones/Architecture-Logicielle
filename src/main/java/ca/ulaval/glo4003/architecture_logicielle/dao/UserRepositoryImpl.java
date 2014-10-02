@@ -18,7 +18,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 
 public class UserRepositoryImpl implements UserRepository {
-	Document doc;
+	private Document doc;
 	
 	public ArrayList<UserEntry> getAllUsers() {
 		ArrayList<UserEntry> userList = new ArrayList<UserEntry>();

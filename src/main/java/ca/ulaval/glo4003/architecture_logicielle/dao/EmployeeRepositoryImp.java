@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -44,9 +45,9 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			doc.getDocumentElement().normalize();
 			
 			Node noeudRacine = doc.getDocumentElement();
-			//adition d'étiquette
+			//adition d'ï¿½tiquette
 			Element nouvelEmploye = doc.createElement("employee");
-			//étiquettes filles
+			//ï¿½tiquettes filles
 			
 			Element nouvelNom = doc.createElement("nom");
 			nouvelNom.setTextContent(employe.getNom());
@@ -68,9 +69,11 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			
 			noeudRacine.appendChild(nouvelEmploye);
 			
-			//Transformation des données en XML
+			//Transformation des donnï¿½es en XML
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File("src/xmlsrc/employees.xml"));
 			transformer.transform(source, result);
