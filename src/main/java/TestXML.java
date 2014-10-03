@@ -1,4 +1,4 @@
-import ca.ulaval.glo4003.architecture_logicielle.dao.GestionFichierXML;
+import ca.ulaval.glo4003.architecture_logicielle.dao.ToolsXML;
 import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
 
 
@@ -25,7 +25,7 @@ public class TestXML {
 
 		//Adition employe
 		Employe employe = new Employe();
-		GestionFichierXML objEmplXml = new GestionFichierXML();
+		ToolsXML objEmplXml = new ToolsXML();
 		
 		
 		String id = "243";
@@ -41,7 +41,7 @@ public class TestXML {
 		employe.setAddress(address);
 		
 		
-		objEmplXml.aditionerEmploye(employe);		
+	//	objEmplXml.aditionerEmploye(employe);		
 		
 	}
 	

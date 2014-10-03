@@ -2,6 +2,7 @@ package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,15 +18,41 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
 public class EmployeeRepositoryImp implements EmployeeRepository {
 
 	@Override
-	public List<Employe> getAllUEmployee() {
-		// TODO Auto-generated method stub
+	public List<Employe> getAllEmployees() {
+		List<Employe> lstEmployees = new ArrayList<Employe>();
+		try {
+			
+				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+				Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+				doc.getDocumentElement().normalize();
+				
+				Element docElement = doc.getDocumentElement();
+				NodeList nodeList = docElement.getElementsByTagName("employee");
+				
+				if (nodeList != null && nodeList.getLength() > 0) {
+					for (int i = 0; i < nodeList.getLength(); i++) {
+						Element element = (Element) nodeList.item(i);
+						Employe employee = getEmployee(element);
+						lstEmployees.add(employee);
+					}
+				}
+				
+				return lstEmployees;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return null;
 	}
 
@@ -41,7 +68,6 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
-			
 			doc.getDocumentElement().normalize();
 			
 			Node noeudRacine = doc.getDocumentElement();
@@ -99,9 +125,22 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 	}
 
 	@Override
-	public void deleteEmploye(String email) {
+	public void deleteEmployee(String email) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Employe getEmployee(Element element) {
+		Employe employee = new Employe();
+		ToolsXML toolsxml = new ToolsXML();
+		
+		employee.setNom(toolsxml.getStringValue(element, "nom"));
+		employee.setNom(toolsxml.getStringValue(element, "prenom"));
+		employee.setNom(toolsxml.getStringValue(element, "address"));
+		employee.setNom(toolsxml.getStringValue(element, "email"));
+		
+		return employee;
 	}
 
 }

@@ -14,7 +14,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
 
 
 @Controller
-public class AppController 
+public class LoginController 
 {
 	private BusinessDelegate delegate;
 	
@@ -33,7 +33,7 @@ public class AppController
 	public String login() {
 		return "login";
 	}
-	
+/*	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	  public String getAddNewProductForm(Model model) {
 	     Employe newEmploye = new Employe();
@@ -47,5 +47,5 @@ public class AppController
 		delegate.addEmployee(newEmploye);
 	   return "addEmployee";
 	}
-
+*/
 }
