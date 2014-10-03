@@ -10,6 +10,6 @@ public interface UserRepository {
 	public UserEntry getUserByEmail(String email);
 	public void addUser(UserEntry user);
 	public void updateUser(UserEntry user);
-	public void deleteUser(String email);
+	public void deleteUser(UserEntry user);
 	public void addTaskToUser(TaskEntry task, UserEntry user);
 }

@@ -10,7 +10,7 @@ public class UserEntry {
 	private String email;
 	private String hashedPassword;
 	private String role;
-	private List<TaskEntry> tasks;
+	private List<TaskEntry> tasks = null;
 	
 	public UserEntry() {
 		tasks = new ArrayList<TaskEntry>();

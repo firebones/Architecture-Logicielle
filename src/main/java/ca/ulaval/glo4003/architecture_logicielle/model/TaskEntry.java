@@ -22,7 +22,6 @@ public class TaskEntry {
 	
 	@Override
 	public boolean equals(Object object) {
-		return (this.id == ((TaskEntry) object).getId() &&
-				this.name == ((TaskEntry) object).getName());
+		return this.id == ((TaskEntry) object).getId();
 	}
 }
