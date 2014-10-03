@@ -19,4 +19,11 @@
 			<taskId>4</taskId>
 		</tasks>
 	</user>
+
+<user>
+        <name>Jim</name>
+        <email>jim@gmail.com</email>
+        <hashedPassword>ppppp</hashedPassword>
+        <role>manager</role>
+    </user>
 </users>

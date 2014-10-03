@@ -82,7 +82,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("src/xmlsrc/projects.xml"));
+			doc = docBuilder.parse(new File("database/projects.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {

@@ -122,7 +122,7 @@ public class UserRepositoryImpl implements UserRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("src/xmlsrc/users.xml"));
+			doc = docBuilder.parse(new File("database/users.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {
@@ -139,7 +139,7 @@ public class UserRepositoryImpl implements UserRepository {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			DOMSource domsource = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("src/xmlsrc/users.xml"));
+			StreamResult result = new StreamResult(new File("database/users.xml"));
 			transformer.transform(domsource, result);
 		} catch (TransformerException transException) {
 			System.out.println(transException);
