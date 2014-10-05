@@ -67,4 +67,8 @@ public class UserEntry {
 	public void updateTasks(List<TaskEntry> tasks) {
 		this.tasks = tasks;
 	}
+
+	public boolean isPasswordValid(String password) {
+		return (hashedPassword.equals(password));
+	}
 }
