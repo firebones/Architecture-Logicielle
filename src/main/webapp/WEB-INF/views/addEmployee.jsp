@@ -23,16 +23,16 @@
         <legend>Add new employe</legend>
 
         <div class="form-group">
-          <label class="control-label col-lg-2 col-lg-2" for="nom">Nom</label>
+          <label class="control-label col-lg-2 col-lg-2" for="lastName">Nom</label>
           <div class="col-lg-10">
-            <form:input id="nom" path="nom" type="text" class="form:input-large"/>
+            <form:input id="lastName" path="lastName" type="text" class="form:input-large"/>
           </div>
         </div>
         
         <div class="form-group">
-          <label class="control-label col-lg-2 col-lg-2" for="prenom">Prenom</label>
+          <label class="control-label col-lg-2 col-lg-2" for="firstName">Prénom</label>
           <div class="col-lg-10">
-            <form:input id="prenom" path="prenom" type="text" class="form:input-large"/>
+            <form:input id="firstName" path="firstName" type="text" class="form:input-large"/>
           </div>
         </div>
         

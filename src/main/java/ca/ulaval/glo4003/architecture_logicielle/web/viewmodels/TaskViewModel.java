@@ -4,7 +4,7 @@ public class TaskViewModel {
 
 	public Integer id;
 	public String name;
-	public Boolean assigned;
+	public Boolean isAssigned;
 	
 	public Integer getId() {
 		return id;
@@ -20,11 +20,11 @@ public class TaskViewModel {
 		this.name = name;
 	}
 
-	public Boolean isAssigned() {
-		return assigned;
+	public Boolean getIsAssigned() {
+		return isAssigned;
 	}
 	
-	public void setAssigned(Boolean assigned) {
-		this.assigned = assigned;
+	public void setIsAssigned(Boolean isAssigned) {
+		this.isAssigned = isAssigned;
 	}
 }

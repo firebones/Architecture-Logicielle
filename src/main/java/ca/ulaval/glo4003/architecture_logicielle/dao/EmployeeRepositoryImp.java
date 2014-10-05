@@ -21,15 +21,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+import ca.ulaval.glo4003.architecture_logicielle.model.Employee;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
 public class EmployeeRepositoryImp implements EmployeeRepository {
 
 	@Override
-	public List<Employe> getAllEmployees() {
-		List<Employe> lstEmployees = new ArrayList<Employe>();
+	public List<Employee> getAllEmployees() {
+		List<Employee> lstEmployees = new ArrayList<Employee>();
 		try {
 			
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -43,7 +43,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 				if (nodeList != null && nodeList.getLength() > 0) {
 					for (int i = 0; i < nodeList.getLength(); i++) {
 						Element element = (Element) nodeList.item(i);
-						Employe employee = getEmployee(element);
+						Employee employee = getEmployee(element);
 						lstEmployees.add(employee);
 					}
 				}
@@ -57,13 +57,21 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 	}
 
 	@Override
-	public Employe getEmployeByEmail(String email) {
-		// TODO Auto-generated method stub
+	public Employee getEmployeByEmail(String email) {
+		
+		List<Employee> employees = getAllEmployees();
+		for (int i = 0; i < employees.size(); i++) {
+			if (employees.get(i).getEmail().equals(email)) {
+				return employees.get(i);
+			}
+		}
+		
+		// TODO persi1: throw
 		return null;
 	}
 
 	@Override
-	public void addEmployee(Employe employe) {
+	public void addEmployee(Employee employe) {
 		try{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -76,10 +84,10 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			//�tiquettes filles
 			
 			Element nouvelNom = doc.createElement("nom");
-			nouvelNom.setTextContent(employe.getNom());
+			nouvelNom.setTextContent(employe.getLastName());
 			
 			Element nouvelPrenom = doc.createElement("prenom");
-			nouvelPrenom.setTextContent(employe.getPrenom());
+			nouvelPrenom.setTextContent(employe.getFirstName());
 			
 			Element nouvelEmail = doc.createElement("email");
 			nouvelEmail.setTextContent(employe.getEmail());
@@ -119,7 +127,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 	}
 
 	@Override
-	public void updateEmployee(Employe employe) {
+	public void updateEmployee(Employee employe) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -131,14 +139,14 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 	}
 
 	@Override
-	public Employe getEmployee(Element element) {
-		Employe employee = new Employe();
+	public Employee getEmployee(Element element) {
+		Employee employee = new Employee();
 		ToolsXML toolsxml = new ToolsXML();
 		
-		employee.setNom(toolsxml.getStringValue(element, "nom"));
-		employee.setNom(toolsxml.getStringValue(element, "prenom"));
-		employee.setNom(toolsxml.getStringValue(element, "address"));
-		employee.setNom(toolsxml.getStringValue(element, "email"));
+		employee.setLastName(toolsxml.getStringValue(element, "nom"));
+		employee.setFirstName(toolsxml.getStringValue(element, "prenom"));
+		employee.setAddress(toolsxml.getStringValue(element, "address"));
+		employee.setEmail(toolsxml.getStringValue(element, "email"));
 		
 		return employee;
 	}

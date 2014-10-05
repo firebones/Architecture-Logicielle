@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.w3c.dom.Element;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+import ca.ulaval.glo4003.architecture_logicielle.model.Employee;
 
 
 public interface EmployeeRepository {
-	public List<Employe> getAllEmployees();
-	public Employe getEmployeByEmail(String email);
-	public Employe getEmployee(Element element);
-	public void addEmployee(Employe employe);
-	public void updateEmployee(Employe employe);
+	public List<Employee> getAllEmployees();
+	public Employee getEmployeByEmail(String email);
+	public Employee getEmployee(Element element);
+	public void addEmployee(Employee employe);
+	public void updateEmployee(Employee employe);
 	public void deleteEmployee(String email);
 	
 }

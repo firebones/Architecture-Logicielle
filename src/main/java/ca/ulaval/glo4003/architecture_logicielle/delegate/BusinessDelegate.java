@@ -1,11 +1,11 @@
 package ca.ulaval.glo4003.architecture_logicielle.delegate;
 
 import ca.ulaval.glo4003.architecture_logicielle.dao.EmployeeRepositoryImp;
-import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+import ca.ulaval.glo4003.architecture_logicielle.model.Employee;
 
 public class BusinessDelegate {
 	
-	public void addEmployee(Employe employe){
+	public void addEmployee(Employee employe){
 		new EmployeeRepositoryImp().addEmployee(employe);
 	}
 

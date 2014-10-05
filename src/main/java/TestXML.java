@@ -1,5 +1,5 @@
 import ca.ulaval.glo4003.architecture_logicielle.dao.ToolsXML;
-import ca.ulaval.glo4003.architecture_logicielle.model.Employe;
+import ca.ulaval.glo4003.architecture_logicielle.model.Employee;
 
 
 
@@ -24,7 +24,7 @@ public class TestXML {
 		*/
 
 		//Adition employe
-		Employe employe = new Employe();
+		Employee employe = new Employee();
 		ToolsXML objEmplXml = new ToolsXML();
 		
 		
@@ -35,8 +35,8 @@ public class TestXML {
 		String address = "rue street";
 		
 		
-		employe.setNom(nom);
-		employe.setPrenom(prenom);
+		employe.setLastName(nom);
+		employe.setFirstName(prenom);
 		employe.setEmail(email);
 		employe.setAddress(address);
 		

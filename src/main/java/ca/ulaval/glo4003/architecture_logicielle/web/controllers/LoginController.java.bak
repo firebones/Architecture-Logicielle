@@ -28,6 +28,8 @@ public class LoginController
 	public String login() {
 		return "login";
 	}
+
+	
 /*	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	  public String getAddNewProductForm(Model model) {

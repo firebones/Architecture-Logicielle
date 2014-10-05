@@ -10,10 +10,10 @@
 		<intercept-url pattern="/admin_page" access="ROLE_ADMIN" />
 		<form-login login-processing-url="/authentification" login-page="/login"
             username-parameter="username" password-parameter="password"
-            default-target-url="/index" authentication-failure-url="/login?auth=fail" />
+            default-target-url="/deptManager" authentication-failure-url="/login?auth=fail" />
         <logout logout-url="/logout" logout-success-url="/logout" />
 	</http>
-
+	
 	<authentication-manager>
 		<authentication-provider>
 	    	<user-service>

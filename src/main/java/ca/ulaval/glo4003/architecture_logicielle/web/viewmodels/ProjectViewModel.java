@@ -18,10 +18,10 @@ public class ProjectViewModel {
 		return name;
 	}
 
-	public List<TaskViewModel> getTaches() {
+	public List<TaskViewModel> getTasks() {
 		return tasks;
 	}
-	public void setTaches(List<TaskViewModel> tasks) {
+	public void setTasks(List<TaskViewModel> tasks) {
 		this.tasks = tasks;
 	}
 }
