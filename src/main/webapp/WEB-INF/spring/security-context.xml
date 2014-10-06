@@ -5,26 +5,38 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <debug />
+	<!-- Don't forget to remove if you go live. -->
+    <!-- <debug /> -->
 
     <global-method-security pre-post-annotations="enabled" />
-    <http pattern="/ressources/**" security="none" />
- 
-	<http auto-config="false">
-		<intercept-url pattern="/admin_page" access="ROLE_ADMIN" />
-		<form-login login-processing-url="/authentification" login-page="/login"
-            username-parameter="username" password-parameter="password"
-            default-target-url="/deptManager" authentication-failure-url="/login?auth=fail" />
-        <logout logout-url="/logout" logout-success-url="/logout" />
-	</http>
+    <http pattern="/resources/**" security="none"/>
 
-	<beans:bean id="userReporitoryForAuthentication" class="ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl" />
-	<beans:bean id="employeeAuthentication" class="ca.ulaval.glo4003.architecture_logicielle.web.authentication.UserAuthenticationProvider">
-		<beans:constructor-arg ref="userReporitoryForAuthentication" />
-	</beans:bean>
-	
-	<authentication-manager>
-		<authentication-provider ref="employeeAuthentication" />
-	</authentication-manager>
- 
+    <http use-expressions="true">
+        <!-- Be careful, the order matters -->
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/denied" access="permitAll" />
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+
+		<!-- Use default provided form. See docs to customize. -->
+        <form-login />
+        
+        <access-denied-handler error-page="/denied" /> <!-- Custom page for access denied pages -->
+        <logout logout-success-url="/" delete-cookies="JSESSIONID"/>
+        
+        <!-- <remember-me /> requires user details services-->
+
+    </http>
+    
+    <!-- The authentication is wired separately in the root context. This could
+         have some uses, or be totally useless. Adjust accordingly. -->
+    <beans:bean id="userRepositoryForAuthentication" class="ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl" />
+    <beans:bean id="employeeAuthentication" class="ca.ulaval.glo4003.architecture_logicielle.web.authentication.UserAuthenticationProvider" >
+    	<beans:constructor-arg ref="userRepositoryForAuthentication" />
+    </beans:bean>
+
+    <authentication-manager>
+        <authentication-provider ref="employeeAuthentication" />
+    </authentication-manager>
+    
 </beans:beans>

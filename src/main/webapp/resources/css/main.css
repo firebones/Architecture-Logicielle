@@ -3,3 +3,11 @@
 h1 {
 	text-decoration: underline;
 }
+
+#login-info {
+	text-align: right;
+}
+
+.denied {
+	color: red;
+}

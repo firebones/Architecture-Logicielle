@@ -1,11 +1,12 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.ArrayList;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
-public class UserEntry {
+public class UserEntry implements Principal {
 	private String name;
 	private String email;
 	private String hashedPassword;

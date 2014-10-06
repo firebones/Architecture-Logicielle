@@ -10,7 +10,7 @@
 
 	<jsp:include page="_header.jsp" />
 
-	<h1>This page is not secured</h1>
+	<h1 class="denied">Access was denied</h1>
 
 	<jsp:include page="_navigation.jsp" />
 
