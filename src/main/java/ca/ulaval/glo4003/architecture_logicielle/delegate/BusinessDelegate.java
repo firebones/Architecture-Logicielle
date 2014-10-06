@@ -5,7 +5,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.Employee;
 
 public class BusinessDelegate {
 	
-	public void addEmployee(Employee employe){
+	public void addEmployee(Employee employe) throws Exception{
 		new EmployeeRepositoryImp().addEmployee(employe);
 	}
 

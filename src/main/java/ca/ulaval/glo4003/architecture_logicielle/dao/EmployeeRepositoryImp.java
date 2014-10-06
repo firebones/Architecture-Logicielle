@@ -48,30 +48,57 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 					}
 				}
 				
-				return lstEmployees;
+				
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return null;
+		return lstEmployees;
 	}
 
 	@Override
 	public Employee getEmployeByEmail(String email) {
+		Employee employeeEmail = new Employee();
 		
-		List<Employee> employees = getAllEmployees();
-		for (int i = 0; i < employees.size(); i++) {
-			if (employees.get(i).getEmail().equals(email)) {
-				return employees.get(i);
+		try {
+			
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+			doc.getDocumentElement().normalize();
+			
+			Element docElement = doc.getDocumentElement();
+			NodeList nodeList = docElement.getElementsByTagName("employee");
+			
+			if (nodeList != null && nodeList.getLength() > 0) {
+				for (int i = 0; i < nodeList.getLength(); i++) {
+					Element element = (Element) nodeList.item(i);
+					Employee employee = getEmployee(element);
+					if(employee.getEmail().toString().compareTo(email) == 0){
+						employeeEmail = employee;
+					}
+				}
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-		
-		// TODO persi1: throw
-		return null;
+		return employeeEmail;
 	}
 
 	@Override
-	public void addEmployee(Employee employe) {
+	public void addEmployee(Employee employe) throws Exception{
+		String email = employe.getEmail();
+		Employee employeeEmail = new Employee();
+		
+		//Validation if employee is in the file XML
+		employeeEmail = getEmployeByEmail(email);
+		
+		if(employeeEmail != null){
+			//TODO 
+			
+			 throw new Exception("The Employee is already exist in the file");
+		}
+		else{
 		try{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -123,6 +150,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			}catch(TransformerException trE){
 				System.out.println(trE);
 			}
+		}
 		
 	}
 
