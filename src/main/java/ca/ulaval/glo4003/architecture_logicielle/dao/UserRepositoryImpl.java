@@ -22,6 +22,10 @@ import org.xml.sax.SAXException;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.AdminEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.CompanyEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.DeptManagerEntry;
 
 public class UserRepositoryImpl implements UserRepository {
 	private Document doc;
@@ -71,7 +75,7 @@ public class UserRepositoryImpl implements UserRepository {
 	public void updateUser(UserEntry user) {
 		parseXml();
 		
-		if (getUserByEmail(user.getEmail()) != null)
+		if (getUserByEmail(user.getEmail()) == null)
 			return;
 		
 		Element oldUserElement = getUserElementByEmail(user.getEmail());
@@ -96,9 +100,9 @@ public class UserRepositoryImpl implements UserRepository {
 	public void addTaskToUser(TaskEntry task, UserEntry user) {
 		parseXml();
 		
-		if (getUserByEmail(user.getEmail()) != null)
+		if (getUserByEmail(user.getEmail()) == null)
 			return;
-		
+
 		Element userElement = getUserElementByEmail(user.getEmail());
 		
 		NodeList nodeList = userElement.getElementsByTagName("tasks");
@@ -110,10 +114,12 @@ public class UserRepositoryImpl implements UserRepository {
 			nodeList = userElement.getElementsByTagName("tasks");
 		}
 		
-		Element tasksElement = (Element) nodeList.item(0);
-		Element newTaskElement = doc.createElement("taskId");
-		newTaskElement.setTextContent(Integer.toString(task.getId()));
-		tasksElement.appendChild(newTaskElement);
+		if (containsTask((Element) nodeList.item(0), task.getId()) == false) {
+			Element tasksElement = (Element) nodeList.item(0);
+			Element newTaskElement = doc.createElement("taskId");
+			newTaskElement.setTextContent(Integer.toString(task.getId()));
+			tasksElement.appendChild(newTaskElement);
+		}
 		
 		saveXml();
 	}
@@ -147,12 +153,26 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	private UserEntry getUser(Element element) {
-		UserEntry user = new UserEntry();
+		UserEntry user;
+		String role = getStringValue(element, "role");
+		
+		if (role.equals("ADMIN")) {
+			user = new AdminEntry();
+		}
+		else if (role.equals("COMPANY")) {
+			user = new CompanyEntry();
+		}
+		else if (role.equals("EMPLOYEE")) {
+			user = new EmployeeEntry();
+			((EmployeeEntry) user).updateTasks(getTaskListValue(element, "tasks"));
+		}
+		else {
+			user = new DeptManagerEntry();
+			((DeptManagerEntry) user).updateTasks(getTaskListValue(element, "tasks"));
+		}
 		user.setName(getStringValue(element, "name"));
 		user.setEmail(getStringValue(element, "email"));
 		user.setHashedPassword(getStringValue(element, "hashedPassword"));
-		user.setRole(getStringValue(element, "role"));
-		user.updateTasks(getTaskListValue(element, "tasks"));
 		return user;
 	}
 	
@@ -175,13 +195,14 @@ public class UserRepositoryImpl implements UserRepository {
 		role.setTextContent(user.getRole());
 		userElement.appendChild(role);
 		
-		if (user.getTasks().size() > 0) {
+		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
 			Element tasks = doc.createElement("tasks");
-			for (int i = 0; i < user.getTasks().size(); i++) {
-				TaskEntry task = user.getTasks().get(i);
+			for (int i = 0; i < ((EmployeeEntry) user).getTasks().size(); i++) {
+				TaskEntry task = ((EmployeeEntry) user).getTasks().get(i);
+				System.out.println(task.getId());
 				Element taskId = doc.createElement("taskId");
-				name.setTextContent(Integer.toString(task.getId()));
-				userElement.appendChild(taskId);
+				taskId.setTextContent(Integer.toString(task.getId()));
+				tasks.appendChild(taskId);
 			}
 			userElement.appendChild(tasks);
 		}
@@ -233,5 +254,20 @@ public class UserRepositoryImpl implements UserRepository {
 		}
 		
 		return taskList;
+	}
+	
+	private boolean containsTask(Element tasksElement, Integer id) {
+		NodeList nodeList = tasksElement.getElementsByTagName("taskId");
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element tagElement = (Element) nodeList.item(i);
+				Integer taskId = Integer.parseInt(tagElement.getFirstChild().getNodeValue());
+				if (taskId == id) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

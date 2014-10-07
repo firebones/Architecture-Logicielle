@@ -4,7 +4,7 @@
 	<ul>
 		<li><a href="/">Home</a></li>
 		<li><a href="/users">Page for users</a></li>
-		<sec:authorize access="hasRole('manager')">
+		<sec:authorize access="hasRole('MANAGER')">
 			<li><a href="/add">Add Employee</a></li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">

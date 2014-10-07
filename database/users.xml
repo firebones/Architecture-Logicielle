@@ -3,7 +3,7 @@
 	<user>
 		<name>Joe</name>
 		<email>joe@gmail.com</email>
-		<role>employee</role>
+		<role>EMPLOYEE</role>
 		<hashedPassword>1234</hashedPassword>
 		<tasks>
 			<taskId>3</taskId>
@@ -13,17 +13,10 @@
 	<user>
 		<name>Jane</name>
 		<email>jane@gmail.com</email>
-		<role>manager</role>
+		<role>MANAGER</role>
 		<hashedPassword>1234</hashedPassword>
 		<tasks>
 			<taskId>4</taskId>
 		</tasks>
 	</user>
-
-<user>
-        <name>Jim</name>
-        <email>jim@gmail.com</email>
-        <hashedPassword>ppppp</hashedPassword>
-        <role>manager</role>
-    </user>
 </users>
