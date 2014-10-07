@@ -26,6 +26,7 @@
           <label class="control-label col-lg-2 col-lg-2" for="lastName">Nom</label>
           <div class="col-lg-10">
             <form:input id="lastName" path="lastName" type="text" class="form:input-large"/>
+            <td><form:errors path="lastName" cssClass="errorField"/></td>
           </div>
         </div>
         
@@ -33,6 +34,7 @@
           <label class="control-label col-lg-2 col-lg-2" for="firstName">Prénom</label>
           <div class="col-lg-10">
             <form:input id="firstName" path="firstName" type="text" class="form:input-large"/>
+            <td><form:errors path="firstName" cssClass="errorField"/></td>
           </div>
         </div>
         
@@ -40,6 +42,7 @@
           <label class="control-label col-lg-2 col-lg-2" for="email">Email</label>
           <div class="col-lg-10">
             <form:input id="email" path="email" type="text" class="form:input-large"/>
+            <td><form:errors path="email" cssClass="errorField"/></td>
           </div>
         </div>
         
@@ -47,6 +50,7 @@
           <label class="control-label col-lg-2 col-lg-2" for="address">Address</label>
           <div class="col-lg-10">
             <form:input id="address" path="address" type="text" class="form:input-large"/>
+            <td><form:errors path="address" cssClass="errorField"/></td>
           </div>
         </div>
         <div class="form-group">
