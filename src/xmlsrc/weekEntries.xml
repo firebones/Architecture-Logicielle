@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<weekEntries>
+	<weekEntry>
+		<email>joe@gmail.com</email>
+		<weekNumber>41</weekNumber>
+		<startDate>2014-10-05</startDate>
+		<endDate>2014-10-11</endDate>
+		<isApproved>false</isApproved>
+		<kilometers>
+			<kilometer>0</kilometer>
+			<kilometer>3</kilometer>
+			<kilometer>4</kilometer>
+			<kilometer>5</kilometer>
+			<kilometer>6</kilometer>
+			<kilometer>7</kilometer>
+			<kilometer>0</kilometer>
+		</kilometers>
+	</weekEntry>
+</weekEntries>
