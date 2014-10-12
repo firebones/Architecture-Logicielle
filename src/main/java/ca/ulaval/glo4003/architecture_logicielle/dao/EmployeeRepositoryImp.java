@@ -34,7 +34,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			
 				DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-				Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+				Document doc = docBuilder.parse(new File("database/employees.xml"));
 				doc.getDocumentElement().normalize();
 				
 				Element docElement = doc.getDocumentElement();
@@ -64,7 +64,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+			Document doc = docBuilder.parse(new File("database/employees.xml"));
 			doc.getDocumentElement().normalize();
 			
 			Element docElement = doc.getDocumentElement();
@@ -102,7 +102,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 		try{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(new File("src/xmlsrc/employees.xml"));
+			Document doc = docBuilder.parse(new File("database/employees.xml"));
 			doc.getDocumentElement().normalize();
 			
 			Node noeudRacine = doc.getDocumentElement();
@@ -136,7 +136,7 @@ public class EmployeeRepositoryImp implements EmployeeRepository {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("src/xmlsrc/employees.xml"));
+			StreamResult result = new StreamResult(new File("database/employees.xml"));
 			transformer.transform(source, result);
 			
 			 

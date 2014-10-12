@@ -59,11 +59,11 @@ public class DeptManagerController {
 		return "redirect:/deptManager";
 	}
 	
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "/createEmployee", method = RequestMethod.GET)
 	  public String addNewEmployee(Model model) {
 	     Employee newEmploye = new Employee();
 	     model.addAttribute("newEmploye", newEmploye);
-	     return "addEmployee";
+	     return "createEmployee";
 	  }
 	
 }

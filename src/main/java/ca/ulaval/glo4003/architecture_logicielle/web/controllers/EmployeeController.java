@@ -22,7 +22,8 @@ public class EmployeeController {
 	  public String getAddNewEmployeetForm(Model model) {
 	     Employee newEmploye = new Employee();
 	     model.addAttribute("newEmploye", newEmploye);
-	     return "addEmployee";
+	     //return "addEmployee";
+	     return "createEmployee";
 	  }
 	
 	
@@ -47,7 +48,8 @@ public class EmployeeController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String employeeValidation(@Validated @ModelAttribute("newEmploye") Employee newEmployee, BindingResult result){
 		if(result.hasErrors()){
-			return "addEmployee";
+			//return "addEmployee";
+			return "createEmployee";
 		}
 		return "index";
 	}
@@ -60,7 +62,15 @@ public class EmployeeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   return "addEmployee";
+	   //return "addEmployee";
+		return "createEmployee";
+	}
+	
+	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	public String list(Model model) {
+		//model.addAttribute("entries", converter.convert(repository.getAll()));
+		model.addAttribute("entries", delegate.getAllEmployees());
+		return "employeeList";
 	}
 
 
