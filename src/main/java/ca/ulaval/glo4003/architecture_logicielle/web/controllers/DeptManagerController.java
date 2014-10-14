@@ -61,11 +61,22 @@ public class DeptManagerController {
 		return "redirect:/deptManager";
 	}
 	
-	@RequestMapping(value = "/createEmployee", method = RequestMethod.GET)
-	  public String addNewEmployee(Model model) {
-	     EmployeeEntry newEmploye = new EmployeeEntry();
-	     model.addAttribute("newEmploye", newEmploye);
-	     return "createEmployee";
-	  }
+	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+	public String addNewEmployee(Model model) {
+	    model.addAttribute("newEmployee", new EmployeeEntry());
+	    return "addEmployee";
+	}
+	
+	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+	public String addNewEmployee(EmployeeEntry newEmployee){
+		userRepository.addUser(newEmployee);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
+	public String list(Model model) {
+		model.addAttribute("entries", userRepository.getAllEmployees());
+		return "employeeList";
+	}
 	
 }
