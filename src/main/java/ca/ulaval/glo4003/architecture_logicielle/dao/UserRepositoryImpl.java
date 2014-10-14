@@ -61,7 +61,7 @@ public class UserRepositoryImpl implements UserRepository {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Element element = (Element) nodeList.item(i);
 				UserEntry user = getUser(element);
-				if (user.getRole() == "EMPLOYEE")
+				if (user.getRole() == "EMPLOYEE" || user.getRole() == "MANAGER")
 					userList.add((EmployeeEntry) user);
 			}
 		}
