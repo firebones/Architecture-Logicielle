@@ -29,4 +29,12 @@ public class EmployeeEntry extends UserEntry {
 	public void updateTasks(List<TaskEntry> tasks) {
 		this.tasks = tasks;
 	}
+	
+	public List<String> getTasksString() {
+		List<String> tasksString = new ArrayList<String>();
+		for (TaskEntry entry : tasks) {
+			tasksString.add(Integer.toString(entry.getId()));
+		}
+		return tasksString;
+	}
 }
