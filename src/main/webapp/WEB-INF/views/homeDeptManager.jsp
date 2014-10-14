@@ -27,7 +27,7 @@
 			
 				<select name="mySelection" id="mySelection">
 			   	   <c:forEach var="employee" items="${employees}">
-				        <option value="${employee.email}">${employee.lastName}, ${employee.firstName} - ${employee.email}</option>
+				        <option value="${employee.email}">${employee.name} - ${employee.email}</option>
 				    </c:forEach>
 				</select>
 			</tr>

@@ -5,8 +5,7 @@ import java.util.List;
 public class EmployeeViewModel {
 
 	public String email;
-	public String lastName;
-	public String firstName;
+	public String name;
 	public List<String> tasks;
 	
 	public String getEmail() {
@@ -15,17 +14,11 @@ public class EmployeeViewModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getLastName() {
-		return lastName;
+	public String getName() {
+		return name;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirtName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public List<String> getTasks() {
 		return tasks;
