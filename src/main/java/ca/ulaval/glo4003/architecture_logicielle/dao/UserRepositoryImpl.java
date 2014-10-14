@@ -49,6 +49,26 @@ public class UserRepositoryImpl implements UserRepository {
 		return userList;
 	}
 	
+	public ArrayList<EmployeeEntry> getAllEmployees() {
+		ArrayList<EmployeeEntry> userList = new ArrayList<EmployeeEntry>();
+		
+		parseXml();
+		
+		Element docElement = doc.getDocumentElement();
+		NodeList nodeList = docElement.getElementsByTagName("user");
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element element = (Element) nodeList.item(i);
+				UserEntry user = getUser(element);
+				if (user.getRole() == "EMPLOYEE")
+					userList.add((EmployeeEntry) user);
+			}
+		}
+		
+		return userList;
+	}
+	
 	public UserEntry getUserByEmail(String email) {
 		ArrayList<UserEntry> users = getAllUsers();
 		for (int i = 0; i < users.size(); i++) {
