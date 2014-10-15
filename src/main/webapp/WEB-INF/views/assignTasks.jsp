@@ -3,9 +3,9 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Department Manager assigns Tasks to Employee</title>
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/resources/css/main.css" media="all" />
+	<title>M2 - Architecture Logicielle</title>
 	<script>
 	function modifyTasksCheckboxStatus(checkboxProject) {
 				

@@ -10,7 +10,7 @@
 
 	<jsp:include page="_header.jsp" />
 
-	<h1 class="denied">Access was denied</h1>
+	<h1 class="denied">Accès refusé</h1>
 
 	<jsp:include page="_navigation.jsp" />
 

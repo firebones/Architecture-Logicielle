@@ -10,7 +10,7 @@
 
 	<jsp:include page="_header.jsp" />
 	
-	<h1>This page is for admins only</h1>
+	<h1>Page pour admin seulement</h1>
 
 	<jsp:include page="_navigation.jsp" />
 

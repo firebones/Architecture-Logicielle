@@ -4,7 +4,7 @@
 
 <form:form method="post" class="form-horizontal" modelAttribute="newEmployee">
        <div class="form-group">
-         <label for="name" class="control-label col-lg-2">Name</label>
+         <label for="name" class="control-label col-lg-2">Nom</label>
          <div class="col-lg-10">
            <form:input class="form-control" path="name" />
          </div>
@@ -18,7 +18,7 @@
        </div>
        
        <div class="form-group">
-         <label for="role" class="control-label col-lg-2">Role</label>
+         <label for="role" class="control-label col-lg-2">Rôle</label>
          <div class="col-lg-10">
            <form:input class="form-control" path="role" disabled="true" value="EMPLOYEE" />
          </div>
@@ -26,8 +26,8 @@
        
        <div class="form-group">
          <div class="col-lg-offset-2 col-lg-10">
-           <button type="submit" class="btn btn-default">Add</button>
-           <a href="<c:url value="employeeList" />" class="col-lg-offset=2 btn btn-primary">List</a>
+           <button type="submit" class="btn btn-default">Ajouter</button>
+           <a href="<c:url value="employeeList" />" class="col-lg-offset=2 btn btn-primary">Liste des employés</a>
          </div>
         </div>
 </form:form>

@@ -10,7 +10,7 @@
 
 	<jsp:include page="_header.jsp" />
 
-	<h1>This page is for all authenticated users</h1>
+	<h1>Cette page est pour tous les utilisateurs authentifiés.</h1>
 
 	<jsp:include page="_navigation.jsp" />
 

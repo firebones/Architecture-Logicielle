@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="_header.jsp" />
 <h1>
-	Add an employee
+	Ajouter un employé
 </h1>
 <div class="container">
 	<div class="row">
