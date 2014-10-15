@@ -78,7 +78,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("src/xmlsrc/weekEntries.xml"));
+			doc = docBuilder.parse(new File("database/weekEntries.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {
