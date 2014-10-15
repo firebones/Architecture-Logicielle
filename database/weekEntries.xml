@@ -15,5 +15,14 @@
 			<kilometer>7</kilometer>
 			<kilometer>0</kilometer>
 		</kilometers>
+		<employeeExpenses>
+			<employeeExpense>0.0</employeeExpense>
+			<employeeExpense>350.65</employeeExpense>
+			<employeeExpense>450.0</employeeExpense>
+			<employeeExpense>501.25</employeeExpense>
+			<employeeExpense>699.99</employeeExpense>
+			<employeeExpense>75.1</employeeExpense>
+			<employeeExpense>0.0</employeeExpense>
+		</employeeExpenses>
 	</weekEntry>
 </weekEntries>

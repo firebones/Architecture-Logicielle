@@ -11,6 +11,7 @@ public class WeekEntry {
 	private String startDate;
 	private String endDate;
 	private List<Integer> kilometersEntries = new ArrayList<Integer>(7);
+	private List<Double> employeeExpensesEntries = new ArrayList<Double>(7);
 	private List<String> expensesEntries = new ArrayList<String>(7);
 	
 	public String getWeekNumber() {
@@ -42,6 +43,12 @@ public class WeekEntry {
 	}
 	public void setKilometersEntries(List<Integer> kilometersEntries) {
 		this.kilometersEntries = kilometersEntries;
+	}
+	public List<Double> getEmployeeExpensesEntries(){
+		return employeeExpensesEntries;
+	}
+	public void setEmployeeExpensesEntries(List<Double> employeeExpensesEntries){
+		this.employeeExpensesEntries = employeeExpensesEntries;
 	}
 	public List<String> getExpensesEntries() {
 		return expensesEntries;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ca.ulaval.glo4003.architecture_logicielle.converters.WeekEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
 
 @Controller
@@ -60,7 +61,43 @@ public class WeekEntryController {
 		
 		return "redirect:/";
 	}
-
+	
+	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
+	  public String getEnterExpenses(Model model) {
+	
+		// TODO: Pour le moment, c'est la date en cours qui détermine la semaine à obtenir et le numéro de semaine.
+		// TODO: Éventuellement, selon la série hebdomadaire qui sera traitée (le user aura plusieurs séries), le bon weekNumber sera passé.
+		Date todaysDate = new Date();
+		
+		int weekNumber = getWeekNumber(todaysDate);
+		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
+		List<String> datesOfWeek = getDaysOfWeek();
+		
+		// TODO : trouver comment récupérer le email du user loggé
+		List<Double> expensesOfWeek = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getEmployeeExpensesEntries();
+		
+	     model.addAttribute("daysOfWeek", daysOfWeek);
+	     model.addAttribute("daysNameOfWeek", datesOfWeek);
+	     model.addAttribute("valuesOfWeek", expensesOfWeek);
+	     return "employeeExpenseEntries";
+	  }
+	
+	@ModelAttribute("assignedExpenses")
+	public AssignedExpenses assignedexpenses() {
+		return new AssignedExpenses();
+	}
+	
+	// TODO : ne fonctionne pas correctement. Je ne peux pas récupérer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
+	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.POST)
+	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses) {
+	
+		// TODO : remplacer les valeurs hardcodé par le user en cours, et éventuellement, la série hebdomadaire traitée.
+		WeekEntry weekEntry = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
+		List<Double> test = assignedExpenses.getExpenses();
+		weekEntry.setEmployeeExpensesEntries(test);
+		
+		return "redirect:/";
+	}
 	// TODO: éventuellement déplacé?
 	private List<String> getDatesOfWeek(Date refDate) {
 		

@@ -4,5 +4,6 @@ import java.util.ArrayList;
 
 public interface WeekEntryRepository {
 	public ArrayList<String> getKilometers();
+	public ArrayList<String> getEmployeeExpenses();
 	public ArrayList<String> getExpenses();
 }

@@ -10,6 +10,9 @@
 		<sec:authorize access="hasRole('EMPLOYEE')">
 			<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
 		</sec:authorize>
+		<sec:authorize access="hasRole('EMPLOYEE')">
+			<li><a href="/employeeExpenses">Employee Expenses</a></li>
+		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<li><a href="/j_spring_security_logout">Déconnexion</a></li>
 		</sec:authorize>
