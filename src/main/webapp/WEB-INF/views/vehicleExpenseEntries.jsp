@@ -10,7 +10,7 @@
 <body>
 <h1>Saisir ses déplacements en kilomètres</h1>
   <section class="container">
-    <form method="POST" action="/vehicleExpenses" modelAttribute="daysOfWeek" modelAttribute="valuesOfWeek" modelAttribute="daysNameOfWeek" class="form-horizontal >
+    <form method="POST" action="/vehicleExpenses" modelAttribute="daysOfWeek" modelAttribute="valuesOfWeek" modelAttribute="daysNameOfWeek" class="form-horizontal" >
 
         
 
