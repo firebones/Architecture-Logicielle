@@ -32,11 +32,6 @@
 				</select>
 			</tr>
 		</p>
-		<p>
-			<tr>
-				<a href="/addEmployee" class="col-lg-offset=2 btn btn-primary">Créer, Modifier ou Supprimer un employé</a>
-			</tr>
-		</p>
 	</div>
 </div>
 
