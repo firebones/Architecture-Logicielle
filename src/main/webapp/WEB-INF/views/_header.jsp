@@ -2,7 +2,7 @@
 
 <div id="login-info">
 	<sec:authorize access="isAnonymous()">
-		<p>You are not logged in</p>
+		<p>Vous n'êtes pas connecté. <a href="/users">Connexion</a></p>
 	</sec:authorize>
 
 	<sec:authorize access="isAuthenticated()">

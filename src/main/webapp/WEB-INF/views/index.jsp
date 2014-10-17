@@ -10,7 +10,7 @@
 
 	<jsp:include page="_header.jsp" />
 
-	<h1>Cette page n'est pas sécurisée.</h1>
+	<h1>Page d'accueil</h1>
 
 	<jsp:include page="_navigation.jsp" />
 
