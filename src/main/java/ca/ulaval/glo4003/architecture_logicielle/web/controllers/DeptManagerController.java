@@ -15,6 +15,7 @@ import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepository;
 import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedTasks;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
 
 @Controller
 public class DeptManagerController {
@@ -68,9 +69,10 @@ public class DeptManagerController {
 	}
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-	public String addNewEmployee(EmployeeEntry newEmployee){
+	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
+		EmployeeEntry newEmployee = employeeConverter.convertEmployee(newEmployeeViewModel);
 		userRepository.addUser(newEmployee);
-		return "redirect:/";
+		return "redirect:/employeeList";
 	}
 	
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
@@ -79,4 +81,10 @@ public class DeptManagerController {
 		return "employeeList";
 	}
 	
+	@RequestMapping(value = "/{email}/delete", method = RequestMethod.GET)
+	public String list(@PathVariable String email) {
+		EmployeeEntry employee = (EmployeeEntry) userRepository.getUserByEmail(email);
+		userRepository.deleteUser(employee);
+		return "redirect:/employeeList";
+	}
 }

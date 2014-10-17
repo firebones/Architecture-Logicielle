@@ -31,9 +31,6 @@
 						<td>${entry.email}</td>
 						<td>${entry.role}</td>
 						<td>
-							<a href="${entryUrl}/edit">Éditer</a>
-						</td>
-						<td>
 							<a href="${entryUrl}/delete">Supprimer</a>
 						</td>
 				</c:forEach>
