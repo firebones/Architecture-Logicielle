@@ -4,7 +4,6 @@
 	<ul>
 		<sec:authorize access="hasRole('MANAGER')">
 			<li><a href="/employeeList">Liste des employés</a></li>
-			<li><a href="/deptManager">Assigner des tâches à un employé</a></li>
 		</sec:authorize>
 		<sec:authorize access="hasRole('EMPLOYEE')">
 			<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>

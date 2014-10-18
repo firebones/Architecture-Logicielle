@@ -30,11 +30,6 @@ public class DeptManagerController {
 	private UserRepository userRepository = new UserRepositoryImpl();
 	private EmployeeEntryConverter employeeConverter =  new EmployeeEntryConverter();
 	
-	@RequestMapping(value = "/deptManager", method = RequestMethod.GET)
-	public String buildDeptManagerView(Model model) {
-		model.addAttribute("employees", employeeConverter.convertEmployees(userRepository.getAllEmployees()));
-		return "homeDeptManager";
-	}
 	
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
@@ -57,12 +52,12 @@ public class DeptManagerController {
 			tasksList.add(projectRepository.getTaskById(Integer.parseInt(taskId)));
 		}
 		userRepository.setTasksToUser(tasksList, employee);
-		return "redirect:/deptManager";
+		return "redirect:/employeeList";
 	}
 	
 	@RequestMapping(value = "/{email}/assignTasksCancel", method = RequestMethod.GET)
 	public String cancel() {
-		return "redirect:/deptManager";
+		return "redirect:/employeeList";
 	}
 	
 	

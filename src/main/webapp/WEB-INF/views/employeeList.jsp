@@ -31,6 +31,9 @@
 						<td>${entry.email}</td>
 						<td>${entry.role}</td>
 						<td>
+							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
+						</td>
+						<td>
 							<a href="${entryUrl}/delete">Supprimer</a>
 						</td>
 				</c:forEach>
