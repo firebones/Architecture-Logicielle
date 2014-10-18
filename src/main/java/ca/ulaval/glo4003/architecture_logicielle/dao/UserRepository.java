@@ -1,6 +1,7 @@
 package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
@@ -14,4 +15,5 @@ public interface UserRepository {
 	public void updateUser(UserEntry user);
 	public void deleteUser(UserEntry user);
 	public void addTaskToUser(TaskEntry task, UserEntry user);
+	public void setTasksToUser(List<TaskEntry> tasks, UserEntry user);
 }

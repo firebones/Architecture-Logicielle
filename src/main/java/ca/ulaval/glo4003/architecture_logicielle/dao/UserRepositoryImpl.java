@@ -144,6 +144,41 @@ public class UserRepositoryImpl implements UserRepository {
 		saveXml();
 	}
 	
+	public void setTasksToUser(List<TaskEntry> tasks, UserEntry user) {
+		parseXml();
+		
+		if (getUserByEmail(user.getEmail()) == null)
+			return;
+		
+		// Remove all tasks
+		Element userElement = getUserElementByEmail(user.getEmail());
+		NodeList tasksNodeList = userElement.getElementsByTagName("tasks");
+		if (tasksNodeList != null && tasksNodeList.getLength() > 0) {
+			Element tasksElement = (Element) tasksNodeList.item(0);
+			userElement.removeChild(tasksElement);
+		}
+		
+		// Add the new task list
+		if (tasks == null || tasks.size() == 0) {
+			saveXml();
+			return;
+		}
+		
+		Element taskElement = doc.createElement("tasks");
+		userElement.appendChild(taskElement);
+		
+		NodeList nodeList = userElement.getElementsByTagName("tasks");
+		Element newTasksElement = (Element) nodeList.item(0);
+		
+		for (TaskEntry task : tasks) {
+			Element newTaskElement = doc.createElement("taskId");
+			newTaskElement.setTextContent(Integer.toString(task.getId()));
+			newTasksElement.appendChild(newTaskElement);
+		}
+		
+		saveXml();
+	}
+	
 	private void parseXml() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
