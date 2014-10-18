@@ -30,4 +30,12 @@ public class EmployeeEntryConverter {
 		viewModel.tasks = entry.getTasksString();
 		return viewModel;
 	}
+	
+	public EmployeeEntry convertEmployee(EmployeeViewModel entry) {
+		EmployeeEntry employee = new EmployeeEntry();
+		employee.setName(entry.getName());
+		employee.setEmail(entry.getEmail());
+		employee.setHashedPassword("default");
+		return employee;
+	}
 }
