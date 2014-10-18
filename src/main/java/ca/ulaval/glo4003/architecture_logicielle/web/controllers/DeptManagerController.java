@@ -1,5 +1,8 @@
 package ca.ulaval.glo4003.architecture_logicielle.web.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.converters.EmployeeEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.converters.ProjectEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepository;
@@ -34,10 +38,9 @@ public class DeptManagerController {
 	
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
-		
 		EmployeeEntry employee = (EmployeeEntry) userRepository.getUserByEmail(email);
 		String employeeId = employee.getName() + " - " + employee.getEmail();
-		model.addAttribute("assignTasksView", projectConverter.convertProjects(projectRepository.getAllProjects(), employee.getTasksString(), employeeId));
+		model.addAttribute("assignTasksView", projectConverter.convertProjects(projectRepository.getAllProjects(), employee.getTasks(), employeeId));
 		return "assignTasks";
 	}
 	
@@ -48,12 +51,12 @@ public class DeptManagerController {
 	
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.POST)
 	public String getAssignedTasks(@PathVariable String email, @ModelAttribute("assignedTasks") AssignedTasks assignTasks) {
-		
 		EmployeeEntry employee = (EmployeeEntry) userRepository.getUserByEmail(email);
-		
-		// TODO JP: d�commenter cette ligne lorsque le repository sera corrig�..
-		//employeeRepository.setTasks(assignTasks);
-		
+		List<TaskEntry> tasksList = new ArrayList<TaskEntry>();
+		for (String taskId : assignTasks.getTasks()) {
+			tasksList.add(projectRepository.getTaskById(Integer.parseInt(taskId)));
+		}
+		userRepository.setTasksToUser(tasksList, employee);
 		return "redirect:/deptManager";
 	}
 	
@@ -61,6 +64,8 @@ public class DeptManagerController {
 	public String cancel() {
 		return "redirect:/deptManager";
 	}
+	
+	
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {

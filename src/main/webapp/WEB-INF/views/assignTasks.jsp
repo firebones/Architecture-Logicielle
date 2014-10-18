@@ -63,7 +63,7 @@
 							<tr>
 								<td></td>
 								<td>${task.name}</td>
-								<td><input type="checkbox" name="tasks" value="${project.id}-${task.id}" id="${project.id}-${task.id}" onclick="modifyProjectCheckboxStatus(this)" <c:if test="${task.isAssigned == true}">checked = "Checked"</c:if></td>
+								<td><input type="checkbox" name="tasks" value="${task.id}" id="${project.id}-${task.id}" onclick="modifyProjectCheckboxStatus(this)" <c:if test="${task.isAssigned == true}">checked = "Checked"</c:if></td>
 							</tr>
 						</c:forEach>
 					</tbody>

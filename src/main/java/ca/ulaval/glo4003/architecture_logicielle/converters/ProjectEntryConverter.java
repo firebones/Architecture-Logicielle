@@ -16,47 +16,40 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
 @Component
 public class ProjectEntryConverter {
 
-	public AssignTasksViewModel convertProjects(List<ProjectEntry> projects, List<String> tasks, String userName){
+	public AssignTasksViewModel convertProjects(List<ProjectEntry> projects, List<TaskEntry> tasks, String userName){
 		
-		AssignTasksViewModel assignTaskView = new AssignTasksViewModel();
+		AssignTasksViewModel assignTaskViewModel = new AssignTasksViewModel();
 		List<ProjectViewModel> projectsViewModel = new ArrayList<ProjectViewModel>();
 		for (ProjectEntry project : projects) {
-			ProjectViewModel viewModel = convertProjects(project, tasks);
+			ProjectViewModel viewModel = convertProject(project, tasks);
 			projectsViewModel.add(viewModel);
 		}
 		
-		assignTaskView.projects = projectsViewModel;
-		assignTaskView.userId = userName;
+		assignTaskViewModel.projects = projectsViewModel;
+		assignTaskViewModel.userId = userName;
 		
-		return assignTaskView;
+		return assignTaskViewModel;
 	}
 	
-	private ProjectViewModel convertProjects(ProjectEntry project, List<String> tasks) {
+	private ProjectViewModel convertProject(ProjectEntry project, List<TaskEntry> tasks) {
 		
-		ProjectViewModel projectModel = new ProjectViewModel();
-		projectModel.name = project.getName();
-		projectModel.id = project.getId();
+		ProjectViewModel projectViewModel = new ProjectViewModel();
+		projectViewModel.name = project.getName();
+		projectViewModel.id = project.getId();
 		
-		List<TaskViewModel> tasksModelList = new ArrayList<TaskViewModel>();
+		List<TaskViewModel> tasksViewModelList = new ArrayList<TaskViewModel>();
 		for(TaskEntry task : project.getTasks())
 		{
-			TaskViewModel taskModel = new TaskViewModel();
-			taskModel.id = task.getId();
-			taskModel.name = task.getName();
-			taskModel.isAssigned = VerifyTaskIsAssigned(project.getId(), task.getId(), tasks);
+			TaskViewModel taskViewModel = new TaskViewModel();
+			taskViewModel.id = task.getId();
+			taskViewModel.name = task.getName();
+			taskViewModel.isAssigned = tasks.contains(task);
 			
-			tasksModelList.add(taskModel);
+			tasksViewModelList.add(taskViewModel);
 		}
 		
-		projectModel.setTasks(tasksModelList);
+		projectViewModel.setTasks(tasksViewModelList);
 		
-		return projectModel;
+		return projectViewModel;
 	}
-	
-	private Boolean VerifyTaskIsAssigned(Integer projetId, Integer taskId, List<String> tasks) {
-		
-		String concatenatedId = projetId + "-" + taskId;
-		return tasks.contains(concatenatedId);
-	}
-
 }
