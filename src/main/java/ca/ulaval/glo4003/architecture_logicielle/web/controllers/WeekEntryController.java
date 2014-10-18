@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ca.ulaval.glo4003.architecture_logicielle.converters.WeekEntryConverter;
+import ca.ulaval.glo4003.architecture_logicielle.web.converters.WeekEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
@@ -21,22 +21,22 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilomete
 @Controller
 public class WeekEntryController {
 	
-	// TODO: probablement à remplacer lorsque J-P aura terminé le repository
+	// TODO: probablement ï¿½ remplacer lorsque J-P aura terminï¿½ le repository
 	private WeekEntryRepositoryImpl weekEntryRepository = new WeekEntryRepositoryImpl();
 	private WeekEntryConverter projectConverter =  new WeekEntryConverter();
 	
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.GET)
 	  public String getEnterTransportion(Model model) {
 	
-		// TODO: Pour le moment, c'est la date en cours qui détermine la semaine à obtenir et le numéro de semaine.
-		// TODO: Éventuellement, selon la série hebdomadaire qui sera traitée (le user aura plusieurs séries), le bon weekNumber sera passé.
+		// TODO: Pour le moment, c'est la date en cours qui dï¿½termine la semaine ï¿½ obtenir et le numï¿½ro de semaine.
+		// TODO: ï¿½ventuellement, selon la sï¿½rie hebdomadaire qui sera traitï¿½e (le user aura plusieurs sï¿½ries), le bon weekNumber sera passï¿½.
 		Date todaysDate = new Date();
 		
 		int weekNumber = getWeekNumber(todaysDate);
 		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
 		List<String> datesOfWeek = getDaysOfWeek();
 		
-		// TODO : trouver comment récupérer le email du user loggé
+		// TODO : trouver comment rï¿½cupï¿½rer le email du user loggï¿½
 		List<Integer> kilometersOfWeek = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getKilometersEntries();
 		
 	     model.addAttribute("daysOfWeek", daysOfWeek);
@@ -50,11 +50,11 @@ public class WeekEntryController {
 		return new AssignedKilometers();
 	}
 	
-	// TODO : ne fonctionne pas correctement. Je ne peux pas récupérer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
+	// TODO : ne fonctionne pas correctement. Je ne peux pas rï¿½cupï¿½rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.POST)
 	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers) {
 	
-		// TODO : remplacer les valeurs hardcodé par le user en cours, et éventuellement, la série hebdomadaire traitée.
+		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
 		WeekEntry weekEntry = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
 		List<Integer> test = assignedKilometers.getKilometers();
 		weekEntry.setKilometersEntries(test);
@@ -65,15 +65,15 @@ public class WeekEntryController {
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
 	  public String getEnterExpenses(Model model) {
 	
-		// TODO: Pour le moment, c'est la date en cours qui détermine la semaine à obtenir et le numéro de semaine.
-		// TODO: Éventuellement, selon la série hebdomadaire qui sera traitée (le user aura plusieurs séries), le bon weekNumber sera passé.
+		// TODO: Pour le moment, c'est la date en cours qui dï¿½termine la semaine ï¿½ obtenir et le numï¿½ro de semaine.
+		// TODO: ï¿½ventuellement, selon la sï¿½rie hebdomadaire qui sera traitï¿½e (le user aura plusieurs sï¿½ries), le bon weekNumber sera passï¿½.
 		Date todaysDate = new Date();
 		
 		int weekNumber = getWeekNumber(todaysDate);
 		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
 		List<String> datesOfWeek = getDaysOfWeek();
 		
-		// TODO : trouver comment récupérer le email du user loggé
+		// TODO : trouver comment rï¿½cupï¿½rer le email du user loggï¿½
 		List<Double> expensesOfWeek = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getEmployeeExpensesEntries();
 		
 	     model.addAttribute("daysOfWeek", daysOfWeek);
@@ -87,18 +87,18 @@ public class WeekEntryController {
 		return new AssignedExpenses();
 	}
 	
-	// TODO : ne fonctionne pas correctement. Je ne peux pas récupérer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
+	// TODO : ne fonctionne pas correctement. Je ne peux pas rï¿½cupï¿½rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.POST)
 	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses) {
 	
-		// TODO : remplacer les valeurs hardcodé par le user en cours, et éventuellement, la série hebdomadaire traitée.
+		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
 		WeekEntry weekEntry = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
 		List<Double> test = assignedExpenses.getExpenses();
 		weekEntry.setEmployeeExpensesEntries(test);
 		
 		return "redirect:/";
 	}
-	// TODO: éventuellement déplacé?
+	// TODO: ï¿½ventuellement dï¿½placï¿½?
 	private List<String> getDatesOfWeek(Date refDate) {
 		
 		List<String> dates = new ArrayList<String>(7);
@@ -117,7 +117,7 @@ public class WeekEntryController {
         return dates;
     }
 
-	// TODO: éventuellement déplacé? prendre les valeurs d'un fichier ressource.
+	// TODO: ï¿½ventuellement dï¿½placï¿½? prendre les valeurs d'un fichier ressource.
 	private List<String> getDaysOfWeek() {
 
 		List<String> daysOfWeek = new ArrayList<String>();
@@ -132,7 +132,7 @@ public class WeekEntryController {
 		return daysOfWeek;
 	}
 	
-	// TODO: éventuellement déplacé?
+	// TODO: ï¿½ventuellement dï¿½placï¿½?
 	private int getWeekNumber(Date refDate) {
 		
 		 Calendar calendar = Calendar.getInstance();

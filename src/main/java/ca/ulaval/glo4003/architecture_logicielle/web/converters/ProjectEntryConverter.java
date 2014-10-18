@@ -1,4 +1,4 @@
-package ca.ulaval.glo4003.architecture_logicielle.converters;
+package ca.ulaval.glo4003.architecture_logicielle.web.converters;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
-import ca.ulaval.glo4003.architecture_logicielle.converters.EmployeeEntryConverter;
-import ca.ulaval.glo4003.architecture_logicielle.converters.ProjectEntryConverter;
+import ca.ulaval.glo4003.architecture_logicielle.web.converters.EmployeeEntryConverter;
+import ca.ulaval.glo4003.architecture_logicielle.web.converters.ProjectEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepository;
 import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepository;
