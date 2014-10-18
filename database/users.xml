@@ -19,4 +19,13 @@
 			<taskId>4</taskId>
 		</tasks>
 	</user>
+<user>
+        <name>Juan Bravo</name>
+        <email>jb@ulaval.ca</email>
+        <hashedPassword>default</hashedPassword>
+        <role>EMPLOYEE</role>
+    <tasks>
+            <taskId>3</taskId>
+        </tasks>
+    </user>
 </users>

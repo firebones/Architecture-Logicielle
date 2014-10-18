@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.WeekEntryConverter;
-import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
+import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
@@ -21,8 +21,10 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilomete
 @Controller
 public class WeekEntryController {
 	
+	private AppConfiguration configuration = new AppConfiguration();
+	
 	// TODO: probablement � remplacer lorsque J-P aura termin� le repository
-	private WeekEntryRepositoryImpl weekEntryRepository = new WeekEntryRepositoryImpl();
+	//private WeekEntryRepositoryImpl weekEntryRepository = new WeekEntryRepositoryImpl();
 	private WeekEntryConverter projectConverter =  new WeekEntryConverter();
 	
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.GET)
@@ -37,7 +39,7 @@ public class WeekEntryController {
 		List<String> datesOfWeek = getDaysOfWeek();
 		
 		// TODO : trouver comment r�cup�rer le email du user logg�
-		List<Integer> kilometersOfWeek = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getKilometersEntries();
+		List<Integer> kilometersOfWeek = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getKilometersEntries();
 		
 	     model.addAttribute("daysOfWeek", daysOfWeek);
 	     model.addAttribute("daysNameOfWeek", datesOfWeek);
@@ -55,7 +57,7 @@ public class WeekEntryController {
 	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers) {
 	
 		// TODO : remplacer les valeurs hardcod� par le user en cours, et �ventuellement, la s�rie hebdomadaire trait�e.
-		WeekEntry weekEntry = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
 		List<Integer> test = assignedKilometers.getKilometers();
 		weekEntry.setKilometersEntries(test);
 		
@@ -74,7 +76,7 @@ public class WeekEntryController {
 		List<String> datesOfWeek = getDaysOfWeek();
 		
 		// TODO : trouver comment r�cup�rer le email du user logg�
-		List<Double> expensesOfWeek = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getEmployeeExpensesEntries();
+		List<Double> expensesOfWeek = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", "41").getEmployeeExpensesEntries();
 		
 	     model.addAttribute("daysOfWeek", daysOfWeek);
 	     model.addAttribute("daysNameOfWeek", datesOfWeek);
@@ -92,7 +94,7 @@ public class WeekEntryController {
 	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses) {
 	
 		// TODO : remplacer les valeurs hardcod� par le user en cours, et �ventuellement, la s�rie hebdomadaire trait�e.
-		WeekEntry weekEntry = weekEntryRepository.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", "41");
 		List<Double> test = assignedExpenses.getExpenses();
 		weekEntry.setEmployeeExpensesEntries(test);
 		
