@@ -6,4 +6,5 @@ public interface WeekEntryRepository {
 	public ArrayList<String> getKilometers();
 	public ArrayList<String> getEmployeeExpenses();
 	public ArrayList<String> getExpenses();
+	public ArrayList<String> getHours();
 }

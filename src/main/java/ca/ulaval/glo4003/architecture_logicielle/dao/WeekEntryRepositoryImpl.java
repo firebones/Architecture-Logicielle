@@ -69,8 +69,20 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 			}
 		}
 		
+		nodeList = element.getElementsByTagName("hour");
+		List<Double> hourEntries = new ArrayList<Double>(7);
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element tagElement = (Element) nodeList.item(i);
+				hourEntries.add(Double.parseDouble(tagElement.getFirstChild().getNodeValue()));
+				
+			}
+		}
+		
 		weekEntry.setKilometersEntries(kilometerEntries);
 		weekEntry.setEmployeeExpensesEntries(employeeExpenseEntries);
+		weekEntry.setHoursEntries(hourEntries);
 		
 		return weekEntry;
 	}
@@ -114,6 +126,12 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 
 	@Override
 	public ArrayList<String> getEmployeeExpenses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getHours() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,7 +1,6 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class WeekEntry {
@@ -13,6 +12,7 @@ public class WeekEntry {
 	private List<Integer> kilometersEntries = new ArrayList<Integer>(7);
 	private List<Double> employeeExpensesEntries = new ArrayList<Double>(7);
 	private List<String> expensesEntries = new ArrayList<String>(7);
+	private List<Double> hoursEntries = new ArrayList<Double>(7);
 	
 	public String getWeekNumber() {
 		return weekNumber;
@@ -55,5 +55,11 @@ public class WeekEntry {
 	}
 	public void setExpensesEntries(List<String> expensesEntries) {
 		this.expensesEntries = expensesEntries;
+	}
+	public List<Double> getHoursEntries(){
+		return hoursEntries;
+	}
+	public void setHoursEntries(List<Double> hoursEntries){
+		this.hoursEntries = hoursEntries;
 	}
 }

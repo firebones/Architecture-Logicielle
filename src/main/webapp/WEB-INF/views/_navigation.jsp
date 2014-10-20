@@ -8,6 +8,7 @@
 		<sec:authorize access="hasRole('EMPLOYEE')">
 			<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
 			<li><a href="/employeeExpenses">Dépenses des employés</a></li>
+			<li><a href="/workingHours">Heures réalisées</a></li>
 		</sec:authorize>
 	</ul>
 </div>

@@ -24,5 +24,14 @@
 			<employeeExpense>75.1</employeeExpense>
 			<employeeExpense>0.0</employeeExpense>
 		</employeeExpenses>
+		<hours>
+			<hour>0</hour>
+			<hour>7</hour>
+			<hour>8</hour>
+			<hour>6.5</hour>
+			<hour>6</hour>
+			<hour>7.5</hour>
+			<hour>0</hour>
+		</hours>
 	</weekEntry>
 </weekEntries>

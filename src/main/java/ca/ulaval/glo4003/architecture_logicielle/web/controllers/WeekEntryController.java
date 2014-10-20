@@ -19,6 +19,7 @@ import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
 
 @Controller
@@ -71,6 +72,7 @@ public class WeekEntryController {
 		return "redirect:/";
 	}
 	
+	
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
 	  public String getEnterExpenses(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
@@ -111,6 +113,50 @@ public class WeekEntryController {
 		
 		return "redirect:/";
 	}
+	
+	
+	@RequestMapping(value = "/workingHours", method = RequestMethod.GET)
+	  public String getEnterHours(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
+		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
+	
+		// TODO: Pour le moment, c'est la date en cours qui d�termine la semaine � obtenir et le num�ro de semaine.
+		// TODO: �ventuellement, selon la s�rie hebdomadaire qui sera trait�e (le user aura plusieurs s�ries), le bon weekNumber sera pass�.
+		Date todaysDate = new Date();
+		
+		int weekNumber = getWeekNumber(todaysDate);
+		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
+		List<String> datesOfWeek = getDaysOfWeek();
+		
+		// TODO : trouver comment r�cup�rer le email du user logg�
+		List<Double> hoursOfWeek = configuration.getWeekEntryByEmailAndWeek(userId, "41").getHoursEntries();
+		
+	     model.addAttribute("daysOfWeek", daysOfWeek);
+	     model.addAttribute("daysNameOfWeek", datesOfWeek);
+	     model.addAttribute("valuesOfWeek", hoursOfWeek);
+	     return "workingHourEntries";
+	  }
+	
+	@ModelAttribute("assignedHours")
+	public AssignedHours assignedhours() {
+		return new AssignedHours();
+	}
+	
+	// TODO : ne fonctionne pas correctement. Je ne peux pas r�cup�rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
+	@RequestMapping(value = "/workingHours", method = RequestMethod.POST)
+	public String getValuesOfWeek(@ModelAttribute("assignedHours") AssignedHours assignedHours) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
+		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
+	
+		// TODO : remplacer les valeurs hardcod� par le user en cours, et �ventuellement, la s�rie hebdomadaire trait�e.
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
+		List<Double> test = assignedHours.getHours();
+		weekEntry.setEmployeeExpensesEntries(test);
+		
+		return "redirect:/";
+	}
+	
+	
 	// TODO: �ventuellement d�plac�?
 	private List<String> getDatesOfWeek(Date refDate) {
 		
