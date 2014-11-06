@@ -82,39 +82,39 @@ public class UserRepositoryImpl implements UserRepository {
 	public void addUser(UserEntry user) {
 		parseXml();
 		
-		if (getUserByEmail(user.getEmail()) != null)
-			return;
+		if (getUserByEmail(user.getEmail()) == null){
 		
 		Element rootElement = doc.getDocumentElement();
 		Element newUser = getUserElement(user);
 		rootElement.appendChild(newUser);
 		
 		saveXml();
+		}
 	}
 	
 	public void updateUser(UserEntry user) {
 		parseXml();
 		
-		if (getUserByEmail(user.getEmail()) == null)
-			return;
+		if (getUserByEmail(user.getEmail()) != null){
 		
 		Element oldUserElement = getUserElementByEmail(user.getEmail());
 		Element newUserElement = getUserElement(user);
 		doc.getDocumentElement().replaceChild(newUserElement, oldUserElement);
 		
 		saveXml();
+		}
 	}
 	
 	public void deleteUser(UserEntry user) {
 		parseXml();
 		
-		if (getUserByEmail(user.getEmail()) == null)
-			return;
+		if (getUserByEmail(user.getEmail()) != null){
 		
 		Element userElement = getUserElementByEmail(user.getEmail());
 		doc.getDocumentElement().removeChild(userElement);
 		
 		saveXml();
+		}
 	}
 	
 	public void addTaskToUser(TaskEntry task, UserEntry user) {
