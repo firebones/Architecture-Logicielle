@@ -58,7 +58,6 @@ public class WeekEntryController {
 		return new AssignedKilometers();
 	}
 	
-	// TODO : ne fonctionne pas correctement. Je ne peux pas rï¿½cupï¿½rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.POST)
 	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
@@ -66,8 +65,8 @@ public class WeekEntryController {
 	
 		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Integer> test = assignedKilometers.getKilometers();
-		weekEntry.setKilometersEntries(test);
+		List<Integer> kilometers = assignedKilometers.getKilometers();
+		weekEntry.setKilometersEntries(kilometers);
 		
 		return "redirect:/";
 	}
@@ -100,7 +99,6 @@ public class WeekEntryController {
 		return new AssignedExpenses();
 	}
 	
-	// TODO : ne fonctionne pas correctement. Je ne peux pas rï¿½cupï¿½rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.POST)
 	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
@@ -108,8 +106,8 @@ public class WeekEntryController {
 	
 		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Double> test = assignedExpenses.getExpenses();
-		weekEntry.setEmployeeExpensesEntries(test);
+		List<Double> expenses = assignedExpenses.getExpenses();
+		weekEntry.setEmployeeExpensesEntries(expenses);
 		
 		return "redirect:/";
 	}
@@ -142,16 +140,15 @@ public class WeekEntryController {
 		return new AssignedHours();
 	}
 	
-	// TODO : ne fonctionne pas correctement. Je ne peux pas rï¿½cupï¿½rer la liste du formulaire. Pourtant je vois ma liste dans Firebug.
 	@RequestMapping(value = "/workingHours", method = RequestMethod.POST)
 	public String getValuesOfWeek(@ModelAttribute("assignedHours") AssignedHours assignedHours) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 	
-		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
+		// TODO : remplacer les valeurs hardcodées par le user en cours, et éventuellement, la série hebdomadaire traitée.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Double> test = assignedHours.getHours();
-		weekEntry.setEmployeeExpensesEntries(test);
+		List<Double> hours = assignedHours.getHours();
+		weekEntry.setEmployeeExpensesEntries(hours);
 		
 		return "redirect:/";
 	}
