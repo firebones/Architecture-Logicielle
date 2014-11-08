@@ -7,7 +7,7 @@ public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
 	
 	public EmployeeEntry() {
-		this.role = "EMPLOYEE";
+		this.role = Role.EMPLOYEE;
 	}
 	
 	public List<TaskEntry> getTasks() {

@@ -16,12 +16,12 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
 @Component
 public class ProjectEntryConverter {
 
-	public AssignTasksViewModel convertProjects(List<ProjectEntry> projects, List<TaskEntry> tasks, String userName){
+	public AssignTasksViewModel toProjectViewModels(List<ProjectEntry> projects, List<TaskEntry> tasks, String userName){
 		
 		AssignTasksViewModel assignTaskViewModel = new AssignTasksViewModel();
 		List<ProjectViewModel> projectsViewModel = new ArrayList<ProjectViewModel>();
 		for (ProjectEntry project : projects) {
-			ProjectViewModel viewModel = convertProject(project, tasks);
+			ProjectViewModel viewModel = toProjectViewModel(project, tasks);
 			projectsViewModel.add(viewModel);
 		}
 		
@@ -31,7 +31,7 @@ public class ProjectEntryConverter {
 		return assignTaskViewModel;
 	}
 	
-	private ProjectViewModel convertProject(ProjectEntry project, List<TaskEntry> tasks) {
+	private ProjectViewModel toProjectViewModel(ProjectEntry project, List<TaskEntry> tasks) {
 		
 		ProjectViewModel projectViewModel = new ProjectViewModel();
 		projectViewModel.name = project.getName();

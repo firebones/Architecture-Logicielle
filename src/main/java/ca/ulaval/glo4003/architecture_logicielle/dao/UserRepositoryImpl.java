@@ -9,6 +9,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Role;
 
 public class UserRepositoryImpl implements UserRepository
 {
@@ -68,7 +69,7 @@ public class UserRepositoryImpl implements UserRepository
 			user.setEmail(tabuser.get(1));
 			user.setHashedPassword(tabuser.get(3));
 
-			if(user.getRole() == "EMPLOYEE"){
+			if(user.getRole() == Role.EMPLOYEE){
 				if(tabuser.size() > 4){
 					
 					int j=4;
@@ -170,7 +171,7 @@ public class UserRepositoryImpl implements UserRepository
 		
 		userElement.add(0, user.getName());
 		userElement.add(1, user.getEmail());
-		userElement.add(2, user.getRole());
+		userElement.add(2, user.getRole().toString());
 		userElement.add(3, user.getHashedPassword());		
 		
 		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
