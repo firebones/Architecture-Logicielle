@@ -17,14 +17,14 @@ import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
 public class ProjectRepositoryImpl implements ProjectRepository {
-	private Document xmlDocument;
+	private Document doc;
 	
 	public ArrayList<ProjectEntry> getAllProjects() {
 		ArrayList<ProjectEntry> projectList = new ArrayList<ProjectEntry>();
 		
 		parseXml();
 		
-		Element docElement = xmlDocument.getDocumentElement();
+		Element docElement = doc.getDocumentElement();
 		NodeList nodeList = docElement.getElementsByTagName("project");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
@@ -82,7 +82,7 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			xmlDocument = docBuilder.parse(new File("database/projects.xml"));
+			doc = docBuilder.parse(new File("database/projects.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {

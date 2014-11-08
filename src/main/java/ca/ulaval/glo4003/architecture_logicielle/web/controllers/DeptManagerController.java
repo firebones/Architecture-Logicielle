@@ -32,7 +32,7 @@ public class DeptManagerController {
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
 		EmployeeEntry employee = (EmployeeEntry) configuration.getUserByEmail(email);
 		String employeeId = employee.getName() + " - " + employee.getEmail();
-		model.addAttribute("assignTasksView", projectConverter.toProjectViewModels(configuration.getAllProjects(), employee.getTasks(), employeeId));
+		model.addAttribute("assignTasksView", projectConverter.convertProjects(configuration.getAllProjects(), employee.getTasks(), employeeId));
 		return "assignTasks";
 	}
 	
@@ -67,7 +67,7 @@ public class DeptManagerController {
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
-		EmployeeEntry newEmployee = employeeConverter.toEmployeeEntry(newEmployeeViewModel);
+		EmployeeEntry newEmployee = employeeConverter.convertEmployee(newEmployeeViewModel);
 		configuration.addUser(newEmployee);
 		return "redirect:/employeeList";
 	}

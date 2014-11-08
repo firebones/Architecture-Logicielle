@@ -26,17 +26,16 @@ import ca.ulaval.glo4003.architecture_logicielle.model.AdminEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.CompanyEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.DeptManagerEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Roles;
 
 public class UserRepositoryImpl implements UserRepository {
-	private Document xmlDocument;
+	private Document doc;
 	
 	public ArrayList<UserEntry> getAllUsers() {
 		ArrayList<UserEntry> userList = new ArrayList<UserEntry>();
 		
 		parseXml();
 		
-		Element docElement = xmlDocument.getDocumentElement();
+		Element docElement = doc.getDocumentElement();
 		NodeList nodeList = docElement.getElementsByTagName("user");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
@@ -55,14 +54,14 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		parseXml();
 		
-		Element docElement = xmlDocument.getDocumentElement();
+		Element docElement = doc.getDocumentElement();
 		NodeList nodeList = docElement.getElementsByTagName("user");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Element element = (Element) nodeList.item(i);
 				UserEntry user = getUser(element);
-				if (user.getRole() == Roles.EMPLOYEE || user.getRole() == Roles.MANAGER)
+				if (user.getRole() == "EMPLOYEE" || user.getRole() == "MANAGER")
 					userList.add((EmployeeEntry) user);
 			}
 		}
@@ -85,7 +84,7 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		if (getUserByEmail(user.getEmail()) == null){
 		
-		Element rootElement = xmlDocument.getDocumentElement();
+		Element rootElement = doc.getDocumentElement();
 		Element newUser = getUserElement(user);
 		rootElement.appendChild(newUser);
 		
@@ -100,7 +99,7 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		Element oldUserElement = getUserElementByEmail(user.getEmail());
 		Element newUserElement = getUserElement(user);
-		xmlDocument.getDocumentElement().replaceChild(newUserElement, oldUserElement);
+		doc.getDocumentElement().replaceChild(newUserElement, oldUserElement);
 		
 		saveXml();
 		}
@@ -112,7 +111,7 @@ public class UserRepositoryImpl implements UserRepository {
 		if (getUserByEmail(user.getEmail()) != null){
 		
 		Element userElement = getUserElementByEmail(user.getEmail());
-		xmlDocument.getDocumentElement().removeChild(userElement);
+		doc.getDocumentElement().removeChild(userElement);
 		
 		saveXml();
 		}
@@ -129,7 +128,7 @@ public class UserRepositoryImpl implements UserRepository {
 		NodeList nodeList = userElement.getElementsByTagName("tasks");
 		
 		if (nodeList == null || nodeList.getLength() == 0) {
-			Element taskElement = xmlDocument.createElement("tasks");
+			Element taskElement = doc.createElement("tasks");
 			userElement.appendChild(taskElement);
 			
 			nodeList = userElement.getElementsByTagName("tasks");
@@ -137,7 +136,7 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		if (containsTask((Element) nodeList.item(0), task.getId()) == false) {
 			Element tasksElement = (Element) nodeList.item(0);
-			Element newTaskElement = xmlDocument.createElement("taskId");
+			Element newTaskElement = doc.createElement("taskId");
 			newTaskElement.setTextContent(Integer.toString(task.getId()));
 			tasksElement.appendChild(newTaskElement);
 		}
@@ -165,14 +164,14 @@ public class UserRepositoryImpl implements UserRepository {
 			return;
 		}
 		
-		Element taskElement = xmlDocument.createElement("tasks");
+		Element taskElement = doc.createElement("tasks");
 		userElement.appendChild(taskElement);
 		
 		NodeList nodeList = userElement.getElementsByTagName("tasks");
 		Element newTasksElement = (Element) nodeList.item(0);
 		
 		for (TaskEntry task : tasks) {
-			Element newTaskElement = xmlDocument.createElement("taskId");
+			Element newTaskElement = doc.createElement("taskId");
 			newTaskElement.setTextContent(Integer.toString(task.getId()));
 			newTasksElement.appendChild(newTaskElement);
 		}
@@ -184,7 +183,7 @@ public class UserRepositoryImpl implements UserRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			xmlDocument = docBuilder.parse(new File("database/users.xml"));
+			doc = docBuilder.parse(new File("database/users.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {
@@ -200,7 +199,7 @@ public class UserRepositoryImpl implements UserRepository {
 			Transformer transformer = transFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			DOMSource domsource = new DOMSource(xmlDocument);
+			DOMSource domsource = new DOMSource(doc);
 			StreamResult result = new StreamResult(new File("database/users.xml"));
 			transformer.transform(domsource, result);
 		} catch (TransformerException transException) {
@@ -233,30 +232,30 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	private Element getUserElement(UserEntry user) {
-		Element userElement = xmlDocument.createElement("user");
+		Element userElement = doc.createElement("user");
 		
-		Element name = xmlDocument.createElement("name");
+		Element name = doc.createElement("name");
 		name.setTextContent(user.getName());
 		userElement.appendChild(name);
 		
-		Element email = xmlDocument.createElement("email");
+		Element email = doc.createElement("email");
 		email.setTextContent(user.getEmail());
 		userElement.appendChild(email);
 		
-		Element hashedPassword = xmlDocument.createElement("hashedPassword");
+		Element hashedPassword = doc.createElement("hashedPassword");
 		hashedPassword.setTextContent(user.getHashedPassword());
 		userElement.appendChild(hashedPassword);
 		
-		Element role = xmlDocument.createElement("role");
-		role.setTextContent(user.getRole().toString());
+		Element role = doc.createElement("role");
+		role.setTextContent(user.getRole());
 		userElement.appendChild(role);
 		
 		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
-			Element tasks = xmlDocument.createElement("tasks");
+			Element tasks = doc.createElement("tasks");
 			for (int i = 0; i < ((EmployeeEntry) user).getTasks().size(); i++) {
 				TaskEntry task = ((EmployeeEntry) user).getTasks().get(i);
 				System.out.println(task.getId());
-				Element taskId = xmlDocument.createElement("taskId");
+				Element taskId = doc.createElement("taskId");
 				taskId.setTextContent(Integer.toString(task.getId()));
 				tasks.appendChild(taskId);
 			}
@@ -267,7 +266,7 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	private Element getUserElementByEmail(String email) {
-		Element docElement = xmlDocument.getDocumentElement();
+		Element docElement = doc.getDocumentElement();
 		NodeList nodeList = docElement.getElementsByTagName("user");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {

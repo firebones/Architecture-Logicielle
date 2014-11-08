@@ -6,7 +6,7 @@ public abstract class UserEntry implements Principal {
 	private String name;
 	private String email;
 	private String hashedPassword;
-	protected Roles role;
+	protected String role;
 	
 	public String getName() {
 		return name;
@@ -32,15 +32,11 @@ public abstract class UserEntry implements Principal {
 		this.hashedPassword = hashedPassword;
 	}
 	
-	public Roles getRole() {
+	public String getRole() {
 		return role;
 	}
 
 	public boolean isPasswordValid(String password) {
 		return (hashedPassword.equals(password));
-	}
-	
-	public enum Roles {
-		EMPLOYEE, MANAGER, ADMIN, COMPANY;
 	}
 }

@@ -13,17 +13,17 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewMode
 @Component
 public class EmployeeEntryConverter {
 
-	public List<EmployeeViewModel> toEmployeeViewModels(List<EmployeeEntry> employees) {
+	public List<EmployeeViewModel> convertEmployees(List<EmployeeEntry> employees) {
 		List<EmployeeViewModel> viewModels = new ArrayList<EmployeeViewModel>();
 
 		for (EmployeeEntry employee : employees) {
-			EmployeeViewModel viewModel = toEmployeeViewModel(employee);
+			EmployeeViewModel viewModel = convertEmployee(employee);
 			viewModels.add(viewModel);
 		}
 		return viewModels;
 	}
 	
-	public EmployeeViewModel toEmployeeViewModel(EmployeeEntry entry) {
+	public EmployeeViewModel convertEmployee(EmployeeEntry entry) {
 		EmployeeViewModel viewModel = new EmployeeViewModel();
 		viewModel.name = entry.getName();
 		viewModel.email = entry.getEmail();
@@ -31,10 +31,10 @@ public class EmployeeEntryConverter {
 		return viewModel;
 	}
 	
-	public EmployeeEntry toEmployeeEntry(EmployeeViewModel viewModel) {
+	public EmployeeEntry convertEmployee(EmployeeViewModel entry) {
 		EmployeeEntry employee = new EmployeeEntry();
-		employee.setName(viewModel.getName());
-		employee.setEmail(viewModel.getEmail());
+		employee.setName(entry.getName());
+		employee.setEmail(entry.getEmail());
 		employee.setHashedPassword("default");
 		return employee;
 	}
