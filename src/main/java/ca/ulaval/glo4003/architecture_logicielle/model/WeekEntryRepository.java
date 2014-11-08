@@ -1,4 +1,4 @@
-package ca.ulaval.glo4003.architecture_logicielle.dao;
+package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.ArrayList;
 

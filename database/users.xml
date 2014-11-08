@@ -5,27 +5,34 @@
 		<email>joe@gmail.com</email>
 		<role>EMPLOYEE</role>
 		<hashedPassword>1234</hashedPassword>
-		<tasks>
-			<taskId>3</taskId>
-			<taskId>4</taskId>
-		</tasks>
-	</user>
+		
+	
+    <tasks>
+            <taskId>4</taskId>
+            <taskId>5</taskId>
+        </tasks>
+    </user>
 	<user>
 		<name>Jane</name>
 		<email>jane@gmail.com</email>
 		<role>MANAGER</role>
 		<hashedPassword>1234</hashedPassword>
-		<tasks>
-			<taskId>4</taskId>
-		</tasks>
-	</user>
+		
+	<tasks>
+            <taskId>4</taskId>
+            <taskId>5</taskId>
+        </tasks>
+    </user>
+
 <user>
-        <name>Juan Bravo</name>
-        <email>jb@ulaval.ca</email>
-        <hashedPassword>default</hashedPassword>
+        <name>Pape</name>
+        <email>pape@gmail.com</email>
         <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
+    
     <tasks>
             <taskId>3</taskId>
+            <taskId>5</taskId>
         </tasks>
     </user>
 

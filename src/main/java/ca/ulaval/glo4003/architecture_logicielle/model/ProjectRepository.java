@@ -1,9 +1,6 @@
-package ca.ulaval.glo4003.architecture_logicielle.dao;
+package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.ArrayList;
-
-import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
 public interface ProjectRepository {
 	public ArrayList<ProjectEntry> getAllProjects();

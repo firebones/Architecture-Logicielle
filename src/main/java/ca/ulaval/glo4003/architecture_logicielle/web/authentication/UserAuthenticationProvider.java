@@ -11,10 +11,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.User;
 
-import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepository;
+
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 
 public class UserAuthenticationProvider implements AuthenticationProvider {
 

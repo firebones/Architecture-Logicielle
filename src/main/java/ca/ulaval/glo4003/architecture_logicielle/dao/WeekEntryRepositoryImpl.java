@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
 
 
 public class WeekEntryRepositoryImpl implements WeekEntryRepository {

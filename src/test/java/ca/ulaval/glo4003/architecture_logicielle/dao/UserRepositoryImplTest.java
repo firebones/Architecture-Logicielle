@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 
 public class UserRepositoryImplTest
 {

@@ -1,11 +1,7 @@
-package ca.ulaval.glo4003.architecture_logicielle.dao;
+package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 
 public interface UserRepository {
 	public ArrayList<UserEntry> getAllUsers();

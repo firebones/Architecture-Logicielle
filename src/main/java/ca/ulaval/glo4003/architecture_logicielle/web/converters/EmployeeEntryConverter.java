@@ -1,8 +1,8 @@
 package ca.ulaval.glo4003.architecture_logicielle.web.converters;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
+//import java.util.Collection;
+//import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;

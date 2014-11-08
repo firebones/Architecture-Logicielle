@@ -1,53 +1,66 @@
 package ca.ulaval.glo4003.architecture_logicielle.dao;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 
-public class ProjectRepositoryImpl implements ProjectRepository {
-	private Document doc;
+public class ProjectRepositoryImpl implements ProjectRepository
+{
+	XMLProjectPersistance xmlProjectPersistance;
 	
-	public ArrayList<ProjectEntry> getAllProjects() {
-		ArrayList<ProjectEntry> projectList = new ArrayList<ProjectEntry>();
-		
-		parseXml();
-		
-		Element docElement = doc.getDocumentElement();
-		NodeList nodeList = docElement.getElementsByTagName("project");
-		
-		if (nodeList != null && nodeList.getLength() > 0) {
-			for (int i = 0; i < nodeList.getLength(); i++) {
-				Element element = (Element) nodeList.item(i);
-				ProjectEntry project = getProject(element);
-				projectList.add(project);
-			}
-		}
-		
-		return projectList;
+	public ProjectRepositoryImpl(){
+		xmlProjectPersistance = XMLProjectPersistance.getInstance();
 	}
 	
-	public ProjectEntry getProjectById(Integer id) {
+	@Override
+	public ArrayList<ProjectEntry> getAllProjects()
+	{
+		ArrayList<ProjectEntry> projects = new ArrayList<ProjectEntry>();
+		ArrayList<ArrayList<String>> projectList = new ArrayList<ArrayList<String>>();
+		
+		projectList = xmlProjectPersistance.getAllProjects();
+		
+		for(ArrayList<String> tabProject: projectList){
+			
+			ProjectEntry project = new ProjectEntry();
+			project.setId(Integer.parseInt(tabProject.get(0)));
+			project.setName(tabProject.get(1));
+			
+			if(tabProject.size() > 2){
+				int i=2;
+				do{
+					TaskEntry task = new TaskEntry();
+					task.setId(Integer.parseInt(tabProject.get(i)));
+					task.setName(tabProject.get(i+1));
+					i+=2;
+					project.addTask(task);
+
+				}while(i<tabProject.size());
+			}
+			
+			projects.add(project);
+		}
+		
+		return projects;
+	}
+
+	@Override
+	public ProjectEntry getProjectById(Integer id)
+	{
 		ArrayList<ProjectEntry> projects = getAllProjects();
+		
 		for (int i = 0; i < projects.size(); i++) {
 				if (projects.get(i).getId() == id)
 					return projects.get(i);
 		}
 		return null;
 	}
-	
-	public TaskEntry getTaskById(Integer id) {
+
+	@Override
+	public TaskEntry getTaskById(Integer id)
+	{
 		ArrayList<ProjectEntry> projects = getAllProjects();
 		for (int i = 0; i < projects.size(); i++) {
 			for (int j = 0; j < projects.get(i).getTasks().size(); j++) {
@@ -57,75 +70,40 @@ public class ProjectRepositoryImpl implements ProjectRepository {
 		}
 		return null;
 	}
-	
-	public void addProject(ProjectEntry project) {
-		
+
+	@Override
+	public void addProject(ProjectEntry project)
+	{
+		// TODO Auto-generated method stub
+
 	}
-	
-	public void deleteProject(int id) {
-		
+
+	@Override
+	public void deleteProject(int id)
+	{
+		// TODO Auto-generated method stub
+
 	}
-	
-	public void updateProject(int projectId, ProjectEntry project) {
-		
+
+	@Override
+	public void updateProject(int projectId, ProjectEntry project)
+	{
+		// TODO Auto-generated method stub
+
 	}
-	
-	public void addTaskToProject(int projectId, TaskEntry task) {
-		
+
+	@Override
+	public void addTaskToProject(int projectId, TaskEntry task)
+	{
+		// TODO Auto-generated method stub
+
 	}
-	
-	public void removeTaskFromProject(int taskId, int projectId) {
-		
+
+	@Override
+	public void removeTaskFromProject(int taskId, int projectId)
+	{
+		// TODO Auto-generated method stub
+
 	}
-	
-	private void parseXml() {
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		try {
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("database/projects.xml"));
-		} catch (ParserConfigurationException parseE) {
-			System.out.println(parseE);
-		} catch (SAXException saxE) {
-			System.out.println(saxE);
-		} catch (IOException ioE) {
-			System.out.println(ioE);
-		}
-	}
-	
-	private ProjectEntry getProject(Element element) {
-		ProjectEntry project = new ProjectEntry();
-		project.setId(Integer.parseInt(getStringValue(element, "id")));
-		project.setName(getStringValue(element, "name"));
-		
-		NodeList nodeList = element.getElementsByTagName("task");
-		
-		if (nodeList != null && nodeList.getLength() > 0) {
-			for (int i = 0; i < nodeList.getLength(); i++) {
-				Element tagElement = (Element) nodeList.item(i);
-				TaskEntry task = getTask(tagElement);
-				project.addTask(task);
-			}
-		}
-		
-		return project;
-	}
-	
-	private TaskEntry getTask(Element element) {
-		TaskEntry task = new TaskEntry();
-		task.setId(Integer.parseInt(getStringValue(element, "id")));
-		task.setName(getStringValue(element, "name"));
-		return task;
-	}
-	
-	private String getStringValue(Element element, String tag) {
-		String str = null;
-		NodeList nodeList = element.getElementsByTagName(tag);
-		
-		if (nodeList != null && nodeList.getLength() > 0) {
-			Element tagElement = (Element) nodeList.item(0);
-			str = tagElement.getFirstChild().getNodeValue();
-		}
-		
-		return str;
-	}
+
 }
