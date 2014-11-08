@@ -23,7 +23,7 @@
 	   		</tr>
 		   	<tr>
 		   		<c:forEach items="${valuesOfWeek}" var="value" varStatus="statusHours">
-				   	<td><input name="assignedHours" type="text" value="${value}"/></td>
+				   	<td><input name="hours" type="text" value="${value}"/></td>
 		   		</c:forEach>
 		   	</tr>
 		   </table>
