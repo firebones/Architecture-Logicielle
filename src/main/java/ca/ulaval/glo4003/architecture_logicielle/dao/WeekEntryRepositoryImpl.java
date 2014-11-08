@@ -18,14 +18,14 @@ import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 
 
 public class WeekEntryRepositoryImpl implements WeekEntryRepository {
-	private Document doc;
+	private Document xmlDocument;
 	
 	public ArrayList<WeekEntry> getAllWeekEntries() {
 		ArrayList<WeekEntry> weekEntryList = new ArrayList<WeekEntry>();
 		
 		parseXml();
 		
-		Element docElement = doc.getDocumentElement();
+		Element docElement = xmlDocument.getDocumentElement();
 		NodeList nodeList = docElement.getElementsByTagName("weekEntry");
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
@@ -102,7 +102,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			doc = docBuilder.parse(new File("database/weekEntries.xml"));
+			xmlDocument = docBuilder.parse(new File("database/weekEntries.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {
