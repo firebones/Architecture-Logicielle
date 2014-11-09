@@ -1,7 +1,13 @@
 package ca.ulaval.glo4003.architecture_logicielle.util;
 
 import java.util.Properties;
-import javax.
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 public class ToolsMail {
 	
@@ -28,12 +34,13 @@ public void sendMail(){
         message.setText(
             "Test mail");
 
-        // Lo enviamos.
+        // Send
         Transport t = session.getTransport("smtp");
-        t.connect("chuidiang@gmail.com", "la clave");
+        t.connect("tparchitecture2014@gmail.com", "architecture123");
         t.sendMessage(message, message.getAllRecipients());
 
-        // Cierre.
+        // Close.
+        t.close();
 	
 	
 }catch(Exception e){
