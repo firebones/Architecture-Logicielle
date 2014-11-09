@@ -7,4 +7,6 @@ public interface WeekEntryRepository {
 	public ArrayList<String> getEmployeeExpenses();
 	public ArrayList<String> getExpenses();
 	public ArrayList<String> getHours();
+	public ArrayList<WeekEntry> getAllWeekEntries();
+	public WeekEntry getWeekEntryByEmailAndWeek(String email, String weekNumber);
 }
