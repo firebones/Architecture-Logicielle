@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.EmployeeEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.ProjectEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
@@ -22,8 +27,7 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewMode
 public class DeptManagerController {
 
 	private AppConfiguration configuration = new AppConfiguration();
-	
-	
+		
 	private ProjectEntryConverter projectConverter =  new ProjectEntryConverter();
 	private EmployeeEntryConverter employeeConverter =  new EmployeeEntryConverter();
 	
@@ -65,6 +69,7 @@ public class DeptManagerController {
 	    return "addEmployee";
 	}
 	
+		
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
 		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
