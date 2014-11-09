@@ -9,10 +9,10 @@ public class WeekEntry {
 	private String email;
 	private String startDate;
 	private String endDate;
-	private List<Integer> kilometersEntries = new ArrayList<Integer>(7);
-	private List<Double> employeeExpensesEntries = new ArrayList<Double>(7);
-	private List<String> expensesEntries = new ArrayList<String>(7);
-	private List<Double> hoursEntries = new ArrayList<Double>(7);
+	private List<Integer> kilometersEntries = new ArrayList<Integer>();
+	private List<Double> employeeExpensesEntries = new ArrayList<Double>();
+	private List<String> expensesEntries = new ArrayList<String>();
+	private List<Double> hoursEntries = new ArrayList<Double>();
 	
 	public String getWeekNumber() {
 		return weekNumber;
