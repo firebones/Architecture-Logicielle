@@ -4,6 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
 
 
@@ -14,7 +15,7 @@ public class ValidatorEmployee implements Validator{
 	
 	@Override
 	public boolean supports(Class<?> arg0) {
-		return EmployeeViewModel.class.equals(arg0);
+		return EmployeeEntry.class.equals(arg0);
 	}
 
 	@Override

@@ -63,7 +63,7 @@ public class DeptManagerController {
 	public String cancel() {
 		return "redirect:/employeeList";
 	}
-	
+	/*
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
 	    model.addAttribute("newEmployee", new EmployeeEntry());
@@ -77,7 +77,7 @@ public class DeptManagerController {
 		configuration.addUser(newEmployee);
 		return "redirect:/employeeList";
 	}
-	
+	*/
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	public String list(Model model) {
 		model.addAttribute("entries", configuration.getAllEmployees());
