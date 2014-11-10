@@ -1,6 +1,8 @@
 package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
@@ -34,7 +36,8 @@ public class ProjectRepositoryImpl implements ProjectRepository
 					TaskEntry task = new TaskEntry();
 					task.setId(Integer.parseInt(tabProject.get(i)));
 					task.setName(tabProject.get(i+1));
-					i+=2;
+					task.setRate(Double.parseDouble(tabProject.get(i+2)));
+					i+=3;
 					project.addTask(task);
 
 				}while(i<tabProject.size());
@@ -74,10 +77,15 @@ public class ProjectRepositoryImpl implements ProjectRepository
 	@Override
 	public void addProject(ProjectEntry project)
 	{
-		// TODO Auto-generated method stub
+		if (getTaskById(project.getId()) == null){
+			
+			project.setId(GetNextProjectId());
+			ArrayList<String> projectelement = getProjectString(project);
+			xmlProjectPersistance.addProject(projectelement);
+		}
 
 	}
-
+	
 	@Override
 	public void deleteProject(int id)
 	{
@@ -88,22 +96,84 @@ public class ProjectRepositoryImpl implements ProjectRepository
 	@Override
 	public void updateProject(int projectId, ProjectEntry project)
 	{
-		// TODO Auto-generated method stub
-
+		if (project != null){
+			
+			ArrayList<String> projectelement = getProjectString(project);
+			xmlProjectPersistance.updateProject(projectelement);
+		}
 	}
-
+	
 	@Override
 	public void addTaskToProject(int projectId, TaskEntry task)
 	{
-		// TODO Auto-generated method stub
-
+		if (getTaskById(task.getId()) == null){
+			
+			task.setId(GetNextTaskId());
+			ArrayList<String> taskelement = getTaskString(task);
+			xmlProjectPersistance.addTaskToProject(projectId, taskelement);
+		}
 	}
+	
+	@Override
+	public void updateTask(Integer taskId, TaskEntry task)
+	{
+		if (task != null){
+			
+			ArrayList<String> taskelement = getTaskString(task);
+			xmlProjectPersistance.updateTask(taskelement);
+		}
+	}
+
 
 	@Override
 	public void removeTaskFromProject(int taskId, int projectId)
 	{
 		// TODO Auto-generated method stub
 
+	}
+	
+	private ArrayList<String> getProjectString(ProjectEntry project){
+		ArrayList<String> projectElement = new ArrayList<String>();
+		
+		projectElement.add(0, project.getId().toString());
+		projectElement.add(1, project.getName());
+		
+		return projectElement;
+	}
+	
+	private ArrayList<String> getTaskString(TaskEntry task){
+		ArrayList<String> taskElement = new ArrayList<String>();
+		
+		taskElement.add(0, task.getId().toString());
+		taskElement.add(1, task.getName());
+		taskElement.add(2, task.getRate().toString());
+		
+		return taskElement;
+	}
+	
+	private Integer GetNextProjectId()
+	{
+		List<Integer> ids = new ArrayList<Integer>();
+		for (ProjectEntry project : getAllProjects())
+		{
+			ids.add(project.getId());
+		}
+		
+		return Collections.max(ids) + 1;
+	}
+	
+	private Integer GetNextTaskId()
+	{
+		List<Integer> ids = new ArrayList<Integer>();
+		for (ProjectEntry project : getAllProjects())
+		{
+			for (TaskEntry task : project.getTasks())
+			{
+				ids.add(task.getId());
+			}
+		}
+		
+		return Collections.max(ids) + 1;
 	}
 
 }

@@ -8,7 +8,8 @@ public interface ProjectRepository {
 	public TaskEntry getTaskById(Integer id);
 	public void addProject(ProjectEntry project);
 	public void deleteProject(int id);
-	public void updateProject(int projectId, ProjectEntry project);
 	public void addTaskToProject(int projectId, TaskEntry task);
+	public void updateProject(int projectId, ProjectEntry project);
+	public void updateTask(Integer taskId, TaskEntry task);
 	public void removeTaskFromProject(int taskId, int projectId);
 }

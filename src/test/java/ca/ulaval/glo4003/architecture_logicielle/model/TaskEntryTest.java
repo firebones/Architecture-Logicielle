@@ -14,10 +14,12 @@ public class TaskEntryTest
 	{
 		Integer id = 1;
 		String name = "tache1";
+		Double rate = 1.11;
 		
 		task = new TaskEntry();
 		task.setId(id);
 		task.setName(name);
+		task.setRate(rate);
 	}
 
 	@Test
@@ -50,6 +52,22 @@ public class TaskEntryTest
 		task.setName("newTache");
 		
 		assertEquals(task.getName(), "newTache");
+	}
+	
+	@Test
+	public void testGetRate()
+	{
+		Double id1 = task.getRate();
+		
+		assertEquals((Object)id1, 1.11);
+	}
+
+	@Test
+	public void testSetRate()
+	{
+		task.setRate(1.21);
+		
+		assertEquals((Object)task.getRate(), 1.21);
 	}
 
 	@Test

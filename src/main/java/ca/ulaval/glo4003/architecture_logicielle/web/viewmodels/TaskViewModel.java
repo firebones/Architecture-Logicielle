@@ -5,6 +5,7 @@ public class TaskViewModel {
 	public Integer id;
 	public String name;
 	public Boolean isAssigned;
+	public Double rate;
 	
 	public Integer getId() {
 		return id;
@@ -26,5 +27,13 @@ public class TaskViewModel {
 	
 	public void setIsAssigned(Boolean isAssigned) {
 		this.isAssigned = isAssigned;
+	}
+	
+	public Double getRate() {
+		return rate;
+	}
+	
+	public void setRate(Double rate) {
+		this.rate = rate;
 	}
 }

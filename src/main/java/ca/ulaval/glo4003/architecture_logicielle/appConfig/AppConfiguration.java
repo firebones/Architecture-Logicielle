@@ -23,8 +23,28 @@ public class AppConfiguration {
 			return new ProjectRepositoryImpl().getAllProjects();
 		}
 		
+		public ProjectEntry getProjectById(Integer id) {
+			return new ProjectRepositoryImpl().getProjectById(id);
+		}
+		
 		public TaskEntry getTaskById(Integer id) {
 			return new ProjectRepositoryImpl().getTaskById(id);
+		}
+		
+		public void addProject(ProjectEntry project) {
+			new ProjectRepositoryImpl().addProject(project);
+		}
+		
+		public void addTask(Integer projectId, TaskEntry task) {
+			new ProjectRepositoryImpl().addTaskToProject(projectId, task);
+		}
+		
+		public void updateProject(Integer projectId, ProjectEntry project) {
+			new ProjectRepositoryImpl().updateProject(projectId, project);
+		}
+		
+		public void updateTask(Integer taskId, TaskEntry task) {
+			new ProjectRepositoryImpl().updateTask(taskId, task);
 		}
 		
 		//Employee - User

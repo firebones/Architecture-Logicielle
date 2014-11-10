@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.EmployeeEntryConverter;
@@ -22,6 +23,8 @@ import ca.ulaval.glo4003.architecture_logicielle.web.converters.ProjectEntryConv
 import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedTasks;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.ProjectViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
 
 @Controller
 public class DeptManagerController {
@@ -61,8 +64,6 @@ public class DeptManagerController {
 		return "redirect:/employeeList";
 	}
 	
-	
-	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
 	    model.addAttribute("newEmployee", new EmployeeEntry());
@@ -88,5 +89,76 @@ public class DeptManagerController {
 		EmployeeEntry employee = (EmployeeEntry) configuration.getUserByEmail(email);
 		configuration.deleteUser(employee);
 		return "redirect:/employeeList";
+	}
+	
+	@RequestMapping(value = "/projectList", method = RequestMethod.GET)
+	public String projectlist(Model model) {
+		model.addAttribute("projects", configuration.getAllProjects());
+		return "projectList";
+	}
+	
+	@RequestMapping(value = "/addProject", method = RequestMethod.GET)
+	public String addNewProject(Model model) {
+	    model.addAttribute("project", new ProjectEntry());
+	    return "addProject";
+	}
+	
+	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
+	public String addNewProject(ProjectViewModel newProjectViewModel){
+		ProjectEntry newProject = projectConverter.toProjectEntry(newProjectViewModel);
+		configuration.addProject(newProject);
+		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.GET)
+	public String editProject(@PathVariable Integer id, Model model) {
+		ProjectEntry project = configuration.getProjectById(id);
+		model.addAttribute("project", project);
+		return "editProject";
+	}
+	
+	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.POST)
+	public String editProject(@PathVariable Integer id, ProjectViewModel updatedProjectViewModel){
+		ProjectEntry updatedProject = projectConverter.toProjectEntry(updatedProjectViewModel);
+		configuration.updateProject(id, updatedProject);
+		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/{id}/addTask", method = RequestMethod.GET)
+	public String addNewTask(Model model) {
+	    model.addAttribute("task", new TaskEntry());
+	    return "addTask";
+	}
+	
+	@RequestMapping(value = "/{id}/addTask", method = RequestMethod.POST)
+	public String addNewTask(@PathVariable Integer id, TaskViewModel newTaskViewModel){
+		newTaskViewModel.setId(0);
+		TaskEntry newTask = projectConverter.toTaskEntry(newTaskViewModel);
+		configuration.addTask(id, newTask);
+		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.GET)
+	public String editTask(@PathVariable Integer id, Model model) {
+		TaskEntry task = configuration.getTaskById(id);
+		model.addAttribute("task", task);
+		return "editTask";
+	}
+	
+	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.POST)
+	public String editTask(@PathVariable Integer id, TaskViewModel updatedTaskViewModel){
+		TaskEntry updatedTask = projectConverter.toTaskEntry(updatedTaskViewModel);
+		configuration.updateTask(id, updatedTask);
+		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public String cancelProject() {
+		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/{id}/cancel", method = RequestMethod.GET)
+	public String cancelTask() {
+		return "redirect:/projectList";
 	}
 }

@@ -2,15 +2,16 @@
 <projects>
 	<project>
 		<id>1</id>
-		<name>Projet1</name>
+		<name>Projet123</name>
 		<email>joe@gmail.com</email>
 		<role>employee</role>
 		<hashedPassword>1234</hashedPassword>
 		<tasks>
 			<task>
-				<id>3</id>
-				<name>Tache1</name>
-			</task>
+                <id>3</id>
+                <name>Heures regulieres</name>
+                <rate>1.0</rate>
+            </task>
 		</tasks>
 	</project>
 	<project>
@@ -22,11 +23,18 @@
 		<tasks>
 			<task>
 				<id>4</id>
-				<name>Tache2</name>
+				<name>Heures regulieres</name>
+				<rate>1</rate>
 			</task>
 			<task>
 				<id>5</id>
-				<name>Tache3</name>
+				<name>Heures supplementaires</name>
+				<rate>1.5</rate>
+			</task>
+			<task>
+				<id>5</id>
+				<name>Vacances</name>
+				<rate>0</rate>
 			</task>
 		</tasks>
 	</project>
