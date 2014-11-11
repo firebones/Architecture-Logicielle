@@ -36,4 +36,16 @@
         </tasks>
     </user>
 
+
+
+<user>
+        <name>hamid</name>
+        <email>hamid@gmail.com</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
+    <tasks>
+            <taskId>4</taskId>
+            <taskId>5</taskId>
+        </tasks>
+    </user>
 </users>

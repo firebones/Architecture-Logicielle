@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -109,6 +115,22 @@ public class XMLWeekPersistance
 		return null;
 	}
 	
+	public void addPeriodPay(ArrayList<String> periodPayElement)
+	{
+		parseXml();
+		
+		Element rootElement = xmlFile.getDocumentElement();
+		Element newPeriodPay = getPeriodPayElement(periodPayElement);
+		rootElement.appendChild(newPeriodPay);
+		
+		saveXml();
+		
+	}
+	
+	
+
+	
+
 	private void parseXml() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
@@ -123,6 +145,92 @@ public class XMLWeekPersistance
 		}
 	}
 	
+	private void saveXml()
+	{
+		TransformerFactory transFactory = TransformerFactory.newInstance();
+		try {
+			Transformer transformer = transFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource domsource = new DOMSource(xmlFile);
+			StreamResult result = new StreamResult(new File("database/weekEntries.xml"));
+			transformer.transform(domsource, result);
+		} catch (TransformerException transException) {
+			System.out.println(transException);
+		}		
+	}
+	
+	private Element getPeriodPayElement(ArrayList<String> periodPayElement)
+	{
+		Element userElement = xmlFile.createElement("weekEntry");
+		
+		Element email = xmlFile.createElement("email");
+		email.setTextContent(periodPayElement.get(0));
+		userElement.appendChild(email);
+		
+		Element weekNumber = xmlFile.createElement("weekNumber");
+		weekNumber.setTextContent(periodPayElement.get(1));
+		userElement.appendChild(weekNumber);
+		
+		Element startDate = xmlFile.createElement("startDate");
+		startDate.setTextContent(periodPayElement.get(2));
+		userElement.appendChild(startDate);
+		
+		Element endDate = xmlFile.createElement("endDate");
+		endDate.setTextContent(periodPayElement.get(3));
+		userElement.appendChild(endDate);
+		
+		Element isApproved = xmlFile.createElement("isApproved");
+		isApproved.setTextContent(periodPayElement.get(4));
+		userElement.appendChild(isApproved);
+		
+		int i=5;
+		
+		if (periodPayElement.get(i) == "listKilometer") {
+			Element kilometers = xmlFile.createElement("kilometers");
+			i++;	
+			do{
+				
+				Element kilometer = xmlFile.createElement("kilometer");
+				kilometer.setTextContent(periodPayElement.get(i));
+				userElement.appendChild(kilometer);
+				i++;
+			}while(periodPayElement.get(i) != "listExpenses");
+			
+			userElement.appendChild(kilometers);
+		}
+		
+		if (periodPayElement.get(i) == "listExpenses") {
+			Element employeeExpenses = xmlFile.createElement("employeeExpenses");
+			i++;	
+			do{
+				
+				Element employeeExpense = xmlFile.createElement("employeeExpense");
+				employeeExpense.setTextContent(periodPayElement.get(i));
+				userElement.appendChild(employeeExpense);
+				i++;
+			}while(periodPayElement.get(i) != "listHours");
+			
+			userElement.appendChild(employeeExpenses);
+		}
+		
+		if (periodPayElement.get(i) == "listHours") {
+			Element hours = xmlFile.createElement("hours");
+			i++;	
+			do{
+				
+				Element hour = xmlFile.createElement("hour");
+				hour.setTextContent(periodPayElement.get(i));
+				userElement.appendChild(hour);
+				i++;
+			}while(periodPayElement.get(i) != "fin");
+			
+			userElement.appendChild(hours);
+		}
+		
+		return userElement;
+	}
+	
 	private String getStringValue(Element element, String tag) {
 		String str = null;
 		NodeList nodeList = element.getElementsByTagName(tag);
@@ -134,4 +242,5 @@ public class XMLWeekPersistance
 		
 		return str;
 	}
+
 }

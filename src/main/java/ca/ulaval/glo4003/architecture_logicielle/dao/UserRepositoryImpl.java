@@ -5,11 +5,14 @@ import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.AbstractFactory;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.PeriodPayBuilder;
+import ca.ulaval.glo4003.architecture_logicielle.model.PeriodPayBuilderImpl;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Role;
+import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
 
 public class UserRepositoryImpl implements UserRepository
 {
@@ -110,6 +113,23 @@ public class UserRepositoryImpl implements UserRepository
 			
 			ArrayList<String> userelement = getUserString(user);
 			xmluserpersistance.addUser(userelement);
+			
+			WeekEntryRepository defaultPeriodPay = new WeekEntryRepositoryImpl();
+			PeriodPayBuilder builder = new PeriodPayBuilderImpl();
+			builder.setInformation(user.getEmail(), "41", "2014-10-05", "2014-10-11", false);
+			List<Integer> kilometersEntries = new ArrayList<Integer>();
+			//a gerer depuis le nombre de jour de la periode de paye donne par l'entreprise
+			kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);
+			builder.setEmployeeKilometers(kilometersEntries);
+			List<Double> employeeExpensesEntries = new ArrayList<Double>();
+			//a gerer depuis le nombre de jour de la periode de paye donne par l'entreprise
+			employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);employeeExpensesEntries.add(0.0);
+			builder.setEmployeeExpenses(employeeExpensesEntries);
+			List<Double> hoursEntries = new ArrayList<Double>();
+			//a gerer depuis le nombre de jour de la periode de paye donne par l'entreprise
+			hoursEntries.add(0.0);hoursEntries.add(0.0);hoursEntries.add(0.0);hoursEntries.add(0.0);hoursEntries.add(0.0);hoursEntries.add(0.0);hoursEntries.add(0.0);
+			builder.setEmployeeHours(hoursEntries);
+			defaultPeriodPay.addEmployeePeriodPay(user, builder.getPeriodPayEntry());
 		}
 	}
 

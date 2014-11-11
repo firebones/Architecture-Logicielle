@@ -9,6 +9,7 @@ public class WeekEntry {
 	private String email;
 	private String startDate;
 	private String endDate;
+	private boolean isApproved;
 	private List<Integer> kilometersEntries = new ArrayList<Integer>();
 	private List<Double> employeeExpensesEntries = new ArrayList<Double>();
 	private List<String> expensesEntries = new ArrayList<String>();
@@ -38,6 +39,14 @@ public class WeekEntry {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+	public boolean isApproved()
+	{
+		return isApproved;
+	}
+	public void setApproved(boolean isApproved)
+	{
+		this.isApproved = isApproved;
+	}
 	public List<Integer> getKilometersEntries() {
 		return kilometersEntries;
 	}
@@ -62,4 +71,5 @@ public class WeekEntry {
 	public void setHoursEntries(List<Double> hoursEntries){
 		this.hoursEntries = hoursEntries;
 	}
+	
 }
