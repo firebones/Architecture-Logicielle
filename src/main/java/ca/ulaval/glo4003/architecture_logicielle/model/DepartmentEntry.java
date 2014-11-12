@@ -29,6 +29,7 @@ public class DepartmentEntry {
 	}
 
 	public void addEmployee(EmployeeEntry employee) {
+		employee.setDepartment(this);
 		employees.add(employee);
 	}
 
