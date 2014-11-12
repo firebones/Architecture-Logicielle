@@ -20,4 +20,34 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!--#file reading administrable  -->  
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="ignoreUnresolvablePlaceholders">  
+            <value>true</value>  
+        </property>  
+        <property name="locations">  
+            <list>  
+                <value>classpath:app.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+      
+    <!--#Spring Service Configuration: MailSernder -->  
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+      <property name="host" value="${mail.host}"/>  
+      <property name="port" value="${mail.port}"/>  
+      <property name="username" value="${mail.username}"/>  
+      <property name="password" value="${mail.password}"/>  
+      <property name="defaultEncoding" value="UTF-8"/>  
+    </bean>  
+  
+    <!--#Setting our service: MailService -->  
+    <bean id="mailService" class="com.autentia.training.spring.mail.MailServiceImpl">  
+      <property name="active" value="true"/>  
+      <property name="mailSender" ref="mailSender"/>  
+      <property name="from" value="default@unknown.com"/>  
+    </bean>  
+      
+</beans>  
+	
 </beans:beans>

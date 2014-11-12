@@ -26,6 +26,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.0.1.RELEASE</version>
+        </dependency>
 
 		<!-- AspectJ -->
 		<dependency>
@@ -62,20 +68,14 @@
 		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
-			<version>1.1</version>
+			<version>1.1.1</version>
 		</dependency>
 		
-		<dependency>  
-            <groupId>javax.annotation</groupId>  
-            <artifactId>jsr250-api</artifactId>  
-            <version>1.0</version>  
-        </dependency>  
-
 		<!-- Java Mail Api -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
-			<version>1.4</version>
+			<version>1.4.7</version>
 		</dependency>
 
 
