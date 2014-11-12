@@ -48,4 +48,10 @@
             <taskId>5</taskId>
         </tasks>
     </user>
+<user>
+        <name>juan</name>
+        <email>jb@ulaval.ca</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
+    </user>
 </users>

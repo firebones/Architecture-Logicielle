@@ -64,7 +64,7 @@ public class DeptManagerController {
 		return "redirect:/employeeList";
 	}
 	
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
 	    model.addAttribute("newEmployee", new EmployeeEntry());
 	    return "addEmployee";
@@ -76,7 +76,7 @@ public class DeptManagerController {
 		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
 		configuration.addUser(newEmployee);
 		return "redirect:/employeeList";
-	}
+	}*/
 	
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	public String list(Model model) {
