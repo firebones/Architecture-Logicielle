@@ -3,37 +3,29 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Employees</title>
+	<jsp:include page="_meta.jsp" />
 </head>
+<jsp:include page="_header.jsp" />
 <body>
-<h1>Saisir ses dépenses professionnelles</h1>
-  <section class="container">
-    <form method="POST" action="/employeeExpenses" modelAttribute="daysOfWeek" modelAttribute="valuesOfWeek" modelAttribute="daysNameOfWeek" class="form-horizontal" >
-
-        
-
-        <div class="form-group">
-        <table class="table table-striped">
-        	<tr>
-			   	<c:forEach items="${daysNameOfWeek}" var="day" varStatus="status">
-				   	<th>${day} ${daysOfWeek[status.index]}</th>
-		   		</c:forEach>
-	   		</tr>
-		   	<tr>
-		   		<c:forEach items="${valuesOfWeek}" var="value" varStatus="statusExpenses">
-				   	<td><input name="expenses" type="text" value="${value}"/></td>
-		   		</c:forEach>
-		   	</tr>
-		   </table>
-        </div>
-        <div class="row">
-        	<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Soumettre</a>
-			<button type="submit" class="btn btn-default">Enregistrer</button>
-			<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Annuler</a>
-		</div>
-    </form>
-  </section>
+	<div class="container">
+	<h1>Saisir ses dépenses professionnelles</h1>
+	    <form 
+	    method="POST" action="/employeeExpenses" 
+	    modelAttribute="daysOfWeek" 
+	    modelAttribute="valuesOfWeek" 
+	    modelAttribute="daysNameOfWeek" 
+	    class="form form-horizontal well" >
+	        
+				<c:forEach items="${daysNameOfWeek}" var="day" varStatus="status">
+					<div class="control-group">
+						<label class="control-label" for="${status.index}">${day} ${daysOfWeek[status.index]}</label>
+						<input	class="input-block-level" id="${status.index}" type="text" value="${valuesOfWeek[status.index]}"/>
+					</div>
+				</c:forEach>
+		        	<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Soumettre</a>
+					<button type="submit" class="btn btn-default">Enregistrer</button>
+					<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Annuler</a>
+	    </form>
+  	</div>
 </body>
 </html>

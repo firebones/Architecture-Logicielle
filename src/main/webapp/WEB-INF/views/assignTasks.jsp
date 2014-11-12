@@ -3,9 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="/resources/css/main.css" media="all" />
-	<title>M2 - Architecture Logicielle</title>
+	<jsp:include page="_meta.jsp" />
 	<script>
 	function modifyTasksCheckboxStatus(checkboxProject) {
 				
@@ -44,6 +42,8 @@
 	</script>
 </head>
 <body>
+<jsp:include page="_header.jsp"></jsp:include>
+<div class="container">
 <form method="POST" class="form-horizontal">
 	<h1 id="demo">
 		Assigner des tâches à l'employé : ${assignTasksView.userId}
@@ -76,6 +76,7 @@
 				<a href="<c:url value="assignTasksCancel" />" class="col-lg-offset=2 btn btn-primary">Annuler</a>
 			</div>
 		</div>
+	</div>
 	</div>
 </form>	
 

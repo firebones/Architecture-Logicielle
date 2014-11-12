@@ -1,15 +1,26 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<div id="logged-info">
-	<ul>
-		<sec:authorize access="hasRole('MANAGER')">
-			<li><a href="/employeeList">Liste des employés</a></li>
-			<li><a href="/projectList">Liste des projets</a></li>
-		</sec:authorize>
-		<sec:authorize access="hasRole('EMPLOYEE')">
-			<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
-			<li><a href="/employeeExpenses">Dépenses des employés</a></li>
-			<li><a href="/workingHours">Heures réalisées</a></li>
-		</sec:authorize>
-	</ul>
-</div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">  
+		<ul class="nav navbar-nav">
+			<sec:authorize access="hasRole('MANAGER')">
+				<li><a href="/employeeList">Liste des employés</a></li>
+				<li><a href="/projectList">Liste des projets</a></li>
+			</sec:authorize>
+			<sec:authorize access="hasRole('EMPLOYEE')">
+				<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
+				<li><a href="/employeeExpenses">Dépenses des employés</a></li>
+				<li><a href="/workingHours">Heures réalisées</a></li>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<li>
+					<a href="/j_spring_security_logout">
+						Bienvenue,
+						<sec:authentication property="principal.name" /> <%-- This corresponds to employee.getName() --%>
+						Déconnexion
+					</a>
+				</li>
+			</sec:authorize>
+		</ul>
+	</div>
+</nav>
