@@ -8,11 +8,11 @@ public class EmployeeEntry extends UserEntry {
 	private DepartmentEntry department;
 
 	public EmployeeEntry() {
-		this.role = Role.EMPLOYEE;
+		this.role = RoleUser.EMPLOYEE;
 	}
 
-	public EmployeeEntry(Role role) {
-		if (role == Role.EMPLOYEE || role == Role.MANAGER) {
+	public EmployeeEntry(RoleUser role) {
+		if (role == RoleUser.EMPLOYEE || role == RoleUser.MANAGER) {
 			this.role = role;
 		}
 	}
@@ -54,10 +54,10 @@ public class EmployeeEntry extends UserEntry {
 	}
 
 	public void becomeManager() {
-		role = Role.MANAGER;
+		role = RoleUser.MANAGER;
 	}
 
 	public void becomeEmployee() {
-		role = Role.EMPLOYEE;
+		role = RoleUser.EMPLOYEE;
 	}
 }

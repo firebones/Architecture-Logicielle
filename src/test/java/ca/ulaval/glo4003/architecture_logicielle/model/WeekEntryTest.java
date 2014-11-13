@@ -17,8 +17,8 @@ public class WeekEntryTest
 	{
 		String weekNumber = "41";
 		String email = "pape@gmail.com";
-		String startDate = "Lundi 27-10-2014";
-		String endDate = "Dimance 2-11-2014";
+//		String startDate = "Lundi 27-10-2014";
+//		String endDate = "Dimance 2-11-2014";
 		List<Integer> kilometers = new ArrayList<Integer>(7);
 		kilometers.add(0);
 		kilometers.add(10);
@@ -55,8 +55,8 @@ public class WeekEntryTest
 		oneweek = new WeekEntry();
 		oneweek.setWeekNumber(weekNumber);
 		oneweek.setEmail(email);
-		oneweek.setStartDate(startDate);
-		oneweek.setEndDate(endDate);
+//		oneweek.setStartDate(startDate);
+//		oneweek.setEndDate(endDate);
 		oneweek.setKilometersEntries(kilometers);
 		oneweek.setEmployeeExpensesEntries(expenses);
 		oneweek.setExpensesEntries(expensesEntries);
@@ -95,7 +95,7 @@ public class WeekEntryTest
 		assertEquals(oneweek.getEmail(), "patrick@gmail.com");
 	}
 
-	@Test
+/*	@Test
 	public void testGetStartDate()
 	{
 		String start = oneweek.getStartDate();
@@ -126,7 +126,7 @@ public class WeekEntryTest
 		
 		assertEquals(oneweek.getEndDate(), "Dimance 9-11-2014");
 	}
-
+*/
 	@Test
 	public void testGetKilometersEntries()
 	{

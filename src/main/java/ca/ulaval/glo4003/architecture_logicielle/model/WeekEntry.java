@@ -7,9 +7,7 @@ public class WeekEntry {
 
 	private String weekNumber;
 	private String email;
-	private String startDate;
-	private String endDate;
-	private boolean isApproved;
+	private StateWeekEntry state;
 	private List<Integer> kilometersEntries = new ArrayList<Integer>();
 	private List<Double> employeeExpensesEntries = new ArrayList<Double>();
 	private List<String> expensesEntries = new ArrayList<String>();
@@ -27,26 +25,13 @@ public class WeekEntry {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getStartDate() {
-		return startDate;
+	public StateWeekEntry getState() {
+		return state;
 	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+	public void setState(StateWeekEntry state) {
+		this.state = state;
 	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-	public boolean isApproved()
-	{
-		return isApproved;
-	}
-	public void setApproved(boolean isApproved)
-	{
-		this.isApproved = isApproved;
-	}
+
 	public List<Integer> getKilometersEntries() {
 		return kilometersEntries;
 	}

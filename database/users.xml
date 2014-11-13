@@ -24,17 +24,7 @@
         </tasks>
     </user>
 
-<user>
-        <name>Pape</name>
-        <email>pape@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-    
-    <tasks>
-            <taskId>3</taskId>
-            <taskId>5</taskId>
-        </tasks>
-    </user>
+
 
 
 
@@ -51,6 +41,13 @@
 <user>
         <name>juan</name>
         <email>jb@ulaval.ca</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
+    </user>
+
+<user>
+        <name>testeur</name>
+        <email>testeur@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>default</hashedPassword>
     </user>

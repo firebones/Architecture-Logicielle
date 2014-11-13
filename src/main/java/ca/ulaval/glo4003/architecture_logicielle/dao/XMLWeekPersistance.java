@@ -50,19 +50,19 @@ public class XMLWeekPersistance
 				Element element = (Element) nodeList.item(i);
 				String elementEmail = getStringValue(element, "email");
 				String elementWeekNumber = getStringValue(element, "weekNumber");
-				String elementStartDate = getStringValue(element, "startDate");
-				String elementEndDate = getStringValue(element, "endDate");
-				String elementisApproved = getStringValue(element, "isApproved");
+				String elementisState = getStringValue(element, "state");
+//				String elementisSubmitted = getStringValue(element, "isSubmitted");
+//				String elementinProgess = getStringValue(element, "inProgess");
 				ArrayList<String> listElement = new ArrayList<String>();
 				listElement.add(0, elementEmail);
 				listElement.add(1, elementWeekNumber);
-				listElement.add(2, elementStartDate);
-				listElement.add(3, elementEndDate);
-				listElement.add(4, elementisApproved);
+				listElement.add(2, elementisState);
+//				listElement.add(3, elementisSubmitted);
+//				listElement.add(4, elementinProgess);
 				
 				NodeList nodes = element.getElementsByTagName("kilometer");
-				listElement.add(5, "listKilometer");
-				int k=6;
+				listElement.add(3, "listKilometer");
+				int k=4;
 				
 				if (nodes != null && nodes.getLength() > 0) {
 					for (int j = 0; j < nodes.getLength(); j++) {
@@ -115,12 +115,22 @@ public class XMLWeekPersistance
 		return null;
 	}
 	
+	public ArrayList<ArrayList<String>> getWeekEntryByEmail(String email){
+		
+		ArrayList<ArrayList<String>> weekEntries = getAllWeekEntries();
+		for (int i = 0; i < weekEntries.size(); i++) {
+			if ((weekEntries.get(i).get(0).toString().compareTo(email) != 0))
+				weekEntries.remove(i);
+		}
+		return weekEntries;
+	}
+	
 	public void addPeriodPay(ArrayList<String> periodPayElement)
 	{
 		parseXml();
 		
 		Element rootElement = xmlFile.getDocumentElement();
-		Element newPeriodPay = getPeriodPayElement(periodPayElement);
+		Element newPeriodPay = getweekEntryElement(periodPayElement);
 		rootElement.appendChild(newPeriodPay);
 		
 		saveXml();
@@ -160,70 +170,71 @@ public class XMLWeekPersistance
 		}		
 	}
 	
-	private Element getPeriodPayElement(ArrayList<String> periodPayElement)
+	private Element getweekEntryElement(ArrayList<String> weekEntryElement)
 	{
 		Element userElement = xmlFile.createElement("weekEntry");
 		
 		Element email = xmlFile.createElement("email");
-		email.setTextContent(periodPayElement.get(0));
+		email.setTextContent(weekEntryElement.get(0));
 		userElement.appendChild(email);
 		
 		Element weekNumber = xmlFile.createElement("weekNumber");
-		weekNumber.setTextContent(periodPayElement.get(1));
+		weekNumber.setTextContent(weekEntryElement.get(1));
 		userElement.appendChild(weekNumber);
-		
-		Element startDate = xmlFile.createElement("startDate");
-		startDate.setTextContent(periodPayElement.get(2));
-		userElement.appendChild(startDate);
-		
-		Element endDate = xmlFile.createElement("endDate");
-		endDate.setTextContent(periodPayElement.get(3));
-		userElement.appendChild(endDate);
-		
-		Element isApproved = xmlFile.createElement("isApproved");
-		isApproved.setTextContent(periodPayElement.get(4));
+
+		Element isApproved = xmlFile.createElement("state");
+		isApproved.setTextContent(weekEntryElement.get(2));
 		userElement.appendChild(isApproved);
 		
-		int i=5;
+/*		Element isSubmitted = xmlFile.createElement("isSubmitted");
+		isSubmitted.setTextContent(weekEntryElement.get(3));
+		userElement.appendChild(isSubmitted);
 		
-		if (periodPayElement.get(i) == "listKilometer") {
+		Element inProgess = xmlFile.createElement("inProgess");
+		inProgess.setTextContent(weekEntryElement.get(4));
+		userElement.appendChild(inProgess);
+*/		
+		
+		int i=3;
+		
+		if (weekEntryElement.get(i) == "listKilometer") {
 			Element kilometers = xmlFile.createElement("kilometers");
 			i++;	
 			do{
 				
 				Element kilometer = xmlFile.createElement("kilometer");
-				kilometer.setTextContent(periodPayElement.get(i));
+				kilometer.setTextContent(weekEntryElement.get(i));
 				userElement.appendChild(kilometer);
 				i++;
-			}while(periodPayElement.get(i) != "listExpenses");
+			}while(weekEntryElement.get(i) != "listExpenses");
 			
 			userElement.appendChild(kilometers);
 		}
 		
-		if (periodPayElement.get(i) == "listExpenses") {
+		if (weekEntryElement.get(i) == "listExpenses") {
 			Element employeeExpenses = xmlFile.createElement("employeeExpenses");
 			i++;	
 			do{
 				
 				Element employeeExpense = xmlFile.createElement("employeeExpense");
-				employeeExpense.setTextContent(periodPayElement.get(i));
+				employeeExpense.setTextContent(weekEntryElement.get(i));
 				userElement.appendChild(employeeExpense);
 				i++;
-			}while(periodPayElement.get(i) != "listHours");
+			}while(weekEntryElement.get(i) != "listHours");
 			
 			userElement.appendChild(employeeExpenses);
 		}
 		
-		if (periodPayElement.get(i) == "listHours") {
+		if (weekEntryElement.get(i) == "listHours") {
 			Element hours = xmlFile.createElement("hours");
 			i++;	
 			do{
 				
 				Element hour = xmlFile.createElement("hour");
-				hour.setTextContent(periodPayElement.get(i));
+				hour.setTextContent(weekEntryElement.get(i));
 				userElement.appendChild(hour);
 				i++;
-			}while(periodPayElement.get(i) != "fin");
+			}while(weekEntryElement.get(i) != "fin");
 			
 			userElement.appendChild(hours);
 		}

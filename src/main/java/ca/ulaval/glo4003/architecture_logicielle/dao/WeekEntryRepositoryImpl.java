@@ -3,10 +3,9 @@ package ca.ulaval.glo4003.architecture_logicielle.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.PeriodPayBuilder;
 import ca.ulaval.glo4003.architecture_logicielle.model.PeriodPayBuilderImpl;
-import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
@@ -28,7 +27,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 				
 		for(ArrayList<String> tabweek: weekList){
 			
-			WeekEntry periodPay = createPeriodPayEntry(tabweek);
+			WeekEntry periodPay = createWeekEntry(tabweek);
 			
 			weekEntryList.add(periodPay);
 		}
@@ -44,60 +43,62 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		
 		listElement = xmlWeekPersistance.getWeekEntryByEmailAndWeek(email, weekNumber);
 		
-		WeekEntry periodPay = createPeriodPayEntry(listElement);
+		WeekEntry periodPay = createWeekEntry(listElement);
 
 		return periodPay;
 	}
 	
 	@Override
-	public void addEmployeePeriodPay(UserEntry user, WeekEntry periodPay)
+	public ArrayList<WeekEntry> getWeekEntryByEmail(String email)
 	{
-			ArrayList<String> userelement = getPeriodPayString(periodPay);
+		ArrayList<ArrayList<String>> lists = new ArrayList<ArrayList<String>>();
+		ArrayList<WeekEntry> listWeekEntry = new ArrayList<WeekEntry>();
+		
+		lists = xmlWeekPersistance.getWeekEntryByEmail(email);
+		
+		for(ArrayList<String> listElement: lists){
+			WeekEntry weekEntry = createWeekEntry(listElement);
+			listWeekEntry.add(weekEntry);
+		}
+
+		return listWeekEntry;
+	}
+	
+	@Override
+	public void addEmployeeWeekEntry(UserEntry user, WeekEntry weekEntry)
+	{
+			ArrayList<String> userelement = getweekEntryString(weekEntry);
 			xmlWeekPersistance.addPeriodPay(userelement);
 	}
 	
-	
-/*	@Override
-	public ArrayList<String> getKilometers()
+	@Override
+	public void deleteWeekEntry(WeekEntry weekEntry)
 	{
-		// TODO Auto-generated method stub
-		return null;
+//		if (getWeekEntryByEmail(weekEntry.getEmail()) != null){
+			
+//			xmlWeekPersistance.deleteAllweekEntry(weekEntry.getEmail());	
+//		}
+		
 	}
 
-	@Override
-	public ArrayList<String> getEmployeeExpenses()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<String> getExpenses()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<String> getHours()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/	
-	private WeekEntry createPeriodPayEntry(ArrayList<String> tabweek){
+	private WeekEntry createWeekEntry(ArrayList<String> tabweek){
 	
 		PeriodPayBuilder periodPay = new PeriodPayBuilderImpl();
-		boolean isApproved = false;
-		if(tabweek.get(4) == "true")
-			isApproved = true;
 		
-		periodPay.setInformation(tabweek.get(0), tabweek.get(1), tabweek.get(2), tabweek.get(3), isApproved);
+		StateWeekEntry state = null;
+		switch(tabweek.get(2)){
+		case "Approved": state = StateWeekEntry.APPROVED; break;
+		case "Refused": state = StateWeekEntry.REFUSED; break;
+		case "Submitted": state = StateWeekEntry.SUBMITTED; break;
+		case "inProgress": state = StateWeekEntry.INPROGRESS; break;
+		}
+		
+		periodPay.setInformation(tabweek.get(0), tabweek.get(1), state);
 		
 		List<Integer> listKilometer = new ArrayList<Integer>();
-		int i=6;
+		int i=4;
 		
-		if(tabweek.get(5) == "listKilometer"){
+		if(tabweek.get(3) == "listKilometer"){
 			do{
 				listKilometer.add(Integer.parseInt(tabweek.get(i)));
 				i++;
@@ -132,58 +133,69 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		return periodPay.getPeriodPayEntry();
 	}
 
-	private ArrayList<String> getPeriodPayString(WeekEntry periodPay) {
-		ArrayList<String> periodPayElement = new ArrayList<String>();
+	private ArrayList<String> getweekEntryString(WeekEntry periodPay) {
+		ArrayList<String> weekEntryElement = new ArrayList<String>();
 		
-		periodPayElement.add(0, periodPay.getEmail());
-		periodPayElement.add(1, periodPay.getWeekNumber());
-		periodPayElement.add(2, periodPay.getStartDate());
-		periodPayElement.add(3, periodPay.getEndDate());
-		
-		String isApproved = "false";
+		weekEntryElement.add(0, periodPay.getEmail());
+		weekEntryElement.add(1, periodPay.getWeekNumber());
+		weekEntryElement.add(2, periodPay.getState().getStateWeekEntry());
+/*		String isApproved = "false";
 		if(periodPay.isApproved() == true)
 			isApproved = "true";
-		periodPayElement.add(4, isApproved);
 		
-		periodPayElement.add(5, "listKilometer");
+		weekEntryElement.add(2, isApproved);
 		
-		int j = 6;
+		String isSubmitted = "false";
+		if(periodPay.isSubmitted() == true)
+			isSubmitted = "true";
+		weekEntryElement.add(3, isSubmitted);
+		
+		String inProgess = "true";
+		if(periodPay.inProgess() == false)
+			inProgess = "false";
+		weekEntryElement.add(4, inProgess);*/
+		
+		weekEntryElement.add(3, "listKilometer");
+		
+		int j = 4;
 		if (periodPay instanceof WeekEntry && periodPay.getKilometersEntries().size() > 0) {
 			
 			List<Integer> listKilometer = periodPay.getKilometersEntries();
 			for (int i=0; i < periodPay.getKilometersEntries().size(); i++) {		
 				
-				periodPayElement.add(j, listKilometer.get(i).toString());
+				weekEntryElement.add(j, listKilometer.get(i).toString());
 				j++;
 			}
 		}
 		
-		periodPayElement.add(j, "listExpenses");
+		weekEntryElement.add(j, "listExpenses");
 		j++;
 		
 		if (periodPay instanceof WeekEntry && periodPay.getKilometersEntries().size() > 0) {
 			List<Double> listExpenses = periodPay.getEmployeeExpensesEntries();
 			for (int i=0; i < periodPay.getEmployeeExpensesEntries().size(); i++) {		
 				
-				periodPayElement.add(j, listExpenses.get(i).toString());
+				weekEntryElement.add(j, listExpenses.get(i).toString());
 				j++;
 			}
 		}
 		
-		periodPayElement.add(j, "listHours");
+		weekEntryElement.add(j, "listHours");
 		j++;
 		
 		if (periodPay instanceof WeekEntry && periodPay.getKilometersEntries().size() > 0) {
 			List<Double> listHours = periodPay.getHoursEntries();
 			for (int i=0; i < periodPay.getHoursEntries().size(); i++) {		
 				
-				periodPayElement.add(j, listHours.get(i).toString());
+				weekEntryElement.add(j, listHours.get(i).toString());
 				j++;
 			}
 		}
 		
-		periodPayElement.add(j, "fin");
+		weekEntryElement.add(j, "fin");
 		
-		return periodPayElement;
+		return weekEntryElement;
 	}
+
+	
 }

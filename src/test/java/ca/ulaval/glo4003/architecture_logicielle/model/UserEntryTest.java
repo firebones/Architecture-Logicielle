@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Role;
-
 public class UserEntryTest
 {
 	private UserEntry user;
@@ -71,9 +69,9 @@ public class UserEntryTest
 	@Test
 	public void testGetRole()
 	{
-		Role role = user.getRole();
+		RoleUser role = user.getRole();
 		
-		assertEquals(role, Role.EMPLOYEE);
+		assertEquals(role, RoleUser.EMPLOYEE);
 	}
 
 	@Test

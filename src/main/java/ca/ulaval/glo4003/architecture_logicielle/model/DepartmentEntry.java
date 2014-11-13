@@ -3,8 +3,6 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 import java.util.LinkedList;
 import java.util.List;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Role;
-
 public class DepartmentEntry {
 	private String departmentName;
 	private List<EmployeeEntry> employees;
@@ -17,7 +15,7 @@ public class DepartmentEntry {
 	}
 
 	public void addDepartmentManager(EmployeeEntry manager) {
-		if (manager.getRole() == Role.MANAGER) {
+		if (manager.getRole() == RoleUser.MANAGER) {
 			deptManagers.add(manager);
 		}
 	}

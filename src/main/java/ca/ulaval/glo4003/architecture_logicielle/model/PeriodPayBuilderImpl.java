@@ -12,12 +12,14 @@ public class PeriodPayBuilderImpl implements PeriodPayBuilder
 	}
 	
 	@Override
-	public void setInformation(String email, String weekNumber, String startDate, String endDate, boolean isApproved)
+	public void setInformation(String email, String weekNumber, StateWeekEntry state)
 	{
 		this.weekEntry.setEmail(email);
 		this.weekEntry.setWeekNumber(weekNumber);
-		this.weekEntry.setStartDate(startDate);
-		this.weekEntry.setEndDate(endDate);
+		this.weekEntry.setState(state);
+//		this.weekEntry.setApproved(isApproved);
+//		this.weekEntry.setSubmitted(isSubmitted);
+//		this.weekEntry.setProgess(inProgess);
 
 	}
 
