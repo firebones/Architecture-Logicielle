@@ -3,28 +3,32 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry.Role;
+
 public class DepartmentEntry {
 	private String departmentName;
 	private List<EmployeeEntry> employees;
-	private List<DeptManagerEntry> deptManagers;
+	private List<EmployeeEntry> deptManagers;
 
 	public DepartmentEntry(String name) {
 		departmentName = name;
 		employees = new LinkedList<EmployeeEntry>();
-		deptManagers = new LinkedList<DeptManagerEntry>();
+		deptManagers = new LinkedList<EmployeeEntry>();
 	}
 
-	public void addDepartmentManager(DeptManagerEntry manager) {
-		deptManagers.add(manager);
+	public void addDepartmentManager(EmployeeEntry manager) {
+		if (manager.getRole() == Role.MANAGER) {
+			deptManagers.add(manager);
+		}
 	}
 
-	public void removeDepartmentManager(DeptManagerEntry manager) {
+	public void removeDepartmentManager(EmployeeEntry manager) {
 		if (deptManagers.contains(manager)) {
 			deptManagers.remove(manager);
 		}
 	}
 
-	public boolean isManagerInDepartment(DeptManagerEntry manager) {
+	public boolean isManagerInDepartment(EmployeeEntry manager) {
 		return deptManagers.contains(manager);
 	}
 
@@ -38,7 +42,7 @@ public class DepartmentEntry {
 			employees.remove(employee);
 		}
 	}
-	
+
 	public boolean isEmployeeInDepartment(EmployeeEntry employee) {
 		return employees.contains(employee);
 	}

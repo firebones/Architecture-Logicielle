@@ -6,31 +6,37 @@ import java.util.ArrayList;
 public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
 	private DepartmentEntry department;
-	
+
 	public EmployeeEntry() {
 		this.role = Role.EMPLOYEE;
 	}
-	
+
+	public EmployeeEntry(Role role) {
+		if (role == Role.EMPLOYEE || role == Role.MANAGER) {
+			this.role = role;
+		}
+	}
+
 	public List<TaskEntry> getTasks() {
 		return tasks;
 	}
-	
+
 	public void assignTask(TaskEntry task) {
 		if (tasks.contains(task) != true) {
 			tasks.add(task);
 		}
 	}
-	
+
 	public void removeTask(TaskEntry task) {
 		if (tasks.contains(task) == true) {
 			tasks.remove(task);
 		}
 	}
-	
+
 	public void updateTasks(List<TaskEntry> tasks) {
 		this.tasks = tasks;
 	}
-	
+
 	public List<String> getTasksString() {
 		List<String> tasksString = new ArrayList<String>();
 		for (TaskEntry entry : tasks) {
@@ -38,8 +44,20 @@ public class EmployeeEntry extends UserEntry {
 		}
 		return tasksString;
 	}
-	
+
+	public DepartmentEntry getDepartment() {
+		return department;
+	}
+
 	public void setDepartment(DepartmentEntry department) {
 		this.department = department;
+	}
+
+	public void becomeManager() {
+		role = Role.MANAGER;
+	}
+
+	public void becomeEmployee() {
+		role = Role.EMPLOYEE;
 	}
 }
