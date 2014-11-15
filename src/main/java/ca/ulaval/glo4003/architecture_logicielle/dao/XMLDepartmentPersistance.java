@@ -42,7 +42,7 @@ public class XMLDepartmentPersistance
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			xmlFile = docBuilder.parse(new File("database/projects.xml"));
+			xmlFile = docBuilder.parse(new File("database/departments.xml"));
 		} catch (ParserConfigurationException parseE) {
 			System.out.println(parseE);
 		} catch (SAXException saxE) {
@@ -59,7 +59,7 @@ public class XMLDepartmentPersistance
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			DOMSource domsource = new DOMSource(xmlFile);
-			StreamResult result = new StreamResult(new File("database/projects.xml"));
+			StreamResult result = new StreamResult(new File("database/departments.xml"));
 			transformer.transform(domsource, result);
 		} catch (TransformerException transException) {
 			System.out.println(transException);

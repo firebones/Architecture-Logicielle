@@ -7,6 +7,11 @@ public class DepartmentEntry {
 	private String departmentName;
 	private List<EmployeeEntry> employees;
 	private List<EmployeeEntry> deptManagers;
+	
+	public DepartmentEntry() {
+		employees = new LinkedList<EmployeeEntry>();
+		deptManagers = new LinkedList<EmployeeEntry>();
+	}
 
 	public DepartmentEntry(String name) {
 		departmentName = name;
