@@ -120,9 +120,38 @@
         <hours/>
     </weekEntry>
 <weekEntry>
-        <email>testeur@gmail.com</email>
+        <email>jane@gmail.com</email>
         <weekNumber>41</weekNumber>
         <state>inProgress</state>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
+<weekEntry>
+        <email>pape@gmail.com</email>
+        <weekNumber>41</weekNumber>
+        <state>STATE_INPROGRESS</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>

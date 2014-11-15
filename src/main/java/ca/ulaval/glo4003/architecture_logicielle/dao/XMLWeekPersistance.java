@@ -51,14 +51,10 @@ public class XMLWeekPersistance
 				String elementEmail = getStringValue(element, "email");
 				String elementWeekNumber = getStringValue(element, "weekNumber");
 				String elementisState = getStringValue(element, "state");
-//				String elementisSubmitted = getStringValue(element, "isSubmitted");
-//				String elementinProgess = getStringValue(element, "inProgess");
 				ArrayList<String> listElement = new ArrayList<String>();
 				listElement.add(0, elementEmail);
 				listElement.add(1, elementWeekNumber);
 				listElement.add(2, elementisState);
-//				listElement.add(3, elementisSubmitted);
-//				listElement.add(4, elementinProgess);
 				
 				NodeList nodes = element.getElementsByTagName("kilometer");
 				listElement.add(3, "listKilometer");

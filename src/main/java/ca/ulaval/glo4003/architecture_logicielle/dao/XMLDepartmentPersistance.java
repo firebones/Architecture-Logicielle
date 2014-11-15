@@ -3,6 +3,7 @@ package ca.ulaval.glo4003.architecture_logicielle.dao;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -36,7 +37,45 @@ public class XMLDepartmentPersistance
 		return instance;
 	}
 	
-	
+	public ArrayList<ArrayList<String>> getAllDepartement()
+	{
+		ArrayList<ArrayList<String>> departementList = new ArrayList<ArrayList<String>>();
+		List<String> employeeList = new ArrayList<String>();
+		
+		parseXml();
+		
+		Element docElement = xmlFile.getDocumentElement();
+		NodeList nodeList = docElement.getElementsByTagName("department");
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element element = (Element) nodeList.item(i);
+				String elementName = getStringValue(element, "name");
+				String elementEmail = getStringValue(element, "companyEmail");
+				ArrayList<String> listElement = new ArrayList<String>(); 
+				listElement.add(0, elementName);
+				listElement.add(1, elementEmail);
+
+				
+				employeeList = getEmployeeListValue(element, "employees");
+				if(employeeList.size() > 0){
+					for(int j=0; j<employeeList.size(); j++){
+						listElement.add(j+2, employeeList.get(j));
+					}
+				}
+
+				departementList.add(listElement);
+			}
+		}
+		
+		return departementList;
+	}
+
+	public void addDepartment(ArrayList<String> departmentelement)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 	private synchronized void parseXml() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -77,6 +116,24 @@ public class XMLDepartmentPersistance
 		}
 		
 		return str;
+	}
+	
+	private List<String> getEmployeeListValue(Element element, String tag) {
+		
+		List<String> employeeList = new ArrayList<String>();
+		
+		NodeList nodeList = element.getElementsByTagName(tag);
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element tagElement = (Element) nodeList.item(i);
+				String email = tagElement.getFirstChild().getNodeValue();
+
+				employeeList.add(email);
+			}
+		}
+		
+		return employeeList;
 	}
 
 }

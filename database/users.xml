@@ -45,10 +45,6 @@
         <hashedPassword>default</hashedPassword>
     </user>
 
-<user>
-        <name>testeur</name>
-        <email>testeur@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-    </user>
+
+
 </users>

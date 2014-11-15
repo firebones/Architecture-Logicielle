@@ -57,4 +57,20 @@ public class DepartmentEntry {
 	public void setDepartmentName(String name) {
 		departmentName = name;
 	}
+	
+	public List<EmployeeEntry> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<EmployeeEntry> employees) {
+		this.employees = employees;
+	}
+	
+	public List<EmployeeEntry> getdeptManagers() {
+		return deptManagers;
+	}
+
+	public void setdeptManagers(List<EmployeeEntry> deptManagers) {
+		this.deptManagers = deptManagers;
+	}
 }
