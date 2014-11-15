@@ -5,13 +5,13 @@ import java.util.List;
 
 public class AssignedHours {
 
-	public List<Double> hours;
+	public List<String> hours;
 
-	public List<Double> getHours() {
+	public List<String> getHours() {
 		return hours;
 	}
 
-	public void setHours(List<Double> hours) {
+	public void setHours(List<String> hours) {
 		this.hours = hours;
 	}
 }

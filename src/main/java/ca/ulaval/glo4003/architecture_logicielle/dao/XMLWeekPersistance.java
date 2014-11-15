@@ -50,15 +50,17 @@ public class XMLWeekPersistance
 				Element element = (Element) nodeList.item(i);
 				String elementEmail = getStringValue(element, "email");
 				String elementWeekNumber = getStringValue(element, "weekNumber");
+				String elementYearNumber = getStringValue(element, "yearNumber");
 				String elementisState = getStringValue(element, "state");
 				ArrayList<String> listElement = new ArrayList<String>();
 				listElement.add(0, elementEmail);
 				listElement.add(1, elementWeekNumber);
-				listElement.add(2, elementisState);
+				listElement.add(2, elementYearNumber);
+				listElement.add(3, elementisState);
 				
 				NodeList nodes = element.getElementsByTagName("kilometer");
-				listElement.add(3, "listKilometer");
-				int k=4;
+				listElement.add(4, "listKilometer");
+				int k=5;
 				
 				if (nodes != null && nodes.getLength() > 0) {
 					for (int j = 0; j < nodes.getLength(); j++) {
@@ -101,11 +103,11 @@ public class XMLWeekPersistance
 		return weekEntryList;
 	}
 	
-	public ArrayList<String> getWeekEntryByEmailAndWeek(String email, String weekNumber) {
+	public ArrayList<String> getWeekEntryByEmailAndWeek(String email, Integer weekNumber, Integer yearNumber) {
 		
 		ArrayList<ArrayList<String>> weekEntries = getAllWeekEntries();
 		for (int i = 0; i < weekEntries.size(); i++) {
-				if ((weekEntries.get(i).get(0).toString().compareTo(email) == 0) && (weekEntries.get(i).get(1).toString().compareTo(weekNumber) == 0))
+				if ((weekEntries.get(i).get(0).toString().compareTo(email) == 0) && (weekEntries.get(i).get(1).toString().compareTo(weekNumber.toString()) == 0) && (weekEntries.get(i).get(2).toString().compareTo(yearNumber.toString()) == 0))
 					return weekEntries.get(i);
 		}
 		return null;
@@ -177,9 +179,13 @@ public class XMLWeekPersistance
 		Element weekNumber = xmlFile.createElement("weekNumber");
 		weekNumber.setTextContent(weekEntryElement.get(1));
 		userElement.appendChild(weekNumber);
+		
+		Element yearNumber = xmlFile.createElement("yearNumber");
+		yearNumber.setTextContent(weekEntryElement.get(2));
+		userElement.appendChild(yearNumber);
 
 		Element isApproved = xmlFile.createElement("state");
-		isApproved.setTextContent(weekEntryElement.get(2));
+		isApproved.setTextContent(weekEntryElement.get(3));
 		userElement.appendChild(isApproved);
 		
 /*		Element isSubmitted = xmlFile.createElement("isSubmitted");

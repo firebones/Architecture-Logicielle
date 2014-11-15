@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface PeriodPayBuilder
 {
-	public void setInformation(String email, String weekNumber, StateWeekEntry state);
+	public void setInformation(String email, Integer weekNumber, Integer yearNumber, StateWeekEntry state);
 	public void setEmployeeKilometers(List<Integer> kilometersEntries);
 	public void setEmployeeExpenses(List<Double> employeeExpensesEntries);
 	public void setEmployeeHours(List<Double> hoursEntries);

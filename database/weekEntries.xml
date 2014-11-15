@@ -3,6 +3,7 @@
 	<weekEntry>
 		<email>joe@gmail.com</email>
 		<weekNumber>41</weekNumber>
+		<yearNumber>2014</yearNumber>
 		<state>inProgress</state>
 		<kilometers>
 			<kilometer>0</kilometer>
@@ -35,6 +36,7 @@
 <weekEntry>
         <email>hamid@gmail.com</email>
         <weekNumber>41</weekNumber>
+		<yearNumber>2014</yearNumber>
         <state>inProgress</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
@@ -64,6 +66,7 @@
 <weekEntry>
         <email>jb@ulaval.ca</email>
         <weekNumber>41</weekNumber>
+		<yearNumber>2014</yearNumber>
        	<state>inProgress</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
@@ -93,6 +96,7 @@
 <weekEntry>
         <email>pape@gmail.com</email>
         <weekNumber>41</weekNumber>
+		<yearNumber>2014</yearNumber>
         <state>inProgress</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
@@ -122,6 +126,7 @@
 <weekEntry>
         <email>jane@gmail.com</email>
         <weekNumber>41</weekNumber>
+		<yearNumber>2014</yearNumber>
         <state>inProgress</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
@@ -151,7 +156,8 @@
 <weekEntry>
         <email>pape@gmail.com</email>
         <weekNumber>41</weekNumber>
-        <state>STATE_INPROGRESS</state>
+		<yearNumber>2014</yearNumber>
+        <state>inProgress</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>

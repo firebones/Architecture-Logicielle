@@ -5,7 +5,8 @@ import java.util.List;
 
 public class WeekEntry {
 
-	private String weekNumber;
+	private Integer weekNumber;
+	private Integer yearNumber;
 	private String email;
 	private StateWeekEntry state;
 	private List<Integer> kilometersEntries = new ArrayList<Integer>();
@@ -13,11 +14,17 @@ public class WeekEntry {
 	private List<String> expensesEntries = new ArrayList<String>();
 	private List<Double> hoursEntries = new ArrayList<Double>();
 	
-	public String getWeekNumber() {
+	public Integer getWeekNumber() {
 		return weekNumber;
 	}
-	public void setWeekNumber(String weekNumber) {
+	public void setWeekNumber(Integer weekNumber) {
 		this.weekNumber = weekNumber;
+	}
+	public Integer getYearNumber() {
+		return yearNumber;
+	}
+	public void setYearNumber(Integer yearNumber) {
+		this.yearNumber = yearNumber;
 	}
 	public String getEmail() {
 		return email;

@@ -6,11 +6,20 @@ h1 {
 
 #login-info {
 	text-align: right;
+}*/
+
+.errorField {
+	color: red;
 }
 
-.denied {
-	color: red;
-}*/
+.errorBlock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+
 body{
 	padding-top: 65px;
 }

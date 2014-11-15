@@ -5,13 +5,13 @@ import java.util.List;
 
 public class AssignedExpenses {
 
-	public List<Double> expenses;
+	public List<String> expenses;
 
-	public List<Double> getExpenses() {
+	public List<String> getExpenses() {
 		return expenses;
 	}
 
-	public void setExpenses(List<Double> expenses) {
+	public void setExpenses(List<String> expenses) {
 		this.expenses = expenses;
 	}
 }

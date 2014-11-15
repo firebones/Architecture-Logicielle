@@ -118,7 +118,7 @@ public class UserRepositoryImpl implements UserRepository
 			
 			WeekEntryRepository repositoryWeekEntry = new WeekEntryRepositoryImpl();
 			PeriodPayBuilder builderdefaultWeekEntry = new PeriodPayBuilderImpl();
-			builderdefaultWeekEntry.setInformation(user.getEmail(), "41", StateWeekEntry.INPROGRESS);
+			builderdefaultWeekEntry.setInformation(user.getEmail(), 41, 2014, StateWeekEntry.INPROGRESS);
 			List<Integer> kilometersEntries = new ArrayList<Integer>();
 			
 			kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);kilometersEntries.add(0);

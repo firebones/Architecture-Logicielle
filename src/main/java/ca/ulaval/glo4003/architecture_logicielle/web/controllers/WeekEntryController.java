@@ -13,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.WeekEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
@@ -26,32 +28,42 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilomete
 public class WeekEntryController {
 	
 	private AppConfiguration configuration = new AppConfiguration();
+	private WeekEntryConverter converter =  new WeekEntryConverter();
+	private Validators validator =  new Validators();
 	
-	// TODO: probablement ï¿½ remplacer lorsque J-P aura terminï¿½ le repository
-	//private WeekEntryRepositoryImpl weekEntryRepository = new WeekEntryRepositoryImpl();
-	private WeekEntryConverter projectConverter =  new WeekEntryConverter();
-	
+	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste de weekentries
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.GET)
-	  public String getEnterTransportion(Model model) {
+	public String getEnterTransportion(Model model, @ModelAttribute("errorBlock") String errorBlock, @ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-	
-		// TODO: Pour le moment, c'est la date en cours qui dï¿½termine la semaine ï¿½ obtenir et le numï¿½ro de semaine.
-		// TODO: ï¿½ventuellement, selon la sï¿½rie hebdomadaire qui sera traitï¿½e (le user aura plusieurs sï¿½ries), le bon weekNumber sera passï¿½.
-		Date todaysDate = new Date();
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
 		
-		int weekNumber = getWeekNumber(todaysDate);
-		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
+		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(), weekEntry.getYearNumber());
+		List<String> daysOfWeek = getDatesOfWeek(date);
 		List<String> datesOfWeek = getDaysOfWeek();
 		
-		// TODO : trouver comment rï¿½cupï¿½rer le email du user loggï¿½
-		List<Integer> kilometersOfWeek = configuration.getWeekEntryByEmailAndWeek(userId, "41").getKilometersEntries();
+		List<String> kilometersOfWeek;
+		if (kilometers.getKilometers() != null)
+			kilometersOfWeek = kilometers.getKilometers();
+		else
+			kilometersOfWeek = converter.convertIntegerToStringList(weekEntry.getKilometersEntries());
 		
-	     model.addAttribute("daysOfWeek", daysOfWeek);
-	     model.addAttribute("daysNameOfWeek", datesOfWeek);
-	     model.addAttribute("valuesOfWeek", kilometersOfWeek);
-	     return "vehicleExpenseEntries";
-	  }
+		if (errorBlock == null)
+			errorBlock = "";
+		
+		Boolean isReadOnly = false;
+		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
+			isReadOnly = true;
+		 
+		 model.addAttribute("daysOfWeek", daysOfWeek);
+		 model.addAttribute("daysNameOfWeek", datesOfWeek);
+		 model.addAttribute("valuesOfWeek", kilometersOfWeek);
+		 model.addAttribute("errorBlock", errorBlock);
+		 model.addAttribute("isReadOnly", isReadOnly);
+		 
+		 return "vehicleExpenseEntries";
+	}
 	
 	@ModelAttribute("assignedKilometers")
 	public AssignedKilometers assignedKilometers() {
@@ -59,40 +71,60 @@ public class WeekEntryController {
 	}
 	
 	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.POST)
-	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers) {
+	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers, RedirectAttributes redirectAttributes) {
+		
+		String messageError = validator.ValidateAssignedKilometers(assignedKilometers.getKilometers());
+		if (!messageError.isEmpty())
+		{
+			redirectAttributes.addFlashAttribute("assignedKilometers", assignedKilometers);
+			redirectAttributes.addFlashAttribute("errorBlock", messageError);
+			return "redirect:/vehicleExpenses";
+		}
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 	
-		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
-		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Integer> kilometers = assignedKilometers.getKilometers();
-		weekEntry.setKilometersEntries(kilometers);
+		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster les lignes suivantes.
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
+		List<String> kilometers = assignedKilometers.getKilometers();
+		weekEntry.setKilometersEntries(converter.convertStringsToIntegers(kilometers));
 		
 		return "redirect:/";
 	}
 	
-	
+	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste de weekentries
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
-	  public String getEnterExpenses(Model model) {
+	public String getEnterExpenses(Model model, @ModelAttribute("errorBlock") String errorBlock, @ModelAttribute("assignedExpenses") AssignedExpenses expenses) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-	
-		// TODO: Pour le moment, c'est la date en cours qui dï¿½termine la semaine ï¿½ obtenir et le numï¿½ro de semaine.
-		// TODO: ï¿½ventuellement, selon la sï¿½rie hebdomadaire qui sera traitï¿½e (le user aura plusieurs sï¿½ries), le bon weekNumber sera passï¿½.
-		Date todaysDate = new Date();
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
 		
-		int weekNumber = getWeekNumber(todaysDate);
-		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
+		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(), weekEntry.getYearNumber());
+		List<String> daysOfWeek = getDatesOfWeek(date);
 		List<String> datesOfWeek = getDaysOfWeek();
 		
-		// TODO : trouver comment rï¿½cupï¿½rer le email du user loggï¿½
-		List<Double> expensesOfWeek = configuration.getWeekEntryByEmailAndWeek(userId, "41").getEmployeeExpensesEntries();
+		List<String> expensesOfWeek;
+		if (expenses.getExpenses() != null)
+			expensesOfWeek = expenses.getExpenses();
+		else
+			expensesOfWeek = converter.convertIntegerToStringList(weekEntry.getKilometersEntries());
 		
-	     model.addAttribute("daysOfWeek", daysOfWeek);
-	     model.addAttribute("daysNameOfWeek", datesOfWeek);
-	     model.addAttribute("valuesOfWeek", expensesOfWeek);
-	     return "employeeExpenseEntries";
-	  }
+		if (errorBlock == null)
+			errorBlock = "";
+		
+		Boolean isReadOnly = false;
+		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
+			isReadOnly = true;
+		 
+		 model.addAttribute("daysOfWeek", daysOfWeek);
+		 model.addAttribute("daysNameOfWeek", datesOfWeek);
+		 model.addAttribute("valuesOfWeek", expensesOfWeek);
+		 model.addAttribute("errorBlock", errorBlock);
+		 model.addAttribute("isReadOnly", isReadOnly);
+		 
+		 return "employeeExpenseEntries";
+	}
 	
 	@ModelAttribute("assignedExpenses")
 	public AssignedExpenses assignedexpenses() {
@@ -100,61 +132,89 @@ public class WeekEntryController {
 	}
 	
 	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.POST)
-	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses) {
+	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses, RedirectAttributes redirectAttributes) {
+		
+		String messageError = validator.ValidateAssignedExpenses(assignedExpenses.getExpenses());
+		if (!messageError.isEmpty())
+		{
+			redirectAttributes.addFlashAttribute("assignedExpenses", assignedExpenses);
+			redirectAttributes.addFlashAttribute("errorBlock", messageError);
+			return "redirect:/employeeExpenses";
+		}
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 	
-		// TODO : remplacer les valeurs hardcodï¿½ par le user en cours, et ï¿½ventuellement, la sï¿½rie hebdomadaire traitï¿½e.
-		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Double> expenses = assignedExpenses.getExpenses();
-		weekEntry.setEmployeeExpensesEntries(expenses);
+		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster les lignes suivantes.
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
+		List<String> expenses = assignedExpenses.getExpenses();
+		weekEntry.setEmployeeExpensesEntries(converter.convertToDoubleList(expenses));
 		
 		return "redirect:/";
 	}
 	
-	
+	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste de weekentries
 	@RequestMapping(value = "/workingHours", method = RequestMethod.GET)
-	  public String getEnterHours(Model model) {
+	public String getEnterHours(Model model, @ModelAttribute("errorBlock") String errorBlock, @ModelAttribute("assignedHours") AssignedHours hours) {
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-	
-		// TODO: Pour le moment, c'est la date en cours qui dï¿½termine la semaine ï¿½ obtenir et le numï¿½ro de semaine.
-		// TODO: ï¿½ventuellement, selon la sï¿½rie hebdomadaire qui sera traitï¿½e (le user aura plusieurs sï¿½ries), le bon weekNumber sera passï¿½.
-		Date todaysDate = new Date();
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
 		
-		int weekNumber = getWeekNumber(todaysDate);
-		List<String> daysOfWeek = getDatesOfWeek(todaysDate);
+		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(), weekEntry.getYearNumber());
+		List<String> daysOfWeek = getDatesOfWeek(date);
 		List<String> datesOfWeek = getDaysOfWeek();
 		
-		// TODO : trouver comment rï¿½cupï¿½rer le email du user loggï¿½
-		List<Double> hoursOfWeek = configuration.getWeekEntryByEmailAndWeek(userId, "41").getHoursEntries();
+		List<String> hoursOfWeek;
+		if (hours.getHours() != null)
+			hoursOfWeek = hours.getHours();
+		else
+			hoursOfWeek = converter.convertDoublesToStringList(weekEntry.getHoursEntries());
 		
-	     model.addAttribute("daysOfWeek", daysOfWeek);
-	     model.addAttribute("daysNameOfWeek", datesOfWeek);
-	     model.addAttribute("valuesOfWeek", hoursOfWeek);
-	     return "workingHourEntries";
-	  }
+		if (errorBlock == null)
+			errorBlock = "";
+		
+		Boolean isReadOnly = false;
+		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
+			isReadOnly = true;
+		 
+		 model.addAttribute("daysOfWeek", daysOfWeek);
+		 model.addAttribute("daysNameOfWeek", datesOfWeek);
+		 model.addAttribute("valuesOfWeek", hoursOfWeek);
+		 model.addAttribute("errorBlock", errorBlock);
+		 model.addAttribute("isReadOnly", isReadOnly);
+		 
+		 return "workingHourEntries";
+	}
 	
 	@ModelAttribute("assignedHours")
 	public AssignedHours assignedhours() {
 		return new AssignedHours();
 	}
 	
+	
 	@RequestMapping(value = "/workingHours", method = RequestMethod.POST)
-	public String getValuesOfWeek(@ModelAttribute("assignedHours") AssignedHours assignedHours) {
+	public String getHoursOfWeek(@ModelAttribute("assignedHours") AssignedHours assignedHours, RedirectAttributes redirectAttributes) {
+		
+		String messageError = validator.ValidateAssignedHours(assignedHours.getHours());
+		if (!messageError.isEmpty())
+		{
+			redirectAttributes.addFlashAttribute("assignedHours", assignedHours);
+			redirectAttributes.addFlashAttribute("errorBlock", messageError);
+			return "redirect:/workingHours";
+		}
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 	
-		// TODO : remplacer les valeurs hardcodées par le user en cours, et éventuellement, la série hebdomadaire traitée.
-		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, "41");
-		List<Double> hours = assignedHours.getHours();
-		weekEntry.setEmployeeExpensesEntries(hours);
+		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster les lignes suivantes.
+		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId, 41, 2014);
+		List<String> hours = assignedHours.getHours();
+		weekEntry.setHoursEntries(converter.convertStringsToDoubles(hours));
 		
 		return "redirect:/";
 	}
 	
-	
-	// TODO: ï¿½ventuellement dï¿½placï¿½?
 	private List<String> getDatesOfWeek(Date refDate) {
 		
 		List<String> dates = new ArrayList<String>(7);
@@ -173,7 +233,6 @@ public class WeekEntryController {
         return dates;
     }
 
-	// TODO: ï¿½ventuellement dï¿½placï¿½? prendre les valeurs d'un fichier ressource.
 	private List<String> getDaysOfWeek() {
 
 		List<String> daysOfWeek = new ArrayList<String>();
@@ -188,7 +247,6 @@ public class WeekEntryController {
 		return daysOfWeek;
 	}
 	
-	// TODO: ï¿½ventuellement dï¿½placï¿½?
 	private int getWeekNumber(Date refDate) {
 		
 		 Calendar calendar = Calendar.getInstance();
@@ -196,5 +254,15 @@ public class WeekEntryController {
 	     calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 	     int week = calendar.get(Calendar.WEEK_OF_YEAR);
 		return week;
+	}
+	
+	private Date getDateForWeekNumber(int weekNumber, int year)
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
+		calendar.set(Calendar.YEAR, year);
+
+		return calendar.getTime();
 	}
 }

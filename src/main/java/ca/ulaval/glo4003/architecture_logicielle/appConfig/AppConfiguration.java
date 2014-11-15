@@ -81,8 +81,8 @@ public class AppConfiguration {
 			return new WeekEntryRepositoryImpl().getAllWeekEntries();
 		}
 		
-		public WeekEntry getWeekEntryByEmailAndWeek(String email, String weekNumber) {
-			return new WeekEntryRepositoryImpl().getWeekEntryByEmailAndWeek(email, weekNumber);
+		public WeekEntry getWeekEntryByEmailAndWeek(String email, Integer weekNumber, Integer yearNumber) {
+			return new WeekEntryRepositoryImpl().getWeekEntryByEmailAndWeek(email, weekNumber, yearNumber);
 		}
 		
 		

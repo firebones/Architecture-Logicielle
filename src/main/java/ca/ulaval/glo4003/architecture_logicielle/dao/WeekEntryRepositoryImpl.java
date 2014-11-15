@@ -32,16 +32,15 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 			weekEntryList.add(periodPay);
 		}
 
-		
 		return weekEntryList;
 	}
 	
 	@Override
-	public WeekEntry getWeekEntryByEmailAndWeek(String email, String weekNumber) {
+	public WeekEntry getWeekEntryByEmailAndWeek(String email, Integer weekNumber, Integer yearNumber) {
 		
 		ArrayList<String> listElement = new ArrayList<String>();
 		
-		listElement = xmlWeekPersistance.getWeekEntryByEmailAndWeek(email, weekNumber);
+		listElement = xmlWeekPersistance.getWeekEntryByEmailAndWeek(email, weekNumber, yearNumber);
 		
 		WeekEntry periodPay = createWeekEntry(listElement);
 
@@ -86,19 +85,19 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		PeriodPayBuilder periodPay = new PeriodPayBuilderImpl();
 		
 		StateWeekEntry state = null;
-		switch(tabweek.get(2)){
+		switch(tabweek.get(3)){
 		case "Approved": state = StateWeekEntry.APPROVED; break;
 		case "Refused": state = StateWeekEntry.REFUSED; break;
 		case "Submitted": state = StateWeekEntry.SUBMITTED; break;
 		case "inProgress": state = StateWeekEntry.INPROGRESS; break;
 		}
 		
-		periodPay.setInformation(tabweek.get(0), tabweek.get(1), state);
+		periodPay.setInformation(tabweek.get(0), Integer.parseInt(tabweek.get(1)), Integer.parseInt(tabweek.get(2)), state);
 		
 		List<Integer> listKilometer = new ArrayList<Integer>();
-		int i=4;
+		int i=5;
 		
-		if(tabweek.get(3) == "listKilometer"){
+		if(tabweek.get(4) == "listKilometer"){
 			do{
 				listKilometer.add(Integer.parseInt(tabweek.get(i)));
 				i++;
@@ -137,8 +136,9 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		ArrayList<String> weekEntryElement = new ArrayList<String>();
 		
 		weekEntryElement.add(0, periodPay.getEmail());
-		weekEntryElement.add(1, periodPay.getWeekNumber());
-		weekEntryElement.add(2, periodPay.getState().getStateWeekEntry());
+		weekEntryElement.add(1, periodPay.getWeekNumber().toString());
+		weekEntryElement.add(2, periodPay.getYearNumber().toString());
+		weekEntryElement.add(3, periodPay.getState().getStateWeekEntry());
 /*		String isApproved = "false";
 		if(periodPay.isApproved() == true)
 			isApproved = "true";
@@ -155,9 +155,9 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 			inProgess = "false";
 		weekEntryElement.add(4, inProgess);*/
 		
-		weekEntryElement.add(3, "listKilometer");
+		weekEntryElement.add(4, "listKilometer");
 		
-		int j = 4;
+		int j = 5;
 		if (periodPay instanceof WeekEntry && periodPay.getKilometersEntries().size() > 0) {
 			
 			List<Integer> listKilometer = periodPay.getKilometersEntries();
