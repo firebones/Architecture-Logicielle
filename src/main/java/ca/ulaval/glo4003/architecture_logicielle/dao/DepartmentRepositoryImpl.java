@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 
 
+
+import java.util.List;
+
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
@@ -76,11 +79,15 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 	
 
 	@Override
-	public void deleteDepartment(String name) {
+	public void deleteDepartment(DepartmentEntry department) {
 		
+		if (getDepartmentByName(department.getDepartmentName()) != null){
+			
+			xmlDepartmentPersistance.deleteDepartement(department.getDepartmentName());	
+		}
 	}
 	
-	@Override
+/*	@Override
 	public void addEmployeeToDepartment(String departmentName, String employeeName) {
 		
 	}
@@ -98,33 +105,57 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 	@Override
 	public void removeManagerFromDepartment(String departmentName, String managerName) {
 		
-	}
+	}*/
 	
 	@Override
-	public void updateDepartment(String departmentName, DepartmentEntry department) {
-		
+	public void updateDepartment(DepartmentEntry department){
+		if (getDepartmentByName(department.getDepartmentName()) != null){
+			
+			ArrayList<String> departmentElement = getDepartmentString(department);
+			xmlDepartmentPersistance.updateDepartment(departmentElement);
+		}
 	}
 
 	private ArrayList<String> getDepartmentString(DepartmentEntry department)
 	{
 		ArrayList<String> departmentElement = new ArrayList<String>();
+		List<EmployeeEntry> listEmployee;
+		List<EmployeeEntry> listManager;
 		
 		departmentElement.add(0, department.getDepartmentName());
 		departmentElement.add(1, "");
 	
-		if ( department.getdeptManagers().size() > 0) {
-			for (int i = 2; i < department.getdeptManagers().size()+2; i++) {
-				String email = department.getdeptManagers().get(i-2).getEmail();
-				departmentElement.add(i, email);
-			}
+		
+		
+		departmentElement.add(2, "listEmployee");
+		listEmployee = department.getEmployees();
+		
+		int j=3;
+		if ( listEmployee.size() > 0) {
+			int i=0;
+			do{
+				String email = department.getEmployees().get(i).getEmail();
+				departmentElement.add(j, email);
+				j++;
+				i++;
+			}while(i<listEmployee.size());
+			
 		}
 		
-		if ( department.getEmployees().size() > 0) {
-			for (int i = department.getdeptManagers().size()+2; i < department.getEmployees().size()+department.getdeptManagers().size()+2; i++) {
-				String email = department.getEmployees().get(i-(department.getdeptManagers().size()+2)).getEmail();
-				departmentElement.add(i, email);
-			}
+		departmentElement.add(j, "listManager");
+		listManager = department.getdeptManagers();
+		
+		if ( listManager.size() > 0) {
+			int i=0;
+			do{
+				String email = department.getdeptManagers().get(i).getEmail();
+				departmentElement.add(j, email);
+				j++;
+				i++;
+			}while(i<listEmployee.size());
 		}
+		departmentElement.add(j, "fin");
+		
 		return departmentElement;
 	}
 }

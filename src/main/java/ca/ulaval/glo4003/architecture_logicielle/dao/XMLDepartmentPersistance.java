@@ -73,8 +73,42 @@ public class XMLDepartmentPersistance
 
 	public void addDepartment(ArrayList<String> departmentelement)
 	{
-		// TODO Auto-generated method stub
+		parseXml();
 		
+		Element rootElement = xmlFile.getDocumentElement();
+		Element newDepartement = getDepartmentElement(departmentelement);
+		rootElement.appendChild(newDepartement);
+		
+		saveXml();
+		
+	}
+	
+	public void deleteDepartement(String departmentName)
+	{
+		parseXml();
+		
+		if (departmentName != null){
+		
+			Element userElement = getDepartmentElementByName(departmentName);
+			xmlFile.getDocumentElement().removeChild(userElement);
+		
+			saveXml();
+		}
+		
+	}
+	
+	public void updateDepartment(ArrayList<String> departmentElement)
+	{
+		parseXml();
+		
+		if (departmentElement.size() != 0){
+		
+		Element oldDepartmentElement = getDepartmentElementByName(departmentElement.get(0));
+		Element newDepartmentElement = getDepartmentElement(departmentElement);
+		xmlFile.getDocumentElement().replaceChild(newDepartmentElement, oldDepartmentElement);
+		
+		saveXml();
+		}
 	}
 	
 	private synchronized void parseXml() {
@@ -135,5 +169,61 @@ public class XMLDepartmentPersistance
 		
 		return employeeList;
 	}
+
+	private Element getDepartmentElement(ArrayList<String> department) {
+		Element userElement = xmlFile.createElement("department");
+		
+		Element name = xmlFile.createElement("name");
+		name.setTextContent(department.get(0));
+		userElement.appendChild(name);
+		
+		Element companyEmail = xmlFile.createElement("companyEmail");
+		companyEmail.setTextContent(department.get(1));
+		userElement.appendChild(companyEmail);
+			
+		int i=3;
+		if (department.get(2)== "listEmployee" && department.get(i)!= "listManager") {
+			Element employees = xmlFile.createElement("employees");
+			do{
+					Element employee = xmlFile.createElement("employee");
+					employee.setTextContent(department.get(i));
+					employees.appendChild(employee);
+					i++;
+			}while(department.get(i)!= "listManager");
+			userElement.appendChild(employees);
+		}
+		
+		if (department.get(i)== "listManager") {
+			Element managers = xmlFile.createElement("managers");
+			do{
+					Element manager = xmlFile.createElement("manager");
+					manager.setTextContent(department.get(i));
+					managers.appendChild(manager);
+					i++;
+			}while(department.get(i)!= "fin");
+			userElement.appendChild(managers);
+		}
+		
+		return userElement;
+	}
+	
+	private Element getDepartmentElementByName(String departmentName) {
+		Element docElement = xmlFile.getDocumentElement();
+		NodeList nodeList = docElement.getElementsByTagName("department");
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element userElement = (Element) nodeList.item(i);
+				Element emailElement = (Element) userElement.getElementsByTagName("name").item(0);
+				String emailString = emailElement.getFirstChild().getNodeValue();
+				if (emailString.equals(departmentName))
+					return userElement;
+			}
+		}
+		
+		return null;
+	}
+
+	
 
 }
