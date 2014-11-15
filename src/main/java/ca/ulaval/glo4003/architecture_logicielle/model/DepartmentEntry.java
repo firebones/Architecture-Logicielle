@@ -7,7 +7,8 @@ public class DepartmentEntry {
 	private String departmentName;
 	private List<EmployeeEntry> employees;
 	private List<EmployeeEntry> deptManagers;
-	
+	private List<WeekEntry> weekEntries;
+
 	public DepartmentEntry() {
 		employees = new LinkedList<EmployeeEntry>();
 		deptManagers = new LinkedList<EmployeeEntry>();
@@ -36,7 +37,7 @@ public class DepartmentEntry {
 	}
 
 	public void addEmployee(EmployeeEntry employee) {
-		employee.setDepartment(this);
+		employee.setDepartment(departmentName);
 		employees.add(employee);
 	}
 
@@ -57,7 +58,7 @@ public class DepartmentEntry {
 	public void setDepartmentName(String name) {
 		departmentName = name;
 	}
-	
+
 	public List<EmployeeEntry> getEmployees() {
 		return employees;
 	}
@@ -65,12 +66,52 @@ public class DepartmentEntry {
 	public void setEmployees(List<EmployeeEntry> employees) {
 		this.employees = employees;
 	}
-	
-	public List<EmployeeEntry> getdeptManagers() {
+
+	public List<EmployeeEntry> getDeptManagers() {
 		return deptManagers;
 	}
 
-	public void setdeptManagers(List<EmployeeEntry> deptManagers) {
-		this.deptManagers = deptManagers;
+	public void setDeptManagers(List<EmployeeEntry> managers) {
+		this.deptManagers = managers;
+	}
+
+	public List<WeekEntry> getSubmittedWeekEntries() {
+		List<WeekEntry> submitted = new LinkedList<>();
+		for (WeekEntry entry : weekEntries) {
+			if (entry.getState() == StateWeekEntry.SUBMITTED) {
+				submitted.add(entry);
+			}
+		}
+		return submitted;
+	}
+
+	public List<WeekEntry> getApprovedWeekEntries() {
+		List<WeekEntry> approved = new LinkedList<>();
+		for (WeekEntry entry : weekEntries) {
+			if (entry.getState() == StateWeekEntry.APPROVED) {
+				approved.add(entry);
+			}
+		}
+		return approved;
+	}
+
+	public List<WeekEntry> getRefusedWeekEntries() {
+		List<WeekEntry> refused = new LinkedList<>();
+		for (WeekEntry entry : weekEntries) {
+			if (entry.getState() == StateWeekEntry.REFUSED) {
+				refused.add(entry);
+			}
+		}
+		return refused;
+	}
+
+	public List<WeekEntry> getInProgressWeekEntries() {
+		List<WeekEntry> inProgress = new LinkedList<>();
+		for (WeekEntry entry : weekEntries) {
+			if (entry.getState() == StateWeekEntry.INPROGRESS) {
+				inProgress.add(entry);
+			}
+		}
+		return inProgress;
 	}
 }

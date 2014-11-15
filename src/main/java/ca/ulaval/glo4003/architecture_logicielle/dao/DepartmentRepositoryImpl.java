@@ -143,12 +143,12 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 		}
 		
 		departmentElement.add(j, "listManager");
-		listManager = department.getdeptManagers();
+		listManager = department.getDeptManagers();
 		
 		if ( listManager.size() > 0) {
 			int i=0;
 			do{
-				String email = department.getdeptManagers().get(i).getEmail();
+				String email = department.getDeptManagers().get(i).getEmail();
 				departmentElement.add(j, email);
 				j++;
 				i++;

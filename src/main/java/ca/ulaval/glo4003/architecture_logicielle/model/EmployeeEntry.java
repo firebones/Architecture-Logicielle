@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
-	private DepartmentEntry department;
+	private String departmentName;
 
 	public EmployeeEntry() {
 		this.role = RoleUser.EMPLOYEE;
@@ -45,12 +45,12 @@ public class EmployeeEntry extends UserEntry {
 		return tasksString;
 	}
 
-	public DepartmentEntry getDepartment() {
-		return department;
+	public String getDepartment() {
+		return departmentName;
 	}
 
-	public void setDepartment(DepartmentEntry department) {
-		this.department = department;
+	public void setDepartment(String departmentName) {
+		this.departmentName = departmentName;
 	}
 
 	public void becomeManager() {
