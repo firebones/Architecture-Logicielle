@@ -2,10 +2,10 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 
 public enum StateWeekEntry
 {
-	APPROVED("APPROVED"),
-	SUBMITTED("SUBMITTED"), 
-	INPROGRESS("INPROGRESS"), 
-	REFUSED("REFUSED");
+	APPROVED("Approved"),
+	SUBMITTED("Submitted"), 
+	INPROGRESS("InProgress"), 
+	REFUSED("Refused");
 
 	private final String stateString;
 
