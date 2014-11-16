@@ -12,16 +12,19 @@ public class DepartmentEntry {
 	public DepartmentEntry() {
 		employees = new LinkedList<EmployeeEntry>();
 		deptManagers = new LinkedList<EmployeeEntry>();
+		weekEntries = new LinkedList<WeekEntry>();
 	}
 
 	public DepartmentEntry(String name) {
 		departmentName = name;
 		employees = new LinkedList<EmployeeEntry>();
 		deptManagers = new LinkedList<EmployeeEntry>();
+		weekEntries = new LinkedList<WeekEntry>();
 	}
 
 	public void addDepartmentManager(EmployeeEntry manager) {
-		if (!deptManagers.contains(manager) && manager.getRole() == RoleUser.MANAGER) {
+		if (!deptManagers.contains(manager)
+				&& manager.getRole() == RoleUser.MANAGER) {
 			deptManagers.add(manager);
 		}
 	}

@@ -7,6 +7,7 @@
 			<sec:authorize access="hasRole('MANAGER')">
 				<li><a href="/employeeList">Liste des employés</a></li>
 				<li><a href="/projectList">Liste des projets</a></li>
+				<li><a href="/submittedEntryList">Saisies soumises</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('EMPLOYEE, MANAGER')">
 				<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
