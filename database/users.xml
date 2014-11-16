@@ -5,6 +5,8 @@
 		<email>joe@gmail.com</email>
 		<role>EMPLOYEE</role>
 		<hashedPassword>1234</hashedPassword>
+		<company>Company1</company>
+		<department>Department1</department>
 		<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
@@ -15,6 +17,8 @@
 		<email>jane@gmail.com</email>
 		<role>MANAGER</role>
 		<hashedPassword>1234</hashedPassword>
+		<company>Company1</company>
+		<department>Department1</department>
 		<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
@@ -25,6 +29,8 @@
         <email>hamid@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>default</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
 	<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
@@ -35,30 +41,40 @@
         <email>jb@ulaval.ca</email>
         <role>EMPLOYEE</role>
         <hashedPassword>default</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
     </user>
 <user>
         <name>employee1</name>
         <email>employee1@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>1234</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
     </user>
 <user>
         <name>employee2</name>
         <email>employee2@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>1234</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
     </user>
 <user>
         <name>manager1</name>
         <email>manager1@gmail.com</email>
         <role>MANAGER</role>
         <hashedPassword>1234</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
     </user>
 <user>
         <name>manager2</name>
         <email>manager2@gmail.com</email>
         <role>MANAGER</role>
         <hashedPassword>1234</hashedPassword>
+        <company>Company1</company>
+		<department>Department1</department>
     </user>
 
 </users>

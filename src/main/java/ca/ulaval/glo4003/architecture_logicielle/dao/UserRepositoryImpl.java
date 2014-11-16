@@ -42,9 +42,10 @@ public class UserRepositoryImpl implements UserRepository
 			user.setEmail(tabuser.get(1));
 			user.setHashedPassword(tabuser.get(3));
 			
-			if(tabuser.size() > 4){
-				
-				int j=4;
+			if(tabuser.size() > 6 && user.getRole() == RoleUser.EMPLOYEE){
+				((EmployeeEntry)user).setCompany(tabuser.get(4));
+				((EmployeeEntry)user).setDepartment(tabuser.get(5));
+				int j=6;
 				do{
 					ProjectRepository projects = new ProjectRepositoryImpl();
 					TaskEntry task = projects.getTaskById(Integer.parseInt(tabuser.get(j)));
@@ -75,9 +76,13 @@ public class UserRepositoryImpl implements UserRepository
 			user.setHashedPassword(tabuser.get(3));
 
 			if(user.getRole() == RoleUser.EMPLOYEE){
-				if(tabuser.size() > 4){
+				
+				((EmployeeEntry)user).setCompany(tabuser.get(4));
+				((EmployeeEntry)user).setDepartment(tabuser.get(5));
+				
+				if(tabuser.size() > 6){
 					
-					int j=4;
+					int j=6;
 					
 					do{
 						
@@ -201,10 +206,16 @@ public class UserRepositoryImpl implements UserRepository
 		userElement.add(0, user.getName());
 		userElement.add(1, user.getEmail());
 		userElement.add(2, user.getRole().toString());
-		userElement.add(3, user.getHashedPassword());		
+		userElement.add(3, user.getHashedPassword());
+		
+		
 		
 		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
-			for (int i = 4; i < ((EmployeeEntry) user).getTasks().size(); i++) {
+			
+			userElement.add(4, ((EmployeeEntry)user).getCompany());
+			userElement.add(5, ((EmployeeEntry)user).getDepartment());
+			
+			for (int i = 6; i < ((EmployeeEntry) user).getTasks().size(); i++) {
 				TaskEntry task = ((EmployeeEntry) user).getTasks().get(i);
 				userElement.add(i, task.getId().toString());
 			}
