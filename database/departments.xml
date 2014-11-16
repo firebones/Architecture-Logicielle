@@ -2,26 +2,28 @@
 <departments>
 	<department>
 		<name>Departement 1</name>
-		<companyEmail>company@gmail.com</companyEmail>
 		<employees>
-			<employee>emp1@gmail.com</employee>
-			<employee>emp2@gmail.com</employee>
+			<employee>employee1@gmail.com</employee>
+			<employee>employee2@gmail.com</employee>
 		</employees>
 		<managers>
-			<manager>man1@gmail.com</manager>
-			<manager>man2@gmail.com</manager>
+			<manager>manager1@gmail.com</manager>
+			<manager>manager2@gmail.com</manager>
 		</managers>
 	</department>
 	<department>
 		<name>Departement 2</name>
-		<companyEmail>company2@gmail.com</companyEmail>
 		<employees>
-			<employee>emp3@gmail.com</employee>
-			<employee>emp4@gmail.com</employee>
+			<employee>employee1@gmail.com</employee>
 		</employees>
 		<managers>
-			<manager>man3@gmail.com</manager>
-			<manager>man4@gmail.com</manager>
+			<manager>manager1@gmail.com</manager>
 		</managers>
 	</department>
+<department>
+        <name>Department test</name>
+        <employees>
+            <employee>employee1@gmail.com</employee>
+        </employees>
+    </department>
 </departments>

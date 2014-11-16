@@ -3,9 +3,6 @@
 	<project>
 		<id>1</id>
 		<name>Projet123</name>
-		<email>joe@gmail.com</email>
-		<role>employee</role>
-		<hashedPassword>1234</hashedPassword>
 		<tasks>
 			<task>
                 <id>3</id>
@@ -17,9 +14,6 @@
 	<project>
 		<id>2</id>
 		<name>Projet2</name>
-		<email>jane@gmail.com</email>
-		<role>manager</role>
-		<hashedPassword>1234</hashedPassword>
 		<tasks>
 			<task>
 				<id>4</id>

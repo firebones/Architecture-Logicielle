@@ -5,46 +5,59 @@
 		<email>joe@gmail.com</email>
 		<role>EMPLOYEE</role>
 		<hashedPassword>1234</hashedPassword>
-		
-	
-    <tasks>
+		<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
         </tasks>
-    </user>
+	</user>
 	<user>
 		<name>Jane</name>
 		<email>jane@gmail.com</email>
 		<role>MANAGER</role>
 		<hashedPassword>1234</hashedPassword>
-		
+		<tasks>
+            <taskId>4</taskId>
+            <taskId>5</taskId>
+        </tasks>
+	</user>
+	<user>
+        <name>hamid</name>
+        <email>hamid@gmail.com</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
 	<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
         </tasks>
     </user>
-
-
-
-
-
-<user>
-        <name>hamid</name>
-        <email>hamid@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-    <tasks>
-            <taskId>4</taskId>
-            <taskId>5</taskId>
-        </tasks>
-    </user>
-<user>
+	<user>
         <name>juan</name>
         <email>jb@ulaval.ca</email>
         <role>EMPLOYEE</role>
         <hashedPassword>default</hashedPassword>
     </user>
-
-
-
+<user>
+        <name>employee1</name>
+        <email>employee1@gmail.com</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>1234</hashedPassword>
+    </user>
+<user>
+        <name>employee2</name>
+        <email>employee2@gmail.com</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>1234</hashedPassword>
+    </user>
+<user>
+        <name>manager1</name>
+        <email>manager1@gmail.com</email>
+        <role>MANAGER</role>
+        <hashedPassword>1234</hashedPassword>
+    </user>
+<user>
+        <name>manager2</name>
+        <email>manager2@gmail.com</email>
+        <role>MANAGER</role>
+        <hashedPassword>1234</hashedPassword>
+    </user>
 </users>
