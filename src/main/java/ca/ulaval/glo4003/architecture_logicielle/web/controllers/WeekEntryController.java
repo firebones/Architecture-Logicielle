@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.WeekEntryConverter;
@@ -257,7 +259,7 @@ public class WeekEntryController {
 				.getDepartment();
 
 		List<String> daysOfWeek = getDaysOfWeek();
-		List<WeekEntry> weekEntries = configuration.getAllWeekEntries();
+		List<WeekEntry> weekEntries = new LinkedList<WeekEntry>();
 
 		WeekEntry w = new WeekEntry();
 		w.setEmail("aaa@ddd.com");
@@ -265,17 +267,43 @@ public class WeekEntryController {
 		w.setYearNumber(2014);
 		w.setState(StateWeekEntry.SUBMITTED);
 		w = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", 41, 2014);
-		// weekEntries = new LinkedList<>();
 		weekEntries.add(w);
 		weekEntries.add(w);
+
+		for (WeekEntry w1 : configuration.getAllWeekEntries()) {
+			if (w1.getState() != StateWeekEntry.SUBMITTED) {
+				weekEntries.add(w1);
+			}
+		}
 
 		model.addAttribute("daysNameOfWeek", daysOfWeek);
 		model.addAttribute("weekEntries", weekEntries);
 		model.addAttribute("hours", w.getHoursEntries());
-		model.addAttribute("kilometers", w.getKilometersEntries());
-		model.addAttribute("expenses", w.getExpensesEntries());
-		model.addAttribute("week", w);
 		return "submittedEntries";
+	}
+
+	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "approve" })
+	public String approve(@ModelAttribute("entry.email") String email,
+			@ModelAttribute("entry") WeekEntry entry,
+			@ModelAttribute("entry.weekNumber") String weekNumber,
+			@ModelAttribute("entry.yearNumber") String yearNumber,
+			@RequestParam String approve, Model model) {
+		entry.setState(StateWeekEntry.APPROVED);
+		entry.setEmail(email);
+		entry.setWeekNumber(Integer.parseInt(weekNumber));
+		entry.setYearNumber(Integer.parseInt(yearNumber));
+		if (entry == null) {
+			return "redirect:/";
+		}
+		if (entry.getEmail() == null || entry.getWeekNumber() == null
+				|| entry.getYearNumber() == null) {
+
+			System.out.println("Email : " + entry.getEmail());
+			System.out.println("YearNb : " + entry.getYearNumber());
+			System.out.println("WeekNb : " + entry.getWeekNumber());
+		}
+		configuration.updateWeekEntry(entry);
+		return "redirect:/submittedEntryList";
 	}
 
 	private List<String> getDatesOfWeek(Date refDate) {

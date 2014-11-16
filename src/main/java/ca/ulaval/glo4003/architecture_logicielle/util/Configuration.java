@@ -32,6 +32,7 @@ public class Configuration {
 				parseToMap(line);
 				line = reader.readLine();
 			}
+			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
