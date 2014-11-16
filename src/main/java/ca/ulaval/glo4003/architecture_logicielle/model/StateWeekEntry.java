@@ -4,7 +4,7 @@ public enum StateWeekEntry
 {
 	APPROVED("Approved"),
 	SUBMITTED("Submitted"), 
-	INPROGRESS("InProgress"), 
+	INPROGRESS("inProgress"), 
 	REFUSED("Refused");
 
 	private final String stateString;

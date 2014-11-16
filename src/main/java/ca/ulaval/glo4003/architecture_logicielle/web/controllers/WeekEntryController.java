@@ -126,8 +126,8 @@ public class WeekEntryController {
 		if (expenses.getExpenses() != null)
 			expensesOfWeek = expenses.getExpenses();
 		else
-			expensesOfWeek = converter.convertIntegerToStringList(weekEntry
-					.getKilometersEntries());
+			expensesOfWeek = converter.convertDoublesToStringList(weekEntry
+					.getEmployeeExpensesEntries());
 
 		if (errorBlock == null)
 			errorBlock = "";
