@@ -212,6 +212,7 @@ public class XMLWeekPersistance
 		
 		int i=4;
 		
+		
 		if (weekEntryElement.get(i) == "listKilometer") {
 			Element kilometers = xmlFile.createElement("kilometers");
 			i++;	
@@ -219,7 +220,7 @@ public class XMLWeekPersistance
 				
 				Element kilometer = xmlFile.createElement("kilometer");
 				kilometer.setTextContent(weekEntryElement.get(i));
-				userElement.appendChild(kilometer);
+				kilometers.appendChild(kilometer);
 				i++;
 			}while(weekEntryElement.get(i) != "listExpenses");
 			
@@ -233,7 +234,7 @@ public class XMLWeekPersistance
 				
 				Element employeeExpense = xmlFile.createElement("employeeExpense");
 				employeeExpense.setTextContent(weekEntryElement.get(i));
-				userElement.appendChild(employeeExpense);
+				employeeExpenses.appendChild(employeeExpense);
 				i++;
 			}while(weekEntryElement.get(i) != "listHours");
 			
@@ -247,7 +248,7 @@ public class XMLWeekPersistance
 				
 				Element hour = xmlFile.createElement("hour");
 				hour.setTextContent(weekEntryElement.get(i));
-				userElement.appendChild(hour);
+				hours.appendChild(hour);
 				i++;
 			}while(weekEntryElement.get(i) != "fin");
 			
