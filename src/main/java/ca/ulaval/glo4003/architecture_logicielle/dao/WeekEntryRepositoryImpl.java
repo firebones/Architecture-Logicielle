@@ -36,7 +36,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 	}
 	
 	@Override
-	public WeekEntry getWeekEntryByEmailAndWeek(String email, Integer weekNumber, Integer yearNumber) {
+	public WeekEntry getWeekEntryByEmailAndWeekAndYear(String email, Integer weekNumber, Integer yearNumber) {
 		
 		ArrayList<String> listElement = new ArrayList<String>();
 		
@@ -80,6 +80,17 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		
 	}
 
+	@Override
+	public void updateWeekEntry(WeekEntry weekEntry)
+	{
+		if (getWeekEntryByEmailAndWeekAndYear(weekEntry.getEmail(), weekEntry.getWeekNumber(), weekEntry.getYearNumber()) != null){
+			
+			ArrayList<String> userelement = getweekEntryString(weekEntry);
+			xmlWeekPersistance.updateWeekEntry(userelement);
+		}
+		
+	}
+	
 	private WeekEntry createWeekEntry(ArrayList<String> tabweek){
 	
 		PeriodPayBuilder periodPay = new PeriodPayBuilderImpl();
@@ -139,21 +150,6 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository
 		weekEntryElement.add(1, periodPay.getWeekNumber().toString());
 		weekEntryElement.add(2, periodPay.getYearNumber().toString());
 		weekEntryElement.add(3, periodPay.getState().getStateWeekEntry());
-/*		String isApproved = "false";
-		if(periodPay.isApproved() == true)
-			isApproved = "true";
-		
-		weekEntryElement.add(2, isApproved);
-		
-		String isSubmitted = "false";
-		if(periodPay.isSubmitted() == true)
-			isSubmitted = "true";
-		weekEntryElement.add(3, isSubmitted);
-		
-		String inProgess = "true";
-		if(periodPay.inProgess() == false)
-			inProgess = "false";
-		weekEntryElement.add(4, inProgess);*/
 		
 		weekEntryElement.add(4, "listKilometer");
 		

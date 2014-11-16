@@ -136,6 +136,19 @@ public class XMLWeekPersistance
 	}
 	
 	
+	public void updateWeekEntry(ArrayList<String> week)
+	{
+		parseXml();
+		
+		if (week.size() != 0){
+		
+		Element oldWeekEntryElement = getWeekEntryElementByEmailAndNumberWeekAndNumberYear(week.get(0), week.get(1), week.get(2));
+		Element newWeekEntryElement = getweekEntryElement(week);
+		xmlFile.getDocumentElement().replaceChild(newWeekEntryElement, oldWeekEntryElement);
+		
+		saveXml();
+		}
+	}
 
 	
 
@@ -242,6 +255,31 @@ public class XMLWeekPersistance
 		}
 		
 		return userElement;
+	}
+	
+	private Element getWeekEntryElementByEmailAndNumberWeekAndNumberYear(String email, String weekNumber, String yearNumber) {
+		Element docElement = xmlFile.getDocumentElement();
+		NodeList nodeList = docElement.getElementsByTagName("weekEntry");
+		
+		if (nodeList != null && nodeList.getLength() > 0) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element weekEntryElement = (Element) nodeList.item(i);
+				
+				Element emailElement = (Element) weekEntryElement.getElementsByTagName("email").item(0);
+				String emailString = emailElement.getFirstChild().getNodeValue();
+				
+				Element weekNumberElement = (Element) weekEntryElement.getElementsByTagName("weekNumber").item(1);
+				String weekNumberString = weekNumberElement.getFirstChild().getNodeValue();
+				
+				Element yearNumberElement = (Element) weekEntryElement.getElementsByTagName("yearNumber").item(2);
+				String yearNumberString = yearNumberElement.getFirstChild().getNodeValue();
+				
+				if (emailString.equals(email) && weekNumberString.equals(weekNumber) && yearNumberString.equals(yearNumber))
+					return weekEntryElement;
+			}
+		}
+		
+		return null;
 	}
 	
 	private String getStringValue(Element element, String tag) {

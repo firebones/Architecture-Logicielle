@@ -60,4 +60,5 @@
         <role>MANAGER</role>
         <hashedPassword>1234</hashedPassword>
     </user>
+
 </users>

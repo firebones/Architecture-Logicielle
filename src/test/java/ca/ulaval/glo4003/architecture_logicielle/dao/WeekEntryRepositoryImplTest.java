@@ -31,7 +31,7 @@ public class WeekEntryRepositoryImplTest
 	@Test
 	public void testGetWeekEntryByEmailAndWeek()
 	{
-		WeekEntry week = repository.getWeekEntryByEmailAndWeek("joe@gmail.com", 41, 2014);
+		WeekEntry week = repository.getWeekEntryByEmailAndWeekAndYear("joe@gmail.com", 41, 2014);
 		
 //		assertEquals(week.getStartDate(), "2014-10-05");
 //		assertEquals(week.getEndDate(), "2014-10-11");
@@ -42,7 +42,7 @@ public class WeekEntryRepositoryImplTest
 	@Test
 	public void testGetWeekEntryByNotExistingEmailAndWeek()
 	{
-		WeekEntry week = repository.getWeekEntryByEmailAndWeek("pape@gmail.com", 999, 2014);
+		WeekEntry week = repository.getWeekEntryByEmailAndWeekAndYear("pape@gmail.com", 999, 2014);
 		
 		assertEquals(week, null);
 	}
