@@ -292,16 +292,20 @@ public class WeekEntryController {
 		entry.setEmail(email);
 		entry.setWeekNumber(Integer.parseInt(weekNumber));
 		entry.setYearNumber(Integer.parseInt(yearNumber));
-		if (entry == null) {
-			return "redirect:/";
-		}
-		if (entry.getEmail() == null || entry.getWeekNumber() == null
-				|| entry.getYearNumber() == null) {
-
-			System.out.println("Email : " + entry.getEmail());
-			System.out.println("YearNb : " + entry.getYearNumber());
-			System.out.println("WeekNb : " + entry.getWeekNumber());
-		}
+		configuration.updateWeekEntry(entry);
+		return "redirect:/submittedEntryList";
+	}
+	
+	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "deny" })
+	public String deny(@ModelAttribute("entry.email") String email,
+			@ModelAttribute("entry") WeekEntry entry,
+			@ModelAttribute("entry.weekNumber") String weekNumber,
+			@ModelAttribute("entry.yearNumber") String yearNumber,
+			@RequestParam String deny, Model model) {
+		entry.setState(StateWeekEntry.REFUSED);
+		entry.setEmail(email);
+		entry.setWeekNumber(Integer.parseInt(weekNumber));
+		entry.setYearNumber(Integer.parseInt(yearNumber));
 		configuration.updateWeekEntry(entry);
 		return "redirect:/submittedEntryList";
 	}
