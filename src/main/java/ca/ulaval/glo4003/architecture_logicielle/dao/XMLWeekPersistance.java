@@ -197,7 +197,7 @@ public class XMLWeekPersistance
 		userElement.appendChild(inProgess);
 */		
 		
-		int i=3;
+		int i=4;
 		
 		if (weekEntryElement.get(i) == "listKilometer") {
 			Element kilometers = xmlFile.createElement("kilometers");
