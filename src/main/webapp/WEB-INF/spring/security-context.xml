@@ -13,6 +13,7 @@
 
     <http use-expressions="true">
         <!-- Be careful, the order matters -->
+        <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/denied" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
