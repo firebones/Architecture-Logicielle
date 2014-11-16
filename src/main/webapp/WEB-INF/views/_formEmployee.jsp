@@ -14,7 +14,7 @@
        <div class="form-group">
          <label for="email" class="control-label col-lg-2">Email</label>
          <div class="col-lg-10">
-           <form:input class="form-control" path="email" disabled="${fn:length(newEmployee.email) > 0}" />
+           <form:input class="form-control" path="email"/>
            <form:errors path="email" cssClass="errorField"/>
          </div>
        </div>

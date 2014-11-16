@@ -26,15 +26,14 @@ public class ValidatorEmployee implements Validator{
 		
 		EmployeeEntry employee = (EmployeeEntry) target;
 		
-		ValidationUtils.rejectIfEmpty(errors, "name", "Ce champ est requis");
-		ValidationUtils.rejectIfEmpty(errors, "email", "Ce champ est requis");
+		ValidationUtils.rejectIfEmpty(errors, "name", "field.name.required","Ce champ est obligatoire");
+		ValidationUtils.rejectIfEmpty(errors, "email", "field.email.required","Ce champ est obligatoire");
 		
 		if (employee.getName().length() > 0 && VerifyStringContainsNumbers(employee.getName()))
-			errors.rejectValue("name", "Le nom ne peut contenir de nombres.");
+			errors.rejectValue("name", "field.name.required", "Le nom ne peut contenir de nombres.");
 		
 		if (employee.getEmail().length() > 0 && !VerifyEmailIsValid(employee.getEmail()))
-			errors.rejectValue("email", "L'adresse courriel n'est pas valide.");
-		
+			errors.rejectValue("email", "field.email.required", "L'adresse courriel n'est pas valide.");	
 	}
 	
 	private Boolean VerifyStringContainsNumbers(String string)
