@@ -39,8 +39,7 @@ public class XMLDepartmentPersistance
 	
 	public ArrayList<ArrayList<String>> getAllDepartement()
 	{
-		ArrayList<ArrayList<String>> departementList = new ArrayList<ArrayList<String>>();
-		List<String> employeeList = new ArrayList<String>();
+		ArrayList<ArrayList<String>> departmentList = new ArrayList<ArrayList<String>>();
 		
 		parseXml();
 		
@@ -49,26 +48,42 @@ public class XMLDepartmentPersistance
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
-				Element element = (Element) nodeList.item(i);
-				String elementName = getStringValue(element, "name");
-				String elementEmail = getStringValue(element, "companyEmail");
-				ArrayList<String> listElement = new ArrayList<String>(); 
-				listElement.add(0, elementName);
-				listElement.add(1, elementEmail);
-
+				ArrayList<String> departmentStrings = new ArrayList<String>();
 				
-				employeeList = getEmployeeListValue(element, "employees");
-				if(employeeList.size() > 0){
-					for(int j=0; j<employeeList.size(); j++){
-						listElement.add(j+2, employeeList.get(j));
+				Element departmentElement = (Element) nodeList.item(i);
+				String elementName = getStringValue(departmentElement, "name");
+				departmentStrings.add(0, elementName);
+				departmentStrings.add(1, "");
+
+				NodeList nodeListEmployees = departmentElement.getElementsByTagName("employees");
+				departmentStrings.add("listEmployee");
+				if (nodeListEmployees != null && nodeListEmployees.getLength() > 0) {
+					List<String> employeeList = getEmployeeListValue((Element) nodeListEmployees.item(0), "employee");
+					if(employeeList.size() > 0){
+						for(int j=0; j<employeeList.size(); j++){
+							departmentStrings.add(employeeList.get(j));
+						}
 					}
 				}
+				
+				NodeList nodeListManagers = departmentElement.getElementsByTagName("managers");
+				departmentStrings.add("listManager");
+				if (nodeListManagers != null && nodeListManagers.getLength() > 0) {
+					List<String> managerList = getEmployeeListValue((Element) nodeListManagers.item(0), "manager");
+					if(managerList.size() > 0){
+						for(int j=0; j<managerList.size(); j++){
+							departmentStrings.add(managerList.get(j));
+						}
+					}
+				}
+				
+				departmentStrings.add("fin");
 
-				departementList.add(listElement);
+				departmentList.add(departmentStrings);
 			}
 		}
 		
-		return departementList;
+		return departmentList;
 	}
 
 	public void addDepartment(ArrayList<String> departmentelement)
@@ -76,21 +91,21 @@ public class XMLDepartmentPersistance
 		parseXml();
 		
 		Element rootElement = xmlFile.getDocumentElement();
-		Element newDepartement = getDepartmentElement(departmentelement);
-		rootElement.appendChild(newDepartement);
+		Element newDepartment = getDepartmentElement(departmentelement);
+		rootElement.appendChild(newDepartment);
 		
 		saveXml();
 		
 	}
 	
-	public void deleteDepartement(String departmentName)
+	public void deleteDepartment(String departmentName)
 	{
 		parseXml();
 		
 		if (departmentName != null){
 		
-			Element userElement = getDepartmentElementByName(departmentName);
-			xmlFile.getDocumentElement().removeChild(userElement);
+			Element departmentElement = getDepartmentElementByName(departmentName);
+			xmlFile.getDocumentElement().removeChild(departmentElement);
 		
 			saveXml();
 		}
@@ -103,11 +118,11 @@ public class XMLDepartmentPersistance
 		
 		if (departmentElement.size() != 0){
 		
-		Element oldDepartmentElement = getDepartmentElementByName(departmentElement.get(0));
-		Element newDepartmentElement = getDepartmentElement(departmentElement);
-		xmlFile.getDocumentElement().replaceChild(newDepartmentElement, oldDepartmentElement);
+			Element oldDepartmentElement = getDepartmentElementByName(departmentElement.get(0));
+			Element newDepartmentElement = getDepartmentElement(departmentElement);
+			xmlFile.getDocumentElement().replaceChild(newDepartmentElement, oldDepartmentElement);
 		
-		saveXml();
+			saveXml();
 		}
 	}
 	
@@ -171,18 +186,14 @@ public class XMLDepartmentPersistance
 	}
 
 	private Element getDepartmentElement(ArrayList<String> department) {
-		Element userElement = xmlFile.createElement("department");
+		Element departmentElement = xmlFile.createElement("department");
 		
 		Element name = xmlFile.createElement("name");
 		name.setTextContent(department.get(0));
-		userElement.appendChild(name);
-		
-		Element companyEmail = xmlFile.createElement("companyEmail");
-		companyEmail.setTextContent(department.get(1));
-		userElement.appendChild(companyEmail);
+		departmentElement.appendChild(name);
 			
 		int i=3;
-		if (department.get(2)== "listEmployee" && department.get(i)!= "listManager") {
+		if (department.get(2) == "listEmployee" && department.get(i) != "listManager") {
 			Element employees = xmlFile.createElement("employees");
 			do{
 					Element employee = xmlFile.createElement("employee");
@@ -190,21 +201,22 @@ public class XMLDepartmentPersistance
 					employees.appendChild(employee);
 					i++;
 			}while(department.get(i)!= "listManager");
-			userElement.appendChild(employees);
+			departmentElement.appendChild(employees);
 		}
 		
-		if (department.get(i)== "listManager") {
+		if (department.get(i) == "listManager" && department.get(i+1) != "fin") {
 			Element managers = xmlFile.createElement("managers");
+			i++;
 			do{
 					Element manager = xmlFile.createElement("manager");
 					manager.setTextContent(department.get(i));
 					managers.appendChild(manager);
 					i++;
 			}while(department.get(i)!= "fin");
-			userElement.appendChild(managers);
+			departmentElement.appendChild(managers);
 		}
 		
-		return userElement;
+		return departmentElement;
 	}
 	
 	private Element getDepartmentElementByName(String departmentName) {
@@ -213,11 +225,11 @@ public class XMLDepartmentPersistance
 		
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
-				Element userElement = (Element) nodeList.item(i);
-				Element emailElement = (Element) userElement.getElementsByTagName("name").item(0);
+				Element departmentElement = (Element) nodeList.item(i);
+				Element emailElement = (Element) departmentElement.getElementsByTagName("name").item(0);
 				String emailString = emailElement.getFirstChild().getNodeValue();
 				if (emailString.equals(departmentName))
-					return userElement;
+					return departmentElement;
 			}
 		}
 		

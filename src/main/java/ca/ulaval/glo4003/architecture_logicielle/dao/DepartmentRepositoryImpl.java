@@ -1,13 +1,6 @@
 package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import java.util.ArrayList;
-
-
-
-
-
-
-
 import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentEntry;
@@ -29,24 +22,30 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 		
 		ArrayList<DepartmentEntry> departements = new ArrayList<DepartmentEntry>();
 		
-		ArrayList<ArrayList<String>> departmentlist = xmlDepartmentPersistance.getAllDepartement();
+		ArrayList<ArrayList<String>> departmentList = xmlDepartmentPersistance.getAllDepartement();
 		UserRepository userRepositoty = new UserRepositoryImpl();
 		
-		for(ArrayList<String> tabdepartment: departmentlist){
+		for(ArrayList<String> tabDepartment: departmentList){
 			
 			DepartmentEntry department = new DepartmentEntry();
-			department.setDepartmentName(tabdepartment.get(0));
+			department.setDepartmentName(tabDepartment.get(0));
 			
-			if(tabdepartment.size() > 2){
-				int j=2;
-				do{
-					UserEntry user =  userRepositoty.getUserByEmail(tabdepartment.get(j));
-					if(user.getRole().getRoleUserEntry() == "MANAGER")
-						department.addDepartmentManager((EmployeeEntry) user);
-					if(user.getRole().getRoleUserEntry() == "EMPLOYEE")
-						department.addEmployee((EmployeeEntry) user);
-					j++;
-				}while(j<tabdepartment.size());
+			int i = 2;
+			if(tabDepartment.get(i) == "listEmployee") {
+				i++;
+				while (tabDepartment.get(i) != "listManager" && tabDepartment.get(i) != "fin") {
+					UserEntry user =  userRepositoty.getUserByEmail(tabDepartment.get(i));
+					department.addEmployee((EmployeeEntry) user);
+					i++;
+				}
+			}
+			if(tabDepartment.get(i) == "listManager") {
+				i++;
+				while (tabDepartment.get(i) != "fin") {
+					UserEntry user =  userRepositoty.getUserByEmail(tabDepartment.get(i));
+					department.addDepartmentManager((EmployeeEntry) user);
+					i++;
+				}
 			}
 			
 			departements.add(department);
@@ -83,29 +82,57 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 		
 		if (getDepartmentByName(department.getDepartmentName()) != null){
 			
-			xmlDepartmentPersistance.deleteDepartement(department.getDepartmentName());	
+			xmlDepartmentPersistance.deleteDepartment(department.getDepartmentName());	
 		}
 	}
 	
-/*	@Override
-	public void addEmployeeToDepartment(String departmentName, String employeeName) {
+	@Override
+	public void addEmployeeToDepartment(String departmentName, String employeeEmail) {
+		DepartmentEntry department = getDepartmentByName(departmentName);
+		UserRepository userRepository = new UserRepositoryImpl();
+		EmployeeEntry user = (EmployeeEntry) userRepository.getUserByEmail(employeeEmail);
 		
+		if (department != null && user != null && !department.isEmployeeInDepartment(user)) {
+			department.addEmployee(user);
+			xmlDepartmentPersistance.updateDepartment(getDepartmentString(department));	
+		}
 	}
 	
 	@Override
-	public void removeEmployeeFromDepartment(String departmentName, String employeeName) {
+	public void removeEmployeeFromDepartment(String departmentName, String employeeEmail) {
+		DepartmentEntry department = getDepartmentByName(departmentName);
+		UserRepository userRepository = new UserRepositoryImpl();
+		EmployeeEntry user = (EmployeeEntry) userRepository.getUserByEmail(employeeEmail);
 		
+		if (department != null && user != null && department.isEmployeeInDepartment(user)) {
+			department.removeEmployee(user);
+			xmlDepartmentPersistance.updateDepartment(getDepartmentString(department));	
+		}
 	}
 	
 	@Override
-	public void addManagerToDepartment(String departmentName, String managerName) {
+	public void addManagerToDepartment(String departmentName, String managerEmail) {
+		DepartmentEntry department = getDepartmentByName(departmentName);
+		UserRepository userRepository = new UserRepositoryImpl();
+		EmployeeEntry user = (EmployeeEntry) userRepository.getUserByEmail(managerEmail);
 		
+		if (department != null && user != null && !department.isManagerInDepartment(user)) {
+			department.addDepartmentManager(user);
+			xmlDepartmentPersistance.updateDepartment(getDepartmentString(department));	
+		}
 	}
 	
 	@Override
-	public void removeManagerFromDepartment(String departmentName, String managerName) {
+	public void removeManagerFromDepartment(String departmentName, String managerEmail) {
+		DepartmentEntry department = getDepartmentByName(departmentName);
+		UserRepository userRepository = new UserRepositoryImpl();
+		EmployeeEntry user = (EmployeeEntry) userRepository.getUserByEmail(managerEmail);
 		
-	}*/
+		if (department != null && user != null && department.isManagerInDepartment(user)) {
+			department.removeDepartmentManager(user);
+			xmlDepartmentPersistance.updateDepartment(getDepartmentString(department));	
+		}
+	}
 	
 	@Override
 	public void updateDepartment(DepartmentEntry department){
@@ -124,35 +151,28 @@ public class DepartmentRepositoryImpl implements DepartmentRepository
 		
 		departmentElement.add(0, department.getDepartmentName());
 		departmentElement.add(1, "");
-	
-		
-		
 		departmentElement.add(2, "listEmployee");
 		listEmployee = department.getEmployees();
 		
 		int j=3;
-		if ( listEmployee.size() > 0) {
-			int i=0;
-			do{
+		if (listEmployee.size() > 0) {
+			for (int i = 0; i < listEmployee.size(); i++) {
 				String email = department.getEmployees().get(i).getEmail();
 				departmentElement.add(j, email);
 				j++;
-				i++;
-			}while(i<listEmployee.size());
-			
+			}
 		}
 		
 		departmentElement.add(j, "listManager");
 		listManager = department.getDeptManagers();
+		j++;
 		
-		if ( listManager.size() > 0) {
-			int i=0;
-			do{
+		if (listManager.size() > 0) {
+			for (int i = 0; i < listManager.size(); i++) {
 				String email = department.getDeptManagers().get(i).getEmail();
 				departmentElement.add(j, email);
 				j++;
-				i++;
-			}while(i<listEmployee.size());
+			}
 		}
 		departmentElement.add(j, "fin");
 		

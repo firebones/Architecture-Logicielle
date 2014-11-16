@@ -7,9 +7,9 @@ public interface DepartmentRepository {
 	public DepartmentEntry getDepartmentByName(String name);
 	public void addDepartment(DepartmentEntry department);
 	public void deleteDepartment(DepartmentEntry department);
-/*	public void addEmployeeToDepartment(String departmentName, String employeeName);
-	public void removeEmployeeFromDepartment(String departmentName, String employeeName);
-	public void addManagerToDepartment(String departmentName, String managerName);
-	public void removeManagerFromDepartment(String departmentName, String managerName);*/
+	public void addEmployeeToDepartment(String departmentName, String employeeEmail);
+	public void removeEmployeeFromDepartment(String departmentName, String employeeEmail);
+	public void addManagerToDepartment(String departmentName, String managerEmail);
+	public void removeManagerFromDepartment(String departmentName, String managerEmail);
 	public void updateDepartment(DepartmentEntry department);
 }
