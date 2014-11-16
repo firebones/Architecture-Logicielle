@@ -21,7 +21,7 @@ public class DepartmentEntry {
 	}
 
 	public void addDepartmentManager(EmployeeEntry manager) {
-		if (manager.getRole() == RoleUser.MANAGER) {
+		if (!deptManagers.contains(manager) && manager.getRole() == RoleUser.MANAGER) {
 			deptManagers.add(manager);
 		}
 	}
@@ -37,8 +37,10 @@ public class DepartmentEntry {
 	}
 
 	public void addEmployee(EmployeeEntry employee) {
-		employee.setDepartment(departmentName);
-		employees.add(employee);
+		if (!employees.contains(employee)) {
+			employee.setDepartment(departmentName);
+			employees.add(employee);
+		}
 	}
 
 	public void removeEmployee(EmployeeEntry employee) {

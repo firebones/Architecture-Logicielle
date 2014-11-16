@@ -40,6 +40,11 @@ public abstract class UserEntry implements Principal {
 		return (hashedPassword.equals(password));
 	}
 	
+	@Override
+	public boolean equals(Object object) {
+		return this.getEmail().equals( ((UserEntry) object).getEmail() );
+	}
+	
 /*	public enum Role {
 		EMPLOYEE, MANAGER, COMPANY, ADMIN;
 	}*/
