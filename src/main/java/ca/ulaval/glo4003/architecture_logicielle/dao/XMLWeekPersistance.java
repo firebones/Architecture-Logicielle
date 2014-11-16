@@ -268,10 +268,10 @@ public class XMLWeekPersistance
 				Element emailElement = (Element) weekEntryElement.getElementsByTagName("email").item(0);
 				String emailString = emailElement.getFirstChild().getNodeValue();
 				
-				Element weekNumberElement = (Element) weekEntryElement.getElementsByTagName("weekNumber").item(1);
+				Element weekNumberElement = (Element) weekEntryElement.getElementsByTagName("weekNumber").item(0);
 				String weekNumberString = weekNumberElement.getFirstChild().getNodeValue();
 				
-				Element yearNumberElement = (Element) weekEntryElement.getElementsByTagName("yearNumber").item(2);
+				Element yearNumberElement = (Element) weekEntryElement.getElementsByTagName("yearNumber").item(0);
 				String yearNumberString = yearNumberElement.getFirstChild().getNodeValue();
 				
 				if (emailString.equals(email) && weekNumberString.equals(weekNumber) && yearNumberString.equals(yearNumber))

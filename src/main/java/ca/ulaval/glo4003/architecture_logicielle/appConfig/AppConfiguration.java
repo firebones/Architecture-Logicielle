@@ -97,4 +97,8 @@ public class AppConfiguration {
 	public DepartmentEntry getDepartmentEntryByName(String name) {
 		return new DepartmentEntry(name);
 	}
+	
+	public void updateWeekEntry(WeekEntry weekEntry) {
+		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
+	}
 }

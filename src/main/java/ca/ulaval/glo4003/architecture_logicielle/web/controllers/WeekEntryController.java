@@ -94,14 +94,12 @@ public class WeekEntryController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-
-		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster
-		// les lignes suivantes.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
 				41, 2014);
 		List<String> kilometers = assignedKilometers.getKilometers();
 		weekEntry.setKilometersEntries(converter
 				.convertStringsToIntegers(kilometers));
+		configuration.updateWeekEntry(weekEntry);
 
 		return "redirect:/";
 	}
@@ -169,14 +167,12 @@ public class WeekEntryController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-
-		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster
-		// les lignes suivantes.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
 				41, 2014);
 		List<String> expenses = assignedExpenses.getExpenses();
 		weekEntry.setEmployeeExpensesEntries(converter
 				.convertToDoubleList(expenses));
+		configuration.updateWeekEntry(weekEntry);
 
 		return "redirect:/";
 	}
@@ -244,13 +240,11 @@ public class WeekEntryController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
-
-		// TODO : s'assurer que le repository enregistre les valeurs. Ajuster
-		// les lignes suivantes.
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
 				41, 2014);
 		List<String> hours = assignedHours.getHours();
 		weekEntry.setHoursEntries(converter.convertStringsToDoubles(hours));
+		configuration.updateWeekEntry(weekEntry);
 
 		return "redirect:/";
 	}
