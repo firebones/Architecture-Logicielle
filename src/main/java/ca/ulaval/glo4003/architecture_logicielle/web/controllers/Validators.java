@@ -52,6 +52,18 @@ public class Validators {
 		}
 		
 		return "";
+	}	
+	
+	public String ValidateTasksRate(List<String> rates){
+		for (String rate : rates)
+		{
+			if(!tryParseDouble(rate))
+			{
+				return "Les taux horaires doivent être des nombres";
+			}
+		}
+		
+		return "";
 	}
 	
 	boolean tryParseInt(String value)  

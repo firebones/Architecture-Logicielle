@@ -27,6 +27,8 @@ public class DeptManagerController {
 
 	private ProjectEntryConverter projectConverter = new ProjectEntryConverter();
 	private EmployeeEntryConverter employeeConverter = new EmployeeEntryConverter();
+	
+	private Validators validator = new Validators();
 
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
@@ -50,9 +52,10 @@ public class DeptManagerController {
 		EmployeeEntry employee = (EmployeeEntry) configuration
 				.getUserByEmail(email);
 		List<TaskEntry> tasksList = new ArrayList<TaskEntry>();
-		for (String taskId : assignTasks.getTasks()) {
-			tasksList.add(configuration.getTaskById(Integer.parseInt(taskId)));
-		}
+
+			for (String taskId : assignTasks.getTasks()) {
+				tasksList.add(configuration.getTaskById(Integer.parseInt(taskId)));
+			}
 		configuration.setTasksToUser(tasksList, employee);
 		return "redirect:/employeeList";
 	}

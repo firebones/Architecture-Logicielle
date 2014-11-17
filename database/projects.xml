@@ -9,7 +9,12 @@
                 <name>Heures regulieres</name>
                 <rate>1.0</rate>
             </task>
-		</tasks>
+		<task>
+                <id>6</id>
+                <name>Test</name>
+                <rate>1.0</rate>
+            </task>
+        </tasks>
 	</project>
 	<project>
 		<id>2</id>
