@@ -36,10 +36,10 @@
 				</tbody>
 			</table>
 			<form action="approve" method="POST" 
-			modelAttribute="weekEntries[stt.index]"
-			modelAttribute="weekEntries[stt.index].email"
-			modelAttribute="weekEntries[stt.index].weekNumber"
-			modelAttribute="weekEntries[stt.index].yearNumber">
+				modelAttribute="entry"
+				modelAttribute="entry.email"
+				modelAttribute="entry.weekNumber"
+				modelAttribute="entry.yearNumber">
 				<button type="submit" class="btn btn-primary" name="approve">Approuver</button>
 				<button type="submit" class="btn btn-danger" name="deny">Refuser</button>
 			</form>

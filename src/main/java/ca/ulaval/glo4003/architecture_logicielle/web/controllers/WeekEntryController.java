@@ -271,7 +271,7 @@ public class WeekEntryController {
 		weekEntries.add(w);
 
 		for (WeekEntry w1 : configuration.getAllWeekEntries()) {
-			if (w1.getState() != StateWeekEntry.SUBMITTED) {
+			if ((w1.getState() != StateWeekEntry.APPROVED) && (w1.getState() != StateWeekEntry.REFUSED)) {
 				weekEntries.add(w1);
 			}
 		}
