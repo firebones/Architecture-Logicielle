@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,16 +37,16 @@ public class WeekEntryController {
 
 	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
 	// de weekentries
-	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.GET)
-	public String getEnterTransportion(Model model,
+	@RequestMapping(value = "/{id}/vehicleExpenses", method = RequestMethod.GET)
+	public String getEnterTransportion(@PathVariable Integer id, Model model,
 			@ModelAttribute("errorBlock") String errorBlock,
 			@ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
-
+		
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
-				41, 2014);
+				id, 2014);
 
 		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(),
 				weekEntry.getYearNumber());
@@ -64,7 +66,7 @@ public class WeekEntryController {
 		Boolean isReadOnly = false;
 		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
 			isReadOnly = true;
-
+		
 		model.addAttribute("daysOfWeek", daysOfWeek);
 		model.addAttribute("daysNameOfWeek", datesOfWeek);
 		model.addAttribute("valuesOfWeek", kilometersOfWeek);
@@ -108,8 +110,8 @@ public class WeekEntryController {
 
 	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
 	// de weekentries
-	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
-	public String getEnterExpenses(Model model,
+	@RequestMapping(value = "/{id}/employeeExpenses", method = RequestMethod.GET)
+	public String getEnterExpenses(@PathVariable Integer id, Model model,
 			@ModelAttribute("errorBlock") String errorBlock,
 			@ModelAttribute("assignedExpenses") AssignedExpenses expenses) {
 
@@ -117,7 +119,7 @@ public class WeekEntryController {
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
-				41, 2014);
+				id, 2014);
 
 		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(),
 				weekEntry.getYearNumber());
@@ -181,8 +183,8 @@ public class WeekEntryController {
 
 	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
 	// de weekentries
-	@RequestMapping(value = "/workingHours", method = RequestMethod.GET)
-	public String getEnterHours(Model model,
+	@RequestMapping(value = "/{id}/workingHours", method = RequestMethod.GET)
+	public String getEnterHours(@PathVariable Integer id, Model model,
 			@ModelAttribute("errorBlock") String errorBlock,
 			@ModelAttribute("assignedHours") AssignedHours hours) {
 
@@ -190,7 +192,7 @@ public class WeekEntryController {
 				.getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
-				41, 2014);
+				id, 2014);
 
 		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(),
 				weekEntry.getYearNumber());
@@ -281,7 +283,45 @@ public class WeekEntryController {
 		model.addAttribute("hours", w.getHoursEntries());
 		return "submittedEntries";
 	}
-
+	
+	@RequestMapping(value = "/weekEntriesList", method = RequestMethod.GET)
+	public String weekEntries(Model model) {
+		List<WeekEntry> weekEntries = new LinkedList<WeekEntry>();
+		
+		WeekEntry w = new WeekEntry();
+		w.setEmail("joe@gmail.com");
+		w.setWeekNumber(41);
+		w.setYearNumber(2014);
+		w.setState(StateWeekEntry.INPROGRESS);
+		weekEntries.add(w);
+		
+		WeekEntry w2 = new WeekEntry();
+		w2.setEmail("joe@gmail.com");
+		w2.setWeekNumber(42);
+		w2.setYearNumber(2014);
+		w2.setState(StateWeekEntry.SUBMITTED);
+		weekEntries.add(w2);
+		
+		WeekEntry w3 = new WeekEntry();
+		w3.setEmail("joe@gmail.com");
+		w3.setWeekNumber(43);
+		w3.setYearNumber(2014);
+		w3.setState(StateWeekEntry.REFUSED);
+		weekEntries.add(w3);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMM yyyy");
+		Calendar calendar = new GregorianCalendar(); 
+		for (WeekEntry we : weekEntries) {
+			calendar.setWeekDate(we.getYearNumber(), we.getWeekNumber(), 1);
+			we.setStartDate(sdf.format(calendar.getTime()));
+			calendar.setWeekDate(we.getYearNumber(), we.getWeekNumber()+1, 7);
+			we.setEndDate(sdf.format(calendar.getTime()));	
+	    }
+		
+		model.addAttribute("weekEntries", weekEntries);
+		return "weekEntriesList";
+	}
+	
 	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "approve" })
 	public String approve(@ModelAttribute("entry.email") String email,
 			@ModelAttribute("entry") WeekEntry entry,

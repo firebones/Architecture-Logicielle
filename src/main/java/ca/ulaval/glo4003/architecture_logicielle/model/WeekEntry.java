@@ -9,6 +9,8 @@ public class WeekEntry {
 	private Integer yearNumber;
 	private String email;
 	private StateWeekEntry state;
+	private String startDate;
+	private String endDate;
 	private List<Integer> kilometersEntries = new ArrayList<Integer>();
 	private List<Double> employeeExpensesEntries = new ArrayList<Double>();
 	private List<String> expensesEntries = new ArrayList<String>();
@@ -38,7 +40,18 @@ public class WeekEntry {
 	public void setState(StateWeekEntry state) {
 		this.state = state;
 	}
-
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 	public List<Integer> getKilometersEntries() {
 		return kilometersEntries;
 	}
