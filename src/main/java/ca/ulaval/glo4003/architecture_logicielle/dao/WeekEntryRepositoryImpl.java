@@ -95,7 +95,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 
 		StateWeekEntry state = null;
 		if (tabweek == null) {
-			System.out.println("MERDE");
+			System.out.println("PAS COOL");
 		}
 		switch (tabweek.get(3)) {
 		case "Approved":
