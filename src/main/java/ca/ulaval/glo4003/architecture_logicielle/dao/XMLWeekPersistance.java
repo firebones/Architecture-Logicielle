@@ -279,12 +279,12 @@ public class XMLWeekPersistance {
 						.getNodeValue();
 
 				Element weekNumberElement = (Element) weekEntryElement
-						.getElementsByTagName("weekNumber").item(1);
+						.getElementsByTagName("weekNumber").item(0);
 				String weekNumberString = weekNumberElement.getFirstChild()
 						.getNodeValue();
 
 				Element yearNumberElement = (Element) weekEntryElement
-						.getElementsByTagName("yearNumber").item(2);
+						.getElementsByTagName("yearNumber").item(0);
 				String yearNumberString = yearNumberElement.getFirstChild()
 						.getNodeValue();
 
