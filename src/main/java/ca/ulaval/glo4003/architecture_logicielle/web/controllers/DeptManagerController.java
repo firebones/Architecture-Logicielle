@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.ModelFacade;
-
+import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.web.converters.ProjectEntryConverter;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedTasks;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.ProjectViewModel;
@@ -18,16 +17,16 @@ import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
 @Controller
 public class DeptManagerController {
 
-	private ModelFacade facade = new ModelFacade();
+	private AppConfiguration configuration = new AppConfiguration();
 
 	private ProjectEntryConverter projectConverter = new ProjectEntryConverter();
 
 
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
-		String employeeId = facade.getUser(email).getName() + " - " + facade.getUser(email).getEmail();
+		String employeeId = configuration.getUserByEmail(email).getName() + " - " + configuration.getUserByEmail(email).getEmail();
 		model.addAttribute("assignTasksView", projectConverter
-				.toProjectViewModels(facade.getAllProjects(), facade.getTaskEmployee(email), employeeId));
+				.toProjectViewModels(configuration.getAllProjects(), configuration.getTasksEmployee(email), employeeId));
 		return "assignTasks";
 	}
 
@@ -38,7 +37,7 @@ public class DeptManagerController {
 
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.POST)
 	public String getAssignedTasks(@PathVariable String email, @ModelAttribute("assignedTasks") AssignedTasks assignTasks) {
-		facade.assignedTaskToEmployee(email, assignTasks.getTasks());
+		configuration.assignedTaskToEmployee(email, assignTasks.getTasks());
 		return "redirect:/employeeList";
 	}
 
@@ -50,20 +49,20 @@ public class DeptManagerController {
 	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
 	public String list(Model model) {
 		
-		model.addAttribute("entries", facade.getAllEmployees());
+		model.addAttribute("entries", configuration.getAllEmployees());
 		return "employeeList";
 	}
 
 	@RequestMapping(value = "/{email}/delete", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable String email) {
 
-		facade.deleteUser(facade.getUser(email));
+		configuration.deleteUser(configuration.getUserByEmail(email));
 		return "redirect:/employeeList";
 	}
 
 	@RequestMapping(value = "/projectList", method = RequestMethod.GET)
 	public String projectlist(Model model) {
-		model.addAttribute("projects", facade.getAllProjects());
+		model.addAttribute("projects", configuration.getAllProjects());
 		return "projectList";
 	}
 
@@ -75,19 +74,19 @@ public class DeptManagerController {
 
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
 	public String addNewProject(ProjectViewModel newProjectViewModel) {
-		facade.addNewProject(projectConverter.toProjectEntry(newProjectViewModel));
+		configuration.addProject(projectConverter.toProjectEntry(newProjectViewModel));
 		return "redirect:/projectList";
 	}
 
 	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.GET)
 	public String editProject(@PathVariable Integer id, Model model) {
-		model.addAttribute("project", facade.getProject(id));
+		model.addAttribute("project", configuration.getProjectById(id));
 		return "editProject";
 	}
 
 	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.POST)
 	public String editProject(@PathVariable Integer id, ProjectViewModel updatedProjectViewModel) {
-		facade.updateProject(id, projectConverter.toProjectEntry(updatedProjectViewModel));
+		configuration.updateProject(id, projectConverter.toProjectEntry(updatedProjectViewModel));
 		return "redirect:/projectList";
 	}
 
@@ -100,19 +99,19 @@ public class DeptManagerController {
 	@RequestMapping(value = "/{id}/addTask", method = RequestMethod.POST)
 	public String addNewTask(@PathVariable Integer id, TaskViewModel newTaskViewModel) {
 		newTaskViewModel.setId(0);
-		facade.addTask(id, projectConverter.toTaskEntry(newTaskViewModel));
+		configuration.addTask(id, projectConverter.toTaskEntry(newTaskViewModel));
 		return "redirect:/projectList";
 	}
 
 	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.GET)
 	public String editTask(@PathVariable Integer id, Model model) {
-		model.addAttribute("task", facade.getTask(id));
+		model.addAttribute("task", configuration.getTaskById(id));
 		return "editTask";
 	}
 
 	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.POST)
 	public String editTask(@PathVariable Integer id, TaskViewModel updatedTaskViewModel) {
-		facade.updateTask(id, projectConverter.toTaskEntry(updatedTaskViewModel));
+		configuration.updateTask(id, projectConverter.toTaskEntry(updatedTaskViewModel));
 		return "redirect:/projectList";
 	}
 

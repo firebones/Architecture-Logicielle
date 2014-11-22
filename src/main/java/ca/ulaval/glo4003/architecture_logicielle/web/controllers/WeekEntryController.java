@@ -40,14 +40,14 @@ public class WeekEntryController {
 			@ModelAttribute("errorBlock") String errorBlock,
 			@ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
 
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userId = ((EmployeeEntry) auth.getPrincipal()).getEmail();
+		
 		WeekEntry weekEntry = configuration.getWeekEntryByEmailAndWeek(userId,
 				41, 2014);
 
-		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(),
-				weekEntry.getYearNumber());
+		Date date = getDateForWeekNumber(weekEntry.getWeekNumber(), weekEntry.getYearNumber());
+		
 		List<String> daysOfWeek = getDatesOfWeek(date);
 		List<String> datesOfWeek = getDaysOfWeek();
 
@@ -347,6 +347,7 @@ public class WeekEntryController {
 		calendar.setTime(refDate);
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		int week = calendar.get(Calendar.WEEK_OF_YEAR);
+		
 		return week;
 	}
 

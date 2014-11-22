@@ -71,6 +71,23 @@ public class AppConfiguration {
 		new UserRepositoryImpl().setTasksToUser(tasks, user);
 	}
 
+	public List<TaskEntry> getTasksEmployee(String email){
+		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
+		
+		return employee.getTasks();
+	}
+	
+	public void assignedTaskToEmployee(String email, List<String> assignTasks){
+		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
+		
+		List<TaskEntry> tasksList = new ArrayList<TaskEntry>();
+
+		for (String taskId : assignTasks) {
+			tasksList.add(getTaskById(Integer.parseInt(taskId)));
+		}
+		setTasksToUser(tasksList, employee);
+	}
+	
 	public void deleteUser(UserEntry user) {
 		new UserRepositoryImpl().deleteUser(user);
 	}
@@ -86,6 +103,10 @@ public class AppConfiguration {
 			Integer weekNumber, Integer yearNumber) {
 		return new WeekEntryRepositoryImpl().getWeekEntryByEmailAndWeekAndYear(email,
 				weekNumber, yearNumber);
+	}
+	
+	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
+		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
 	}
 
 	// Department Entry Repository

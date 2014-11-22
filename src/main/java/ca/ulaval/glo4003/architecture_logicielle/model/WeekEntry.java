@@ -63,5 +63,4 @@ public class WeekEntry {
 	public void setHoursEntries(List<Double> hoursEntries){
 		this.hoursEntries = hoursEntries;
 	}
-	
 }
