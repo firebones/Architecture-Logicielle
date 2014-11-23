@@ -12,26 +12,26 @@
 	    <form 
 	    	class="form form-horizontal well" 
 	    	method="POST" action="/vehicleExpenses" 
-		    modelAttribute="daysOfWeek" 
-		    modelAttribute="valuesOfWeek" 
-		    modelAttribute="daysNameOfWeek"
-		    modelAttribute="errorBlock"
-		    modelAttribute="isReadOnly"
+		    modelAttribute="weekEntry" 
+		    modelAttribute="errorMessage"
 		    class="form form-horizontal well" >
-		    <c:if test="${not empty errorBlock}">
- 				<label class="errorBlock">${errorBlock}</label>
+		    <c:if test="${not empty errorMessage}">
+ 				<label class="errorBlock">${errorMessage}</label>
 			</c:if>
-			<c:forEach items="${daysNameOfWeek}" var="day" varStatus="status">
+			<c:set var="datesOfWeek" value="${weekEntry.getDatesOfWeek()}" />
+	    	<c:set var="entries" value="${weekEntry.getEntries()}" />
+	    	<c:set var="daysOfWeek" value="${weekEntry.getDaysOfWeek()}" />
+			<c:forEach items="${daysOfWeek}" var="day" varStatus="status">
 				<div class="control-group">
-					<label class="control-label" for="${status.index}">${day} ${daysOfWeek[status.index]}</label>
+					<label class="control-label" for="${status.index}">${day} ${datesOfWeek[status.index]}</label>
 					<c:choose>
-					   <c:when test="${isReadOnly}"><input name="kilometers" class="input-block-level" id="${status.index}" type="text" value="${valuesOfWeek[status.index]}" disabled/></c:when>
-					   <c:otherwise><input name="kilometers" class="input-block-level" id="${status.index}" type="text" value="${valuesOfWeek[status.index]}" enabled/></c:otherwise>
+					   <c:when test="${weekEntry.getIsReadOnly()}"><input name="kilometers" class="input-block-level" id="${status.index}" type="text" value="${entries[status.index]}" disabled/></c:when>
+					   <c:otherwise><input name="kilometers" class="input-block-level" id="${status.index}" type="text" value="${entries[status.index]}" enabled/></c:otherwise>
 					</c:choose>
 				</div>
 			</c:forEach>
 			<c:choose>
-				<c:when test="${isReadOnly}"><button type="submit" class="btn btn-default" disabled>Enregistrer</button></c:when>
+				<c:when test="${weekEntry.getIsReadOnly()}"><button type="submit" class="btn btn-default" disabled>Enregistrer</button></c:when>
 				<c:otherwise><button type="submit" class="btn btn-default" enabled>Enregistrer</button></c:otherwise>
 			</c:choose>
 			<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Retour</a>

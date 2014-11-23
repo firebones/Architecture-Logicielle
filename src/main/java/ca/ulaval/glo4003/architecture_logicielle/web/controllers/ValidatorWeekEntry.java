@@ -4,7 +4,7 @@ import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.util.Configuration;
 
-public class Validators {
+public class ValidatorWeekEntry {
 
 	public String ValidateAssignedKilometers(List<String> kilometers){
 		
@@ -55,11 +55,15 @@ public class Validators {
 	}	
 	
 	public String ValidateTasksRate(List<String> rates){
+		
+		Double taskRateMin = Double.parseDouble(Configuration.getConfig("MIN_TASK_RATE"));
+		Double taskRateMax = Double.parseDouble(Configuration.getConfig("MAX_TASK_RATE"));
+		
 		for (String rate : rates)
 		{
-			if(!tryParseDouble(rate))
+			if (!tryParseDouble(rate) || Double.parseDouble(rate) < taskRateMin || Double.parseDouble(rate) > taskRateMax)
 			{
-				return "Les taux horaires doivent être des nombres";
+				return "Les taux horaires doivent être des valeurs numériques entre " +  taskRateMin + " et " + taskRateMax;
 			}
 		}
 		

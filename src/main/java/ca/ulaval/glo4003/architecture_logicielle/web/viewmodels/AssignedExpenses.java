@@ -6,6 +6,7 @@ import java.util.List;
 public class AssignedExpenses {
 
 	public List<String> expenses;
+	public Boolean isNull;
 
 	public List<String> getExpenses() {
 		return expenses;
@@ -13,5 +14,12 @@ public class AssignedExpenses {
 
 	public void setExpenses(List<String> expenses) {
 		this.expenses = expenses;
+	}
+	
+	public Boolean getIsNull() {
+		isNull = false;
+		if (expenses == null)
+			isNull = true;
+		return isNull;
 	}
 }

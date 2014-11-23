@@ -6,6 +6,7 @@ import java.util.List;
 public class AssignedHours {
 
 	public List<String> hours;
+	public Boolean isNull;
 
 	public List<String> getHours() {
 		return hours;
@@ -13,5 +14,12 @@ public class AssignedHours {
 
 	public void setHours(List<String> hours) {
 		this.hours = hours;
+	}
+	
+	public Boolean getIsNull() {
+		isNull = false;
+		if (hours == null)
+			isNull = true;
+		return isNull;
 	}
 }

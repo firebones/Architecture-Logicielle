@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
@@ -99,14 +101,42 @@ public class AppConfiguration {
 		return new WeekEntryRepositoryImpl().getAllWeekEntries();
 	}
 
-	public WeekEntry getWeekEntryByEmailAndWeek(String email,
-			Integer weekNumber, Integer yearNumber) {
+	public WeekEntry getWeekEntryByEmailAndWeek(String email, Integer weekNumber, Integer yearNumber) {
 		return new WeekEntryRepositoryImpl().getWeekEntryByEmailAndWeekAndYear(email,
 				weekNumber, yearNumber);
 	}
 	
 	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
 		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
+	}
+	
+	public String getCurrentUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return ((EmployeeEntry) auth.getPrincipal()).getEmail();
+	}
+	
+	public WeekEntry getCurrentUserWeekEntry(int weekNumber, int yearNumber)
+	{
+		return getWeekEntryByEmailAndWeek(getCurrentUser(), 41, 2014);
+	}
+	
+	public void assignHoursToEmployee(int weekNumber, int yearNumber, List<Double> hours) {
+	
+		WeekEntry weekEntry = getCurrentUserWeekEntry(weekNumber, yearNumber);
+		weekEntry.setHoursEntries(hours);
+		updateWeekEntry(weekEntry);
+	}
+	
+	public void assignKilometersToEmployee(int weekNumber, int yearNumber, List<Integer> kilometers) {
+		WeekEntry weekEntry = getCurrentUserWeekEntry(weekNumber, yearNumber);
+		weekEntry.setKilometersEntries(kilometers);
+		updateWeekEntry(weekEntry);
+	}
+	
+	public void assignExpensesToEmployee(int weekNumber, int yearNumber, List<Double> expenses) {
+		WeekEntry weekEntry = getCurrentUserWeekEntry(weekNumber, yearNumber);
+		weekEntry.setEmployeeExpensesEntries(expenses);
+		updateWeekEntry(weekEntry);
 	}
 
 	// Department Entry Repository
@@ -122,4 +152,6 @@ public class AppConfiguration {
 	public void updateWeekEntry(WeekEntry weekEntry) {
 		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
 	}
+
+
 }

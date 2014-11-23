@@ -3,6 +3,13 @@ package ca.ulaval.glo4003.architecture_logicielle.web.converters;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.WeekEntryViewModel;
+
 public class WeekEntryConverter {
 
 	public List<Integer> convertStringsToIntegers(List<String> valueListe)
@@ -64,5 +71,61 @@ public class WeekEntryConverter {
 		}
 		
 		return list;
+	}
+	
+	public WeekEntryViewModel toHoursWeekEntryViewModel(WeekEntry weekEntry, AssignedHours hours){
+		
+		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		
+		List<String> entries;
+		if (!hours.getIsNull())
+			entries = hours.getHours();
+		else
+			entries = convertDoublesToStringList(weekEntry.getHoursEntries());
+		
+		weekViewModel.setEntries(entries);
+		
+		return toWeekEntryViewModel(weekViewModel, weekEntry);
+	}
+	
+	public WeekEntryViewModel toExpensesWeekEntryViewModel(WeekEntry weekEntry, AssignedExpenses expenses){
+		
+		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		
+		List<String> entries;
+		if (!expenses.getIsNull())
+			entries = expenses.getExpenses();
+		else
+			entries = convertDoublesToStringList(weekEntry.getEmployeeExpensesEntries());
+		weekViewModel.setEntries(entries);
+		
+		return toWeekEntryViewModel(weekViewModel, weekEntry);
+	}
+	
+	public WeekEntryViewModel toKilometersWeekEntryViewModel(WeekEntry weekEntry, AssignedKilometers kilometers){
+		
+		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		
+		List<String> entries;
+		if (!kilometers.getIsNull())
+			entries = kilometers.getKilometers();
+		else
+			entries = convertIntegerToStringList(weekEntry.getKilometersEntries());
+		
+		weekViewModel.setEntries(entries);
+		
+		return toWeekEntryViewModel(weekViewModel, weekEntry);
+	}
+	
+	private WeekEntryViewModel toWeekEntryViewModel(WeekEntryViewModel weekViewModel, WeekEntry weekEntry)
+	{
+		Boolean isReadOnly = false;
+		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
+			isReadOnly = true;
+		weekViewModel.setIsReadOnly(isReadOnly);
+		weekViewModel.setDaysOfWeek(weekEntry.getDaysOfWeek());
+		weekViewModel.setDatesOfWeek(weekEntry.getDatesOfWeek());
+		
+		return weekViewModel;
 	}
 }

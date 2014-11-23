@@ -1,6 +1,9 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class WeekEntry {
@@ -62,5 +65,47 @@ public class WeekEntry {
 	}
 	public void setHoursEntries(List<Double> hoursEntries){
 		this.hoursEntries = hoursEntries;
+	}
+	
+	public List<String> getDaysOfWeek() {
+
+		List<String> daysOfWeek = new ArrayList<String>();
+		daysOfWeek.add("Dimanche");
+		daysOfWeek.add("Lundi");
+		daysOfWeek.add("Mardi");
+		daysOfWeek.add("Mercredi");
+		daysOfWeek.add("Jeudi");
+		daysOfWeek.add("Vendredi");
+		daysOfWeek.add("Samedi");
+
+		return daysOfWeek;
+	}
+	
+	public List<String> getDatesOfWeek() {
+
+		List<String> dates = new ArrayList<String>(7);
+
+		Date refDate = getDateForWeekNumber(this.weekNumber, this.yearNumber);
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(refDate);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+		for (int i = 0; i < 7; i++) {
+			dates.add(format.format(calendar.getTime()));
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+		}
+
+		return dates;
+	}
+
+	private Date getDateForWeekNumber(int weekNumber, int year) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
+		calendar.set(Calendar.YEAR, year);
+
+		return calendar.getTime();
 	}
 }
