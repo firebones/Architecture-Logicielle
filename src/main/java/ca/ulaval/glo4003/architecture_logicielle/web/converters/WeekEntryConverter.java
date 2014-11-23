@@ -129,34 +129,4 @@ public class WeekEntryConverter {
 		
 		return weekViewModel;
 	}
-	
-//	private WeekEntryViewModel toWeekEntryViewModel(WeekEntry weekEntry)
-//	{
-//		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
-//		weekViewModel.setEmail(weekEntry.getEmail());
-//		weekViewModel.setWeekNumber(weekEntry.getWeekNumber());
-//		weekViewModel.setYearNumber(weekEntry.getYearNumber());
-//		weekViewModel.setState(weekEntry.getState());
-//		
-//		int indexCount = weekEntry.getDaysOfWeek().size();
-//		String startDate = weekEntry.getDaysOfWeek().get(0) + " " + weekEntry.getDatesOfWeek().get(0) + ", " + weekEntry.getYearNumber();
-//		String endDate = weekEntry.getDaysOfWeek().get(indexCount - 1) + " " + weekEntry.getDatesOfWeek().get(indexCount - 1) + ", " + weekEntry.getYearNumber();
-//
-//		// Now get the first day of week.
-//		Date date = calendar.getTime();
-//		
-//		weekViewModel.setStartDate(startDate);
-//		weekViewModel.setEndDate(endDate);
-//		
-//		return weekViewModel;
-//	}
-
-//	public Object toWeekEntriesViewModel(List<WeekEntry> currentUserWeekEntries) {
-//
-//		List<WeekEntryViewModel> weekViewModelList = new ArrayList<WeekEntryViewModel>();
-//		for (WeekEntry weekEntry : currentUserWeekEntries)
-//			weekViewModelList.add(toWeekEntryViewModel(weekEntry));
-//		
-//		return weekViewModelList;
-//	}
 }
