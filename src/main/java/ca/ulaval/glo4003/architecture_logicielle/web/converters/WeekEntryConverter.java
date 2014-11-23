@@ -1,6 +1,7 @@
 package ca.ulaval.glo4003.architecture_logicielle.web.converters;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
@@ -8,7 +9,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
-import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.WeekEntryViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EntryViewModel;
 
 public class WeekEntryConverter {
 
@@ -73,9 +74,9 @@ public class WeekEntryConverter {
 		return list;
 	}
 	
-	public WeekEntryViewModel toHoursWeekEntryViewModel(WeekEntry weekEntry, AssignedHours hours){
+	public EntryViewModel toHoursEntryViewModel(WeekEntry weekEntry, AssignedHours hours){
 		
-		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		EntryViewModel entryViewModel = new EntryViewModel();
 		
 		List<String> entries;
 		if (!hours.getIsNull())
@@ -83,28 +84,28 @@ public class WeekEntryConverter {
 		else
 			entries = convertDoublesToStringList(weekEntry.getHoursEntries());
 		
-		weekViewModel.setEntries(entries);
+		entryViewModel.setEntries(entries);
 		
-		return toWeekEntryViewModel(weekViewModel, weekEntry);
+		return toEntryViewModel(entryViewModel, weekEntry);
 	}
 	
-	public WeekEntryViewModel toExpensesWeekEntryViewModel(WeekEntry weekEntry, AssignedExpenses expenses){
+	public EntryViewModel toExpensesEntryViewModel(WeekEntry weekEntry, AssignedExpenses expenses){
 		
-		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		EntryViewModel entryViewModel = new EntryViewModel();
 		
 		List<String> entries;
 		if (!expenses.getIsNull())
 			entries = expenses.getExpenses();
 		else
 			entries = convertDoublesToStringList(weekEntry.getEmployeeExpensesEntries());
-		weekViewModel.setEntries(entries);
+		entryViewModel.setEntries(entries);
 		
-		return toWeekEntryViewModel(weekViewModel, weekEntry);
+		return toEntryViewModel(entryViewModel, weekEntry);
 	}
 	
-	public WeekEntryViewModel toKilometersWeekEntryViewModel(WeekEntry weekEntry, AssignedKilometers kilometers){
+	public EntryViewModel toKilometersEntryViewModel(WeekEntry weekEntry, AssignedKilometers kilometers){
 		
-		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+		EntryViewModel entryViewModel = new EntryViewModel();
 		
 		List<String> entries;
 		if (!kilometers.getIsNull())
@@ -112,12 +113,12 @@ public class WeekEntryConverter {
 		else
 			entries = convertIntegerToStringList(weekEntry.getKilometersEntries());
 		
-		weekViewModel.setEntries(entries);
+		entryViewModel.setEntries(entries);
 		
-		return toWeekEntryViewModel(weekViewModel, weekEntry);
+		return toEntryViewModel(entryViewModel, weekEntry);
 	}
 	
-	private WeekEntryViewModel toWeekEntryViewModel(WeekEntryViewModel weekViewModel, WeekEntry weekEntry)
+	private EntryViewModel toEntryViewModel(EntryViewModel weekViewModel, WeekEntry weekEntry)
 	{
 		Boolean isReadOnly = false;
 		if (weekEntry.getState() != StateWeekEntry.INPROGRESS)
@@ -128,4 +129,34 @@ public class WeekEntryConverter {
 		
 		return weekViewModel;
 	}
+	
+//	private WeekEntryViewModel toWeekEntryViewModel(WeekEntry weekEntry)
+//	{
+//		WeekEntryViewModel weekViewModel = new WeekEntryViewModel();
+//		weekViewModel.setEmail(weekEntry.getEmail());
+//		weekViewModel.setWeekNumber(weekEntry.getWeekNumber());
+//		weekViewModel.setYearNumber(weekEntry.getYearNumber());
+//		weekViewModel.setState(weekEntry.getState());
+//		
+//		int indexCount = weekEntry.getDaysOfWeek().size();
+//		String startDate = weekEntry.getDaysOfWeek().get(0) + " " + weekEntry.getDatesOfWeek().get(0) + ", " + weekEntry.getYearNumber();
+//		String endDate = weekEntry.getDaysOfWeek().get(indexCount - 1) + " " + weekEntry.getDatesOfWeek().get(indexCount - 1) + ", " + weekEntry.getYearNumber();
+//
+//		// Now get the first day of week.
+//		Date date = calendar.getTime();
+//		
+//		weekViewModel.setStartDate(startDate);
+//		weekViewModel.setEndDate(endDate);
+//		
+//		return weekViewModel;
+//	}
+
+//	public Object toWeekEntriesViewModel(List<WeekEntry> currentUserWeekEntries) {
+//
+//		List<WeekEntryViewModel> weekViewModelList = new ArrayList<WeekEntryViewModel>();
+//		for (WeekEntry weekEntry : currentUserWeekEntries)
+//			weekViewModelList.add(toWeekEntryViewModel(weekEntry));
+//		
+//		return weekViewModelList;
+//	}
 }

@@ -5,7 +5,7 @@
         <weekNumber>41</weekNumber>
         <yearNumber>2014</yearNumber>
         <state>inProgress</state>
-        <kilometer>6</kilometer>
+        <kilometer>0</kilometer>
         <kilometer>3</kilometer>
         <kilometer>4</kilometer>
         <kilometer>5</kilometer>
@@ -13,7 +13,7 @@
         <kilometer>7</kilometer>
         <kilometer>0</kilometer>
         <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>4.0</employeeExpense>
         <employeeExpense>350.65</employeeExpense>
         <employeeExpense>450.0</employeeExpense>
         <employeeExpense>501.25</employeeExpense>
@@ -21,7 +21,67 @@
         <employeeExpense>75.1</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpenses/>
+        <hour>6.0</hour>
+        <hour>7.0</hour>
+        <hour>8.0</hour>
+        <hour>6.5</hour>
+        <hour>6.0</hour>
+        <hour>7.5</hour>
         <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
+		<weekEntry>
+        <email>joe@gmail.com</email>
+        <weekNumber>40</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>inProgress</state>
+        <kilometer>3</kilometer>
+        <kilometer>3</kilometer>
+        <kilometer>4</kilometer>
+        <kilometer>5</kilometer>
+        <kilometer>6</kilometer>
+        <kilometer>7</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>5.0</employeeExpense>
+        <employeeExpense>350.65</employeeExpense>
+        <employeeExpense>450.0</employeeExpense>
+        <employeeExpense>501.25</employeeExpense>
+        <employeeExpense>699.99</employeeExpense>
+        <employeeExpense>75.1</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>7.0</hour>
+        <hour>7.0</hour>
+        <hour>8.0</hour>
+        <hour>6.5</hour>
+        <hour>6.0</hour>
+        <hour>7.5</hour>
+        <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
+	<weekEntry>
+        <email>joe@gmail.com</email>
+        <weekNumber>39</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>Refused</state>
+        <kilometer>3</kilometer>
+        <kilometer>3</kilometer>
+        <kilometer>4</kilometer>
+        <kilometer>5</kilometer>
+        <kilometer>6</kilometer>
+        <kilometer>7</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>5.0</employeeExpense>
+        <employeeExpense>350.65</employeeExpense>
+        <employeeExpense>450.0</employeeExpense>
+        <employeeExpense>501.25</employeeExpense>
+        <employeeExpense>699.99</employeeExpense>
+        <employeeExpense>75.1</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>7.0</hour>
         <hour>7.0</hour>
         <hour>8.0</hour>
         <hour>6.5</hour>

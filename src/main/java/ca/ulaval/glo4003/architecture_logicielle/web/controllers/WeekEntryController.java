@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedKilometers;
-import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.WeekEntryViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EntryViewModel;
 
 @Controller
 public class WeekEntryController {
@@ -30,12 +31,10 @@ public class WeekEntryController {
 	private WeekEntryConverter converter = new WeekEntryConverter();
 	private ValidatorWeekEntry validator = new ValidatorWeekEntry();
 
-	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
-	// de weekentries
-	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.GET)
-	public String getEnterTransportion(Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
+	@RequestMapping(value = "/{year}/{week}/vehicleExpenses", method = RequestMethod.GET)
+	public String getEnterTransportion(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
 
-		WeekEntryViewModel weekEntryViewModel = converter.toKilometersWeekEntryViewModel(configuration.getCurrentUserWeekEntry(41, 2014), kilometers);
+		EntryViewModel weekEntryViewModel = converter.toKilometersEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), kilometers);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "vehicleExpenseEntries";
@@ -46,27 +45,25 @@ public class WeekEntryController {
 		return new AssignedKilometers();
 	}
 
-	@RequestMapping(value = "/vehicleExpenses", method = RequestMethod.POST)
-	public String getValuesOfWeek(@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/{year}/{week}/vehicleExpenses", method = RequestMethod.POST)
+	public String getValuesOfWeek(@PathVariable Integer week, @PathVariable Integer year,@ModelAttribute("assignedKilometers") AssignedKilometers assignedKilometers, RedirectAttributes redirectAttributes) {
 
 		String errorMessage = validator.ValidateAssignedKilometers(assignedKilometers.getKilometers());
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedKilometers", assignedKilometers);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/vehicleExpenses";
+			return "redirect:/{year}/{week}/vehicleExpenses";
 		}
 
-		configuration.assignKilometersToEmployee(41, 2014, converter.convertStringsToIntegers(assignedKilometers.getKilometers()));
+		configuration.assignKilometersToEmployee(week, year, converter.convertStringsToIntegers(assignedKilometers.getKilometers()));
 
-		return "redirect:/";
+		return "redirect:/weekEntriesList";
 	}
 
-	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
-	// de weekentries
-	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.GET)
-	public String getEnterExpenses(Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedExpenses") AssignedExpenses expenses) {
+	@RequestMapping(value = "/{year}/{week}/employeeExpenses", method = RequestMethod.GET)
+	public String getEnterExpenses(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedExpenses") AssignedExpenses expenses) {
 
-		WeekEntryViewModel weekEntryViewModel = converter.toExpensesWeekEntryViewModel(configuration.getCurrentUserWeekEntry(41, 2014), expenses);
+		EntryViewModel weekEntryViewModel = converter.toExpensesEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), expenses);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "employeeExpenseEntries";
@@ -77,26 +74,24 @@ public class WeekEntryController {
 		return new AssignedExpenses();
 	}
 
-	@RequestMapping(value = "/employeeExpenses", method = RequestMethod.POST)
-	public String getValuesOfWeek(@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/{year}/{week}/employeeExpenses", method = RequestMethod.POST)
+	public String getValuesOfWeek(@PathVariable Integer week, @PathVariable Integer year,@ModelAttribute("assignedExpenses") AssignedExpenses assignedExpenses, RedirectAttributes redirectAttributes) {
 
 		String errorMessage = validator.ValidateAssignedExpenses(assignedExpenses.getExpenses());
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedExpenses", assignedExpenses);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/employeeExpenses";
+			return "redirect:/{year}/{week}/employeeExpenses";
 		}
 
-		configuration.assignExpensesToEmployee(41, 2014, converter.convertStringsToDoubles(assignedExpenses.getExpenses()));
+		configuration.assignExpensesToEmployee(week, year, converter.convertStringsToDoubles(assignedExpenses.getExpenses()));
 
-		return "redirect:/";
+		return "redirect:/weekEntriesList";
 	}
 	
-	// TODO : ajouter le id de la weekentry cliqué depuis l'interface de liste
-	// de weekentries
-	@RequestMapping(value = "/workingHours", method = RequestMethod.GET)
-	public String getEnterHours(Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedHours") AssignedHours hours) {
-		WeekEntryViewModel weekEntryViewModel = converter.toHoursWeekEntryViewModel(configuration.getCurrentUserWeekEntry(41, 2014), hours);
+	@RequestMapping(value = "/{year}/{week}/workingHours", method = RequestMethod.GET)
+	public String getEnterHours(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedHours") AssignedHours hours) {
+		EntryViewModel weekEntryViewModel = converter.toHoursEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), hours);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "workingHourEntries";
@@ -107,19 +102,31 @@ public class WeekEntryController {
 		return new AssignedHours();
 	}
 
-	@RequestMapping(value = "/workingHours", method = RequestMethod.POST)
-	public String getHoursOfWeek(@ModelAttribute("assignedHours") AssignedHours assignedHours, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/{year}/{week}/workingHours", method = RequestMethod.POST)
+	public String getHoursOfWeek(@PathVariable Integer week, @PathVariable Integer year, @ModelAttribute("assignedHours") AssignedHours assignedHours, RedirectAttributes redirectAttributes) {
 
 		String errorMessage = validator.ValidateAssignedHours(assignedHours.getHours());
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedHours", assignedHours);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/workingHours";
+			return "redirect:/{year}/{week}/workingHours";
 		}
 
-		configuration.assignHoursToEmployee(41, 2014, converter.convertStringsToDoubles(assignedHours.getHours()));
+		configuration.assignHoursToEmployee(week, year, converter.convertStringsToDoubles(assignedHours.getHours()));
 
-		return "redirect:/";
+		return "redirect:/weekEntriesList";
+	}
+	
+	@RequestMapping(value = "/weekEntriesList", method = RequestMethod.GET)
+	public String weekEntries(Model model) {
+		model.addAttribute("weekEntries", configuration.getCurrentUserWeekEntries());
+		return "weekEntriesList";
+	}
+	
+	@RequestMapping(value = "/{year}/{week}/submitWeekEntry", method = RequestMethod.GET)
+	public String submitWeekEntry(@PathVariable Integer week, @PathVariable Integer year, Model model) {
+		configuration.submitWeekEntry( week, year);
+		return "redirect:/weekEntriesList";
 	}
 
 	@RequestMapping(value = "/submittedEntryList", method = RequestMethod.GET)

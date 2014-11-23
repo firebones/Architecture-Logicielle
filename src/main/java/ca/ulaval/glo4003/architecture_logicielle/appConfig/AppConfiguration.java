@@ -14,6 +14,7 @@ import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
@@ -110,6 +111,20 @@ public class AppConfiguration {
 		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
 	}
 	
+	public List<WeekEntry> getCurrentUserWeekEntries() {
+		
+		String currentUser = getCurrentUser();
+		List<WeekEntry> userWeekEntries =  new ArrayList<WeekEntry>(); 
+		
+		for (WeekEntry weekEntry : new WeekEntryRepositoryImpl().getAllWeekEntries())
+		{
+			if (weekEntry.getEmail().equals(currentUser))
+				userWeekEntries.add(weekEntry);
+		}
+		
+		return userWeekEntries;
+	}
+	
 	public String getCurrentUser(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return ((EmployeeEntry) auth.getPrincipal()).getEmail();
@@ -117,11 +132,10 @@ public class AppConfiguration {
 	
 	public WeekEntry getCurrentUserWeekEntry(int weekNumber, int yearNumber)
 	{
-		return getWeekEntryByEmailAndWeek(getCurrentUser(), 41, 2014);
+		return getWeekEntryByEmailAndWeek(getCurrentUser(), weekNumber, yearNumber);
 	}
 	
 	public void assignHoursToEmployee(int weekNumber, int yearNumber, List<Double> hours) {
-	
 		WeekEntry weekEntry = getCurrentUserWeekEntry(weekNumber, yearNumber);
 		weekEntry.setHoursEntries(hours);
 		updateWeekEntry(weekEntry);
@@ -153,5 +167,9 @@ public class AppConfiguration {
 		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
 	}
 
-
+	public void submitWeekEntry(Integer week, Integer year) {
+		WeekEntry weekEntry = getWeekEntryByEmailAndWeek(getCurrentUser(), week, year);
+		weekEntry.setState(StateWeekEntry.SUBMITTED);
+		updateWeekEntry(weekEntry);
+	}
 }

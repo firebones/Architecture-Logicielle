@@ -10,9 +10,7 @@
 				<li><a href="/submittedEntryList">Saisies soumises</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('EMPLOYEE, MANAGER')">
-				<li><a href="/vehicleExpenses">Dépenses pour les véhicules</a></li>
-				<li><a href="/employeeExpenses">Dépenses des employés</a></li>
-				<li><a href="/workingHours">Heures réalisées</a></li>
+				<li><a href="/weekEntriesList">Liste des semaines</a></li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li><a href="/j_spring_security_logout"> Bienvenue, <sec:authentication

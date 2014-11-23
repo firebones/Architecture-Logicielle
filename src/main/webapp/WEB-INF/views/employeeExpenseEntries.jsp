@@ -9,8 +9,7 @@
 <body>
 	<div class="container">
 	<h1>Saisir ses dépenses professionnelles</h1>
-	    <form 
-	    method="POST" action="/employeeExpenses" 
+	    <form method="POST"
 	    modelAttribute="weekEntry" 
 		modelAttribute="errorMessage"
 	    class="form form-horizontal well" >
@@ -33,7 +32,7 @@
 				<c:when test="${weekEntry.getIsReadOnly()}"><button type="submit" class="btn btn-default" disabled>Enregistrer</button></c:when>
 				<c:otherwise><button type="submit" class="btn btn-default" enabled>Enregistrer</button></c:otherwise>
 			</c:choose>
-			<a href="<c:url value="/" />" class="col-lg-offset=2 btn btn-primary">Retour</a>
+			<a href="<c:url value="/weekEntriesList" />" class="col-lg-offset=2 btn btn-primary">Retour</a>
 	    </form>
   	</div>
 </body>

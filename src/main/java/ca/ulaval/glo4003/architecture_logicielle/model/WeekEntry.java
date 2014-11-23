@@ -1,5 +1,6 @@
 package ca.ulaval.glo4003.architecture_logicielle.model;
 
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +41,13 @@ public class WeekEntry {
 	}
 	public void setState(StateWeekEntry state) {
 		this.state = state;
+	}
+	
+	public Boolean canSubmit() {
+		if (state == StateWeekEntry.INPROGRESS)
+			return true;
+		else
+			return false;
 	}
 
 	public List<Integer> getKilometersEntries() {
@@ -85,7 +93,7 @@ public class WeekEntry {
 
 		List<String> dates = new ArrayList<String>(7);
 
-		Date refDate = getDateForWeekNumber(this.weekNumber, this.yearNumber);
+		Date refDate = getFirstDateForWeekNumber();
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd");
 		Calendar calendar = Calendar.getInstance();
@@ -99,12 +107,34 @@ public class WeekEntry {
 
 		return dates;
 	}
+	
+	public String getStartDate(){
+		Date refDate = getFirstDateForWeekNumber();
+		Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(refDate.getTime());
+	}
+	
+	public String getEndDate(){
+		Date refDate = getLastDateForWeekNumber();
+		Format formatter = new SimpleDateFormat("dd/MM/yyyy");
+		return formatter.format(refDate.getTime());
+	}
 
-	private Date getDateForWeekNumber(int weekNumber, int year) {
+	private Date getFirstDateForWeekNumber() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
 		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
-		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.YEAR, yearNumber);
+
+		return calendar.getTime();
+	}
+	
+	private Date getLastDateForWeekNumber() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
+		calendar.set(Calendar.YEAR, yearNumber);
+		calendar.add(Calendar.DAY_OF_YEAR, 6);
 
 		return calendar.getTime();
 	}

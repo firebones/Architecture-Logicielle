@@ -2,11 +2,6 @@ package ca.ulaval.glo4003.architecture_logicielle.web.viewmodels;
 
 import java.util.List;
 
-import org.springframework.validation.Errors;
-
-import ca.ulaval.glo4003.architecture_logicielle.util.Configuration;
-
-
 public class AssignedKilometers {
 
 	public List<String> kilometers;

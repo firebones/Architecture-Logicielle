@@ -7,11 +7,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignTasksViewModel;
-import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.ProjectViewModel;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
 

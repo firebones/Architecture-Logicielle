@@ -2,7 +2,7 @@ package ca.ulaval.glo4003.architecture_logicielle.web.viewmodels;
 
 import java.util.List;
 
-public class WeekEntryViewModel {
+public class EntryViewModel {
 
 	private List<String> entries;
 	private List<String> daysOfWeek;
