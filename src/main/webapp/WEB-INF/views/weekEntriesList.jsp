@@ -4,18 +4,6 @@
 <html>
 <head>
 	<jsp:include page="_meta.jsp" />
-	  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	  <link rel="stylesheet" href="/resources/demos/style.css">
-	  <script>
-	  $(function() {
-	    $( "#datepicker" ).datepicker({
-	      showWeek: true,
-	      firstDay: 1
-	    });
-	  });
-	  </script>
 </head>
 <body>
 	<jsp:include page="_header.jsp" />
@@ -65,7 +53,7 @@
 			</table>
 		</div>
 		<div class="row">
-			<a href="<c:url value="addWeekEntry" id="datepicker"/>" class="col-lg-offset=2 btn btn-primary">Ajouter une semaine</a>
+			<a href="<c:url value="addWeekEntry" />" class="col-lg-offset=2 btn btn-primary">Ajouter une semaine</a>
 		</div>
 	</div>
 </body>
