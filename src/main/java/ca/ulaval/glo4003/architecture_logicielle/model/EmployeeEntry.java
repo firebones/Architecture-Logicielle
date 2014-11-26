@@ -69,4 +69,26 @@ public class EmployeeEntry extends UserEntry {
 	public void becomeEmployee() {
 		role = RoleUser.EMPLOYEE;
 	}
+	
+	public WeekEntry enterWorkHours(WeekEntry weekEntry, List<Double> listHours){
+		weekEntry.setHoursEntries(listHours);
+		return weekEntry;
+	}
+	
+	public WeekEntry enterKilometers(WeekEntry weekEntry, List<Integer> kilometers){
+		weekEntry.setKilometersEntries(kilometers);
+		return weekEntry;
+	}
+	
+	public WeekEntry enterExpenses(WeekEntry weekEntry, List<Double> expenses){
+		weekEntry.setEmployeeExpensesEntries(expenses);
+		return weekEntry;
+	}
+	
+/*	public void assignTasks(List<TaskEntry> assignTasks){
+		
+		for (TaskEntry task : assignTasks) {
+			this.assignTask(task);
+		}
+	}*/
 }

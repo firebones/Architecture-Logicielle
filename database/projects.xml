@@ -14,6 +14,11 @@
                 <name>Test</name>
                 <rate>1.0</rate>
             </task>
+        <task>
+                <id>7</id>
+                <name>test</name>
+                <rate>2.3</rate>
+            </task>
         </tasks>
 	</project>
 	<project>
@@ -37,4 +42,15 @@
 			</task>
 		</tasks>
 	</project>
+<project>
+        <id>3</id>
+        <name>Projet dof</name>
+        <tasks>
+            <task>
+                <id>8</id>
+                <name>yeah</name>
+                <rate>1.0</rate>
+            </task>
+        </tasks>
+    </project>
 </projects>

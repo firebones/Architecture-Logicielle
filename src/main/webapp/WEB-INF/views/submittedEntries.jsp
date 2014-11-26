@@ -40,8 +40,9 @@
 				modelAttribute="entry.email"
 				modelAttribute="entry.weekNumber"
 				modelAttribute="entry.yearNumber">
-				<button type="submit" class="btn btn-primary" name="approve">Approuver</button>
+				<button type="submit" class="btn btn-primary" name="approve" enable>Approuver</button>
 				<button type="submit" class="btn btn-danger" name="deny">Refuser</button>
+				
 			</form>
 			<br/>
 			<br/>

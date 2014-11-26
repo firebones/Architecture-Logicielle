@@ -18,6 +18,7 @@ import ca.ulaval.glo4003.architecture_logicielle.web.converters.WeekEntryConvert
 import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedExpenses;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedHours;
@@ -34,7 +35,7 @@ public class WeekEntryController {
 	@RequestMapping(value = "/{year}/{week}/vehicleExpenses", method = RequestMethod.GET)
 	public String getEnterTransportion(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedKilometers") AssignedKilometers kilometers) {
 
-		EntryViewModel weekEntryViewModel = converter.toKilometersEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), kilometers);
+		EntryViewModel weekEntryViewModel = converter.toKilometersEntryViewModel(configuration.getCurrentUserWeekEntry(configuration.getCurrentUser(), week, year), kilometers);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "vehicleExpenseEntries";
@@ -55,7 +56,7 @@ public class WeekEntryController {
 			return "redirect:/{year}/{week}/vehicleExpenses";
 		}
 
-		configuration.assignKilometersToEmployee(week, year, converter.convertStringsToIntegers(assignedKilometers.getKilometers()));
+		configuration.assignKilometersToEmployeeWeek(configuration.getCurrentUser(), week, year, converter.convertStringsToIntegers(assignedKilometers.getKilometers()));
 
 		return "redirect:/weekEntriesList";
 	}
@@ -63,7 +64,7 @@ public class WeekEntryController {
 	@RequestMapping(value = "/{year}/{week}/employeeExpenses", method = RequestMethod.GET)
 	public String getEnterExpenses(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedExpenses") AssignedExpenses expenses) {
 
-		EntryViewModel weekEntryViewModel = converter.toExpensesEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), expenses);
+		EntryViewModel weekEntryViewModel = converter.toExpensesEntryViewModel(configuration.getCurrentUserWeekEntry(configuration.getCurrentUser(), week, year), expenses);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "employeeExpenseEntries";
@@ -84,14 +85,14 @@ public class WeekEntryController {
 			return "redirect:/{year}/{week}/employeeExpenses";
 		}
 
-		configuration.assignExpensesToEmployee(week, year, converter.convertStringsToDoubles(assignedExpenses.getExpenses()));
+		configuration.assignExpensesToEmployeeWeek(configuration.getCurrentUser(), week, year, converter.convertStringsToDoubles(assignedExpenses.getExpenses()));
 
 		return "redirect:/weekEntriesList";
 	}
 	
 	@RequestMapping(value = "/{year}/{week}/workingHours", method = RequestMethod.GET)
 	public String getEnterHours(@PathVariable Integer week, @PathVariable Integer year, Model model, @ModelAttribute("errorMessage") String errorMessage, @ModelAttribute("assignedHours") AssignedHours hours) {
-		EntryViewModel weekEntryViewModel = converter.toHoursEntryViewModel(configuration.getCurrentUserWeekEntry(week, year), hours);
+		EntryViewModel weekEntryViewModel = converter.toHoursEntryViewModel(configuration.getCurrentUserWeekEntry(configuration.getCurrentUser(), week, year), hours);
 		model.addAttribute("weekEntry", weekEntryViewModel);
 		model.addAttribute("errorMessage", errorMessage);
 		return "workingHourEntries";
@@ -112,7 +113,7 @@ public class WeekEntryController {
 			return "redirect:/{year}/{week}/workingHours";
 		}
 
-		configuration.assignHoursToEmployee(week, year, converter.convertStringsToDoubles(assignedHours.getHours()));
+		configuration.assignHoursToEmployeeWeek(configuration.getCurrentUser(), week, year, converter.convertStringsToDoubles(assignedHours.getHours()));
 
 		return "redirect:/weekEntriesList";
 	}
@@ -125,41 +126,44 @@ public class WeekEntryController {
 	
 	@RequestMapping(value = "/{year}/{week}/submitWeekEntry", method = RequestMethod.GET)
 	public String submitWeekEntry(@PathVariable Integer week, @PathVariable Integer year, Model model) {
-		configuration.submitWeekEntry( week, year);
+		configuration.submitWeekEntry(configuration.getCurrentUser(), week, year);
 		return "redirect:/weekEntriesList";
 	}
 
 	@RequestMapping(value = "/submittedEntryList", method = RequestMethod.GET)
 	public String submittedEntries(Model model) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String department = ((EmployeeEntry) auth.getPrincipal())
-				.getDepartment();
+//		Authentication auth = SecurityContextHolder.getContext()
+//				.getAuthentication();
+//		String department = ((EmployeeEntry) auth.getPrincipal())
+//				.getDepartment();
 
 		List<WeekEntry> weekEntries = new LinkedList<WeekEntry>();
+		List<String> userEntries = new LinkedList<String>();
 
-		WeekEntry w = new WeekEntry();
-		w.setEmail("aaa@ddd.com");
-		w.setWeekNumber(43);
-		w.setYearNumber(2014);
-		w.setState(StateWeekEntry.SUBMITTED);
-		w = configuration.getWeekEntryByEmailAndWeek("joe@gmail.com", 41, 2014);
-		weekEntries.add(w);
-		weekEntries.add(w);
+//		WeekEntry w = new WeekEntry();
+//		w.setEmail("aaa@ddd.com");
+//		w.setWeekNumber(43);
+//		w.setYearNumber(2014);
+//		w.setState(StateWeekEntry.SUBMITTED);
+//		w = configuration.getCurrentUserWeekEntry(configuration.getCurrentUser(), 41, 2014);
+//		weekEntries.add(w);
+//		weekEntries.add(w);
 
-		for (WeekEntry w1 : configuration.getAllWeekEntries()) {
-			if ((w1.getState() != StateWeekEntry.APPROVED) && (w1.getState() != StateWeekEntry.REFUSED)) {
-				weekEntries.add(w1);
+		for (WeekEntry weekEntry : configuration.getAllWeekEntries()) {
+			if (weekEntry.getState() == StateWeekEntry.SUBMITTED) {
+				weekEntries.add(weekEntry);
+//				if(!userEntries.contains(weekEntry.getEmail()))
+//					userEntries.add(weekEntry.getEmail());
 			}
 		}
 
-		model.addAttribute("daysNameOfWeek", w.getDaysOfWeek());
+//		model.addAttribute("daysNameOfWeek", w.getDaysOfWeek());
 		model.addAttribute("weekEntries", weekEntries);
-		model.addAttribute("hours", w.getHoursEntries());
+//		model.addAttribute("hours", w.getHoursEntries());
 		return "submittedEntries";
 	}
 
-	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "approve" })
+/*	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "approve" })
 	public String approve(@ModelAttribute("entry.email") String email,
 			@ModelAttribute("entry") WeekEntry entry,
 			@ModelAttribute("entry.weekNumber") String weekNumber,
@@ -171,9 +175,20 @@ public class WeekEntryController {
 		entry.setYearNumber(Integer.parseInt(yearNumber));
 		configuration.updateWeekEntry(entry);
 		return "redirect:/submittedEntryList";
+	}*/
+	
+	
+	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "approve" })
+	public String approve(@ModelAttribute("entry.email") String email,
+			@ModelAttribute("entry") WeekEntry entry,
+			@ModelAttribute("entry.weekNumber") String weekNumber,
+			@ModelAttribute("entry.yearNumber") String yearNumber,
+			@RequestParam String approve, Model model) {
+		configuration.approvedWeekEntry(email, Integer.parseInt(weekNumber), Integer.parseInt(yearNumber));
+		return "redirect:/submittedEntryList";
 	}
 	
-	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "deny" })
+/*	@RequestMapping(value = "/approve", method = RequestMethod.POST, params = { "deny" })
 	public String deny(@ModelAttribute("entry.email") String email,
 			@ModelAttribute("entry") WeekEntry entry,
 			@ModelAttribute("entry.weekNumber") String weekNumber,
@@ -184,6 +199,16 @@ public class WeekEntryController {
 		entry.setWeekNumber(Integer.parseInt(weekNumber));
 		entry.setYearNumber(Integer.parseInt(yearNumber));
 		configuration.updateWeekEntry(entry);
+		return "redirect:/submittedEntryList";
+	}*/
+	
+	@RequestMapping(value = "/deny",  method = RequestMethod.POST, params = { "deny" })
+	public String deny(@ModelAttribute("entry.email") String email,
+			@ModelAttribute("entry") WeekEntry entry,
+			@ModelAttribute("entry.weekNumber") String weekNumber,
+			@ModelAttribute("entry.yearNumber") String yearNumber,
+			@RequestParam String approve, Model model) {
+		configuration.deniedWeekEntry(email, Integer.parseInt(weekNumber), Integer.parseInt(yearNumber));
 		return "redirect:/submittedEntryList";
 	}
 }

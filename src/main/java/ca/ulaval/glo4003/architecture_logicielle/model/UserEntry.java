@@ -2,8 +2,6 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import java.security.Principal;
 
-import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
-
 public abstract class UserEntry implements Principal {
 	private String name;
 	private String email;
@@ -46,11 +44,5 @@ public abstract class UserEntry implements Principal {
 	public boolean equals(Object object) {
 		return this.getEmail().equals( ((UserEntry) object).getEmail() );
 	}
-	
-/*	public void saveState() {
-		
-		UserRepository repository = new UserRepositoryImpl();
-		
-		repository.updateUser(this);
-	}*/
+
 }

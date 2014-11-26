@@ -207,8 +207,7 @@ public class UserRepositoryImpl implements UserRepository
 		userElement.add(1, user.getEmail());
 		userElement.add(2, user.getRole().toString());
 		userElement.add(3, user.getHashedPassword());
-		
-		
+				
 		
 		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
 			
