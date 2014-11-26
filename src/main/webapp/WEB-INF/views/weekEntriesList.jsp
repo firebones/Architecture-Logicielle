@@ -26,6 +26,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="entry" items="${weekEntries}">
+						<c:url var="emailUrl" value="/${entry.getEmail()}" />
 						<c:url var="weekUrl" value="/${entry.getWeekNumber()}" />
 						<c:url var="yearUrl" value="/${entry.getYearNumber()}" />
 						<tr>
@@ -34,17 +35,17 @@
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
 							<td>
-								<a href="${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses véhicule</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses véhicule</a>
 							</td>
 							<td>
-								<a href="${yearUrl}/${weekUrl}/employeeExpenses">Dépenses employé</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses employé</a>
 							</td>
 							<td>
-								<a href="${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
 							</td>
 							<td>
 								<c:choose>
-									<c:when test="${entry.canSubmit()}"><a href="${yearUrl}/${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
+									<c:when test="${entry.canSubmit()}"><a href="${emailUrl}${yearUrl}${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
 									<c:otherwise><button type="submit" class="btn btn-default" disabled>Soumettre</button></c:otherwise>
 								</c:choose>
 							</td>

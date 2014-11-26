@@ -9,49 +9,49 @@
 <h1>
 	Saisies soumises
 </h1>
-
-<div class="container">
-	<c:forEach items="${weekEntries}" var="entry" varStatus="stt">
-		<h2>${entry.email} : Semaine ${entry.weekNumber} Année ${entry.yearNumber}</h2>
-		<h3>${entry.state}</h3>
+	<div class="container">
 		<div class="row">
 			<table class="table col-lg-8">
 				<thead>
 					<tr>
-						<th>Jour</th>
-						<th>Heures</th>
-						<th>Dépenses</th>
-						<th>Kilomètres</th>
+						<th>Numéro Semaine</th>
+						<th>Courriel Employee</th>
+						<th>Date Début</th>
+						<th>Date Fin</th>
+						<th colspan="8"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${daysNameOfWeek}" var="day" varStatus="status">
+					<c:forEach var="entry" items="${weekEntries}">
+						<c:url var="emailUrl" value="/${entry.getEmail()}" />
+						<c:url var="weekUrl" value="/${entry.getWeekNumber()}" />
+						<c:url var="yearUrl" value="/${entry.getYearNumber()}" />
 						<tr>
-							<td>${day}</td>
-							<td>${entry.hoursEntries[status.index]}</td>
-							<td>3 ${entry.employeeExpensesEntries[status.index]}</td>
-							<td>${entry.kilometersEntries[status.index]}
-						</tr>
+							<td>${entry.getWeekNumber()}</td>
+							<td>${entry.getEmail()}</td>
+							<td>${entry.getStartDate()}</td>
+							<td>${entry.getEndDate()}</td>
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses véhicule</a>
+							</td>
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses employé</a>
+							</td>
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
+							</td>
+							<td>
+								
+								<a href="${emailUrl}${yearUrl}${weekUrl}/approved" class="col-lg-offset=2 btn btn-primary">Approuve</a>
+							</td>
+							<td>
+								<a href="${emailUrl}${yearUrl}${weekUrl}/denied" class="col-lg-offset=2 btn btn-danger">Refuser</a>
+								
+							</td>
 					</c:forEach>
 				</tbody>
 			</table>
-			<form action="approve" method="POST" 
-				modelAttribute="entry"
-				modelAttribute="entry.email"
-				modelAttribute="entry.weekNumber"
-				modelAttribute="entry.yearNumber">
-				<button type="submit" class="btn btn-primary" name="approve" enable>Approuver</button>
-				<button type="submit" class="btn btn-danger" name="deny">Refuser</button>
-				
-			</form>
-			<br/>
-			<br/>
-			<br/>
 		</div>
-	</c:forEach>
-
-	
-</div>
 
 
 </body>
