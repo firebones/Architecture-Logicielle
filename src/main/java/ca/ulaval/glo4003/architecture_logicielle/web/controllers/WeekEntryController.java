@@ -147,14 +147,14 @@ public class WeekEntryController {
 
 	
 	@RequestMapping(value = "/{email}/{year}/{week}/approved", method = RequestMethod.GET)
-	public String approve(@PathVariable String email, @PathVariable String weekNumber, @PathVariable String yearNumber, Model model) {
-		configuration.approvedWeekEntry(email, Integer.parseInt(weekNumber), Integer.parseInt(yearNumber));
+	public String approve(@PathVariable String email, @PathVariable String week, @PathVariable String year, Model model) {
+		configuration.approvedWeekEntry(email, Integer.parseInt(week), Integer.parseInt(year));
 		return "redirect:/submittedEntryList";
 	}
 	
 	@RequestMapping(value = "/{email}/{year}/{week}/denied", method = RequestMethod.GET)
-	public String deny(@PathVariable String email, @PathVariable Integer weekNumber, @PathVariable Integer yearNumber, Model model) {
-		configuration.deniedWeekEntry(email, weekNumber, yearNumber);
+	public String deny(@PathVariable String email, @PathVariable Integer week, @PathVariable Integer year, Model model) {
+		configuration.deniedWeekEntry(email, week, year);
 		return "redirect:/submittedEntryList";
 	}
 	
