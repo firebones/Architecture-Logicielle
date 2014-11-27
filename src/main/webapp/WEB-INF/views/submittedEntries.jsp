@@ -14,10 +14,10 @@
 			<table class="table col-lg-8">
 				<thead>
 					<tr>
-						<th>Numéro Semaine</th>
-						<th>Courriel Employee</th>
-						<th>Date Début</th>
-						<th>Date Fin</th>
+						<th>Numéro de la semaine</th>
+						<th>Courriel de l'employé</th>
+						<th>Date de début</th>
+						<th>Date de fin</th>
 						<th colspan="8"></th>
 					</tr>
 				</thead>
@@ -32,17 +32,17 @@
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses véhicule</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
 							</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses employé</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
 							</td>
 							<td>
 								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
 							</td>
 							<td>
 								
-								<a href="${emailUrl}${yearUrl}${weekUrl}/approved" class="col-lg-offset=2 btn btn-primary">Approuve</a>
+								<a href="${emailUrl}${yearUrl}${weekUrl}/approved" class="col-lg-offset=2 btn btn-primary">Approuver</a>
 							</td>
 							<td>
 								<a href="${emailUrl}${yearUrl}${weekUrl}/denied" class="col-lg-offset=2 btn btn-danger">Refuser</a>

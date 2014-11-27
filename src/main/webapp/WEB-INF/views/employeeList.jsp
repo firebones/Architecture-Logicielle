@@ -16,7 +16,7 @@
 			<thead>
 				<tr>
 					<th>Nom</th>
-					<th>Email</th>
+					<th>Courriel</th>
 					<th>Rôle</th>
 					<th colspan="4"></th>
 				</tr>
@@ -32,7 +32,7 @@
 							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
 						</td>
 						<td>
-							<a href="${entryUrl}/delete">Supprimer</a>
+							<a href="${entryUrl}/delete">Supprimer l'employé</a>
 						</td>
 				</c:forEach>
 			</tbody>
