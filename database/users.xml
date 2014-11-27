@@ -7,7 +7,7 @@
         <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
         <department>Department1</department>
-        
+        <rateHour>20.0</rateHour>
     
     
     <tasks>
@@ -23,6 +23,7 @@
 		<hashedPassword>1234</hashedPassword>
 		<company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
 		<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
@@ -35,6 +36,7 @@
         <hashedPassword>default</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
 	<tasks>
             <taskId>4</taskId>
             <taskId>5</taskId>
@@ -47,6 +49,7 @@
         <hashedPassword>default</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
     
     </user>
 <user>
@@ -56,6 +59,7 @@
         <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
     </user>
 <user>
         <name>employee2</name>
@@ -64,6 +68,7 @@
         <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
     </user>
 <user>
         <name>manager1</name>
@@ -72,6 +77,7 @@
         <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
+		<rateHour>20.0</rateHour>
     </user>
 <user>
         <name>manager2</name>
@@ -80,7 +86,7 @@
         <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
 		<department>Department1</department>
-    
+    	<rateHour>20.0</rateHour>
     
     <tasks>
             <taskId>3</taskId>

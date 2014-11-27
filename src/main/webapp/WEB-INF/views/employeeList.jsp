@@ -18,6 +18,8 @@
 					<th>Nom</th>
 					<th>Email</th>
 					<th>Rôle</th>
+					<th>Taches</th>
+					<th>Taux Horaire</th>
 					<th colspan="4"></th>
 				</tr>
 			</thead>
@@ -30,6 +32,9 @@
 						<td>${entry.role}</td>
 						<td>
 							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
+						</td>
+						<td>
+							<input name="rateHour" class="input-block-level1" id="${entry.rateHour}" type="text" value="${entry.rateHour}"/>
 						</td>
 						<td>
 							<a href="${entryUrl}/delete">Supprimer</a>

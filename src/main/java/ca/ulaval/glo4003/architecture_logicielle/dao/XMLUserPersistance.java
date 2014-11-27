@@ -56,6 +56,7 @@ public class XMLUserPersistance
 				String elementHashedPassword = getStringValue(element, "hashedPassword");
 				String elementCompany = getStringValue(element, "company");
 				String elementDepartment = getStringValue(element, "department");
+				String elementRateHour = getStringValue(element, "rateHour");
 				ArrayList<String> listElement = new ArrayList<String>(); 
 				listElement.add(0, elementName);
 				listElement.add(1, elementEmail);
@@ -63,12 +64,13 @@ public class XMLUserPersistance
 				listElement.add(3, elementHashedPassword);
 				listElement.add(4, elementCompany);
 				listElement.add(5, elementDepartment);
+				listElement.add(6, elementRateHour);
 
 				
 				taskList = getTaskListValue(element, "tasks");
 				if(taskList.size() > 0){
 					for(int j=0; j<taskList.size(); j++){
-						listElement.add(j+6, taskList.get(j));
+						listElement.add(j+7, taskList.get(j));
 					}
 				}
 				
@@ -239,10 +241,14 @@ public class XMLUserPersistance
 		Element department = xmlFile.createElement("department");
 		department.setTextContent(user.get(5));
 		userElement.appendChild(department);
-			
-		if (user.size() > 6) {
+		
+		Element rateHour = xmlFile.createElement("rateHour");
+		rateHour.setTextContent(user.get(6));
+		userElement.appendChild(rateHour);
+		
+		if (user.size() > 7) {
 			Element tasks = xmlFile.createElement("tasks");
-			for (int i = 6; i < user.size(); i++) {
+			for (int i = 7; i < user.size(); i++) {
 				Element taskId = xmlFile.createElement("taskId");
 				taskId.setTextContent(user.get(i));
 				tasks.appendChild(taskId);
