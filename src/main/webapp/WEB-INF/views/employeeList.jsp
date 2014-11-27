@@ -38,7 +38,6 @@
 						</td>
 						<td>
 							<a href="${entryUrl}/delete">Supprimer l'employé</a>
-
 						</td>
 				</c:forEach>
 			</tbody>
