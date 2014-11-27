@@ -17,10 +17,10 @@
 			<table class="table col-lg-8">
 				<thead>
 					<tr>
-						<th>Numéro Semaine</th>
+						<th>Numéro de la semaine</th>
 						<th>Statut</th>
-						<th>Date Début</th>
-						<th>Date Fin</th>
+						<th>Date de début</th>
+						<th>Date de fin</th>
 						<th colspan="8"></th>
 					</tr>
 				</thead>
@@ -35,10 +35,10 @@
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses véhicule</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
 							</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses employé</a>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
 							</td>
 							<td>
 								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
