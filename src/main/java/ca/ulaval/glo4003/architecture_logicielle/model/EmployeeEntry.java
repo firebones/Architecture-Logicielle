@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
+	private Double rateHour;
 	private String companyName;
 	private String departmentName;
 
@@ -18,6 +19,14 @@ public class EmployeeEntry extends UserEntry {
 		}
 	}
 
+	public Double getRateHour() {
+		return rateHour;
+	}
+	
+	public void setRateHour(Double rateHour) {
+		this.rateHour = rateHour;
+	}
+	
 	public List<TaskEntry> getTasks() {
 		return tasks;
 	}

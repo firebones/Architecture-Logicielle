@@ -32,6 +32,7 @@
 							<td>${entry.getState()}</td>
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
+<<<<<<< HEAD
 							<td><a
 								href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses
 									pour véhicule</a></td>
@@ -49,6 +50,23 @@
 										<button type="submit" class="btn btn-default" disabled>Soumettre</button>
 									</c:otherwise>
 								</c:choose></td>
+=======
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
+							</td>
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
+							</td>
+							<td>
+								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${entry.canSubmit()}"><a href="${emailUrl}${yearUrl}${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
+									<c:otherwise><button type="submit" class="btn btn-default" disabled>Soumettre</button></c:otherwise>
+								</c:choose>
+							</td>
+>>>>>>> 2633fe2dc8502ff413d1a230d108c1a4b7eed8ba
 					</c:forEach>
 				</tbody>
 			</table>

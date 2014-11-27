@@ -18,6 +18,8 @@
 					<th>Nom</th>
 					<th>Courriel</th>
 					<th>Rôle</th>
+					<th>Taches</th>
+					<th>Taux Horaire</th>
 					<th colspan="4"></th>
 				</tr>
 			</thead>
@@ -32,7 +34,14 @@
 							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
 						</td>
 						<td>
+							<input name="rateHour" class="input-block-level1" id="${entry.rateHour}" type="text" value="${entry.rateHour}"/>
+						</td>
+						<td>
+<<<<<<< HEAD
 							<a href="${entryUrl}/delete">Supprimer l'employé</a>
+=======
+							<a href="${entryUrl}/delete">Supprimer l'employé</a>
+>>>>>>> 2633fe2dc8502ff413d1a230d108c1a4b7eed8ba
 						</td>
 				</c:forEach>
 			</tbody>
