@@ -287,7 +287,7 @@ public class WeekEntryController {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.YEAR);
 	}
-
+	
 	public int getNumberWeeksInYear(int year) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
@@ -302,3 +302,4 @@ public class WeekEntryController {
 	}
 
 }
+//
