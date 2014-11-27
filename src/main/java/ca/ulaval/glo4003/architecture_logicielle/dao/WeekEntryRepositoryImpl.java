@@ -79,6 +79,15 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 	}
 
 	@Override
+	public void addWeekEntry(WeekEntry weekEntry) {
+		if (getWeekEntryByEmailAndWeekAndYear(weekEntry.getEmail(),
+				weekEntry.getWeekNumber(), weekEntry.getYearNumber()) == null) {
+			ArrayList<String> userelement = getweekEntryString(weekEntry);
+			xmlWeekPersistance.addWeekEntry(userelement);
+		}
+	}
+
+	@Override
 	public void updateWeekEntry(WeekEntry weekEntry) {
 		if (getWeekEntryByEmailAndWeekAndYear(weekEntry.getEmail(),
 				weekEntry.getWeekNumber(), weekEntry.getYearNumber()) != null) {
@@ -95,7 +104,7 @@ public class WeekEntryRepositoryImpl implements WeekEntryRepository {
 
 		StateWeekEntry state = null;
 		if (tabweek == null) {
-			System.out.println("PAS COOL");
+			return null;
 		}
 		switch (tabweek.get(3)) {
 		case "Approved":

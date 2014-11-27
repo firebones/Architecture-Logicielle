@@ -140,6 +140,16 @@ public class XMLWeekPersistance {
 
 	}
 
+	public void addWeekEntry(ArrayList<String> week) {
+		parseXml();
+
+		if (week.size() != 0) {
+			Element weekEntryElement = getweekEntryElement(week);
+			xmlFile.getDocumentElement().appendChild(weekEntryElement);
+			saveXml();
+		}
+	}
+
 	public void updateWeekEntry(ArrayList<String> week) {
 		parseXml();
 
@@ -204,16 +214,6 @@ public class XMLWeekPersistance {
 		Element isApproved = xmlFile.createElement("state");
 		isApproved.setTextContent(weekEntryElement.get(3));
 		userElement.appendChild(isApproved);
-
-		/*
-		 * Element isSubmitted = xmlFile.createElement("isSubmitted");
-		 * isSubmitted.setTextContent(weekEntryElement.get(3));
-		 * userElement.appendChild(isSubmitted);
-		 * 
-		 * Element inProgess = xmlFile.createElement("inProgess");
-		 * inProgess.setTextContent(weekEntryElement.get(4));
-		 * userElement.appendChild(inProgess);
-		 */
 
 		int i = 4;
 

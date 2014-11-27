@@ -9,4 +9,5 @@ public interface WeekEntryRepository {
 	public void addEmployeeWeekEntry(UserEntry user, WeekEntry periodPay);
 	public void deleteWeekEntry(WeekEntry weekEntry);
 	public void updateWeekEntry(WeekEntry weekEntry);
+	void addWeekEntry(WeekEntry weekEntry);
 }

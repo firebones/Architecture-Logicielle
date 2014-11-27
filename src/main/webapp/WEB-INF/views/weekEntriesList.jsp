@@ -1,17 +1,15 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form1" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
-	<jsp:include page="_meta.jsp" />
+<jsp:include page="_meta.jsp" />
 </head>
 <body>
 	<jsp:include page="_header.jsp" />
-	
-	<h1>
-		Liste des semaines
-	</h1>
-	
+
+	<h1>Liste des semaines</h1>
+
 	<div class="container">
 		<div class="row">
 			<table class="table col-lg-8">
@@ -34,27 +32,48 @@
 							<td>${entry.getState()}</td>
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
-							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
-							</td>
-							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
-							</td>
-							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
-							</td>
-							<td>
-								<c:choose>
-									<c:when test="${entry.canSubmit()}"><a href="${emailUrl}${yearUrl}${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
-									<c:otherwise><button type="submit" class="btn btn-default" disabled>Soumettre</button></c:otherwise>
-								</c:choose>
-							</td>
+							<td><a
+								href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses
+									pour véhicule</a></td>
+							<td><a
+								href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses
+									de l'employé</a></td>
+							<td><a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures
+									réalisées</a></td>
+							<td><c:choose>
+									<c:when test="${entry.canSubmit()}">
+										<a href="${emailUrl}${yearUrl}${weekUrl}/submitWeekEntry"
+											class="col-lg-offset=2 btn btn-primary">Soumettre</a>
+									</c:when>
+									<c:otherwise>
+										<button type="submit" class="btn btn-default" disabled>Soumettre</button>
+									</c:otherwise>
+								</c:choose></td>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<div class="row">
-			<a href="<c:url value="addWeekEntry" />" class="col-lg-offset=2 btn btn-primary">Ajouter une semaine</a>
+			<c:choose>
+				<c:when test="${not freeWeeks.isEmpty()} }">
+					<form:form method="POST" commandName="entry"
+						action="weekEntriesList">
+						<table>
+							<tr>
+								<td>Numéro de semaine :</td>
+								<td><form:select path="weekNumber">
+										<form:options items="${freeWeeks}" />
+									</form:select></td>
+
+								<td><input class="col-lg-offset=2 btn btn-primary"
+									type="submit" value="Ajouter une semaine" /></td>
+							</tr>
+							<tr>
+							</tr>
+						</table>
+					</form:form>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </body>

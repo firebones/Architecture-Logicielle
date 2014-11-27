@@ -28,61 +28,82 @@ public class AppConfiguration {
 	WeekEntryRepository weekRepository = new WeekEntryRepositoryImpl();
 	ProjectRepository projectRepository = new ProjectRepositoryImpl();
 
-	public String getCurrentUser(){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	public String getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
 		return ((UserEntry) auth.getPrincipal()).getEmail();
 	}
 
-	public WeekEntry getCurrentUserWeekEntry(String email, int weekNumber, int yearNumber){
-		return weekRepository.getWeekEntryByEmailAndWeekAndYear(email, weekNumber, yearNumber);
+	public WeekEntry getUserWeekEntry(String email, int weekNumber,
+			int yearNumber) {
+		return weekRepository.getWeekEntryByEmailAndWeekAndYear(email,
+				weekNumber, yearNumber);
 	}
-	
+
 	public List<WeekEntry> getCurrentUserWeekEntries() {
-		
+
 		String currentUser = getCurrentUser();
-		List<WeekEntry> userWeekEntries =  new ArrayList<WeekEntry>(); 
-		
-		for (WeekEntry weekEntry : new WeekEntryRepositoryImpl().getAllWeekEntries())
-		{
+		List<WeekEntry> userWeekEntries = new ArrayList<WeekEntry>();
+
+		for (WeekEntry weekEntry : new WeekEntryRepositoryImpl()
+				.getAllWeekEntries()) {
 			if (weekEntry.getEmail().equals(currentUser))
 				userWeekEntries.add(weekEntry);
 		}
-		
+
 		return userWeekEntries;
 	}
-	
+
 	// Week Entry Repository
 
 	@Bean
 	public ArrayList<WeekEntry> getAllWeekEntries() {
 		return new WeekEntryRepositoryImpl().getAllWeekEntries();
 	}
-	
+
+	public void createWeekEntry(String email, int weekNumber, int year) {
+		WeekEntry weekEntry = new WeekEntry();
+		weekEntry.setEmail(email);
+		weekEntry.setWeekNumber(weekNumber);
+		weekEntry.setYearNumber(year);
+		weekRepository.addWeekEntry(weekEntry);
+	}
+
 	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
 		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
 	}
-		
-	public void assignHoursToEmployeeWeek(String email, int weekNumber, int yearNumber, List<Double> hours) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry)userRepository.getUserByEmail(getCurrentUser());
+
+	public void assignHoursToEmployeeWeek(String email, int weekNumber,
+			int yearNumber, List<Double> hours) {
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				getCurrentUser(), weekNumber, yearNumber);
+		EmployeeEntry user = (EmployeeEntry) userRepository
+				.getUserByEmail(getCurrentUser());
 		weekEntry = user.enterWorkHours(weekEntry, hours);
 		updateWeekEntry(weekEntry);
 	}
-	
-	public void assignKilometersToEmployeeWeek(String email, int weekNumber, int yearNumber, List<Integer> kilometers) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry)userRepository.getUserByEmail(getCurrentUser());
+
+	public void assignKilometersToEmployeeWeek(String email, int weekNumber,
+			int yearNumber, List<Integer> kilometers) {
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				getCurrentUser(), weekNumber, yearNumber);
+		EmployeeEntry user = (EmployeeEntry) userRepository
+				.getUserByEmail(getCurrentUser());
 		weekEntry = user.enterKilometers(weekEntry, kilometers);
 		updateWeekEntry(weekEntry);
 	}
-	
-	public void assignExpensesToEmployeeWeek(String email, int weekNumber, int yearNumber, List<Double> expenses) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry)userRepository.getUserByEmail(getCurrentUser());
+
+	public void assignExpensesToEmployeeWeek(String email, int weekNumber,
+			int yearNumber, List<Double> expenses) {
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				getCurrentUser(), weekNumber, yearNumber);
+		EmployeeEntry user = (EmployeeEntry) userRepository
+				.getUserByEmail(getCurrentUser());
 		weekEntry = user.enterExpenses(weekEntry, expenses);
 		updateWeekEntry(weekEntry);
 	}
-//Project
+
+	// Project
 	@Bean
 	public ArrayList<ProjectEntry> getAllProjects() {
 		return projectRepository.getAllProjects();
@@ -96,18 +117,18 @@ public class AppConfiguration {
 		return projectRepository.getTaskById(id);
 	}
 
-	public void assignedTaskToEmployee(String email, List<String> assignTasks){
+	public void assignedTaskToEmployee(String email, List<String> assignTasks) {
 		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
-		
+
 		List<TaskEntry> tasksList = new ArrayList<TaskEntry>();
 
 		for (String taskId : assignTasks) {
-			TaskEntry task = projectRepository.getTaskById(Integer.parseInt(taskId));
+			TaskEntry task = projectRepository.getTaskById(Integer
+					.parseInt(taskId));
 			tasksList.add(task);
 		}
 		userRepository.setTasksToUser(tasksList, employee);
 	}
-	
 
 	public void addProject(ProjectEntry project) {
 		projectRepository.addProject(project);
@@ -144,20 +165,15 @@ public class AppConfiguration {
 		userRepository.addUser(user);
 	}
 
-
-	public List<TaskEntry> getTasksEmployee(String email){
+	public List<TaskEntry> getTasksEmployee(String email) {
 		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
-		
+
 		return employee.getTasks();
 	}
-	
 
-	
 	public void deleteUser(UserEntry user) {
 		new UserRepositoryImpl().deleteUser(user);
 	}
-
-	
 
 	// Department Entry Repository
 	@Bean
@@ -168,29 +184,30 @@ public class AppConfiguration {
 	public DepartmentEntry getDepartmentEntryByName(String name) {
 		return new DepartmentEntry(name);
 	}
-	
+
 	public void updateWeekEntry(WeekEntry weekEntry) {
 		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
 	}
 
 	public void submitWeekEntry(String email, Integer week, Integer year) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(email, week, year);
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				email, week, year);
 		weekEntry.setState(StateWeekEntry.SUBMITTED);
 		updateWeekEntry(weekEntry);
 	}
 
-	public void approvedWeekEntry(String email, Integer week, Integer year)
-	{
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(email, week, year);
+	public void approvedWeekEntry(String email, Integer week, Integer year) {
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				email, week, year);
 		weekEntry.setState(StateWeekEntry.APPROVED);
-		updateWeekEntry(weekEntry);	
+		updateWeekEntry(weekEntry);
 	}
 
-	public void deniedWeekEntry(String email, Integer week, Integer year)
-	{
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(email, week, year);
+	public void deniedWeekEntry(String email, Integer week, Integer year) {
+		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
+				email, week, year);
 		weekEntry.setState(StateWeekEntry.REFUSED);
-		updateWeekEntry(weekEntry);	
-		
+		updateWeekEntry(weekEntry);
+
 	}
 }

@@ -17,32 +17,48 @@ public class WeekEntry {
 	private List<Double> employeeExpensesEntries = new ArrayList<Double>();
 	private List<String> expensesEntries = new ArrayList<String>();
 	private List<Double> hoursEntries = new ArrayList<Double>();
-	
+
+	public WeekEntry() {
+		state = StateWeekEntry.INPROGRESS;
+		for (int i = 0; i < 7; i++) {
+			kilometersEntries.add(0);
+			employeeExpensesEntries.add(0.0);
+			hoursEntries.add(0.0);
+		}
+	}
+
 	public Integer getWeekNumber() {
 		return weekNumber;
 	}
+
 	public void setWeekNumber(Integer weekNumber) {
 		this.weekNumber = weekNumber;
 	}
+
 	public Integer getYearNumber() {
 		return yearNumber;
 	}
+
 	public void setYearNumber(Integer yearNumber) {
 		this.yearNumber = yearNumber;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public StateWeekEntry getState() {
 		return state;
 	}
+
 	public void setState(StateWeekEntry state) {
 		this.state = state;
 	}
-	
+
 	public Boolean canSubmit() {
 		if (state == StateWeekEntry.INPROGRESS)
 			return true;
@@ -53,28 +69,35 @@ public class WeekEntry {
 	public List<Integer> getKilometersEntries() {
 		return kilometersEntries;
 	}
+
 	public void setKilometersEntries(List<Integer> kilometersEntries) {
 		this.kilometersEntries = kilometersEntries;
 	}
-	public List<Double> getEmployeeExpensesEntries(){
+
+	public List<Double> getEmployeeExpensesEntries() {
 		return employeeExpensesEntries;
 	}
-	public void setEmployeeExpensesEntries(List<Double> employeeExpensesEntries){
+
+	public void setEmployeeExpensesEntries(List<Double> employeeExpensesEntries) {
 		this.employeeExpensesEntries = employeeExpensesEntries;
 	}
+
 	public List<String> getExpensesEntries() {
 		return expensesEntries;
 	}
+
 	public void setExpensesEntries(List<String> expensesEntries) {
 		this.expensesEntries = expensesEntries;
 	}
-	public List<Double> getHoursEntries(){
+
+	public List<Double> getHoursEntries() {
 		return hoursEntries;
 	}
-	public void setHoursEntries(List<Double> hoursEntries){
+
+	public void setHoursEntries(List<Double> hoursEntries) {
 		this.hoursEntries = hoursEntries;
 	}
-	
+
 	public List<String> getDaysOfWeek() {
 
 		List<String> daysOfWeek = new ArrayList<String>();
@@ -88,13 +111,13 @@ public class WeekEntry {
 
 		return daysOfWeek;
 	}
-	
+
 	public List<String> getDatesOfWeek() {
 
 		List<String> dates = new ArrayList<String>(7);
 
 		Date refDate = getFirstDateForWeekNumber();
-		
+
 		SimpleDateFormat format = new SimpleDateFormat("dd");
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(refDate);
@@ -107,14 +130,14 @@ public class WeekEntry {
 
 		return dates;
 	}
-	
-	public String getStartDate(){
+
+	public String getStartDate() {
 		Date refDate = getFirstDateForWeekNumber();
 		Format formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(refDate.getTime());
 	}
-	
-	public String getEndDate(){
+
+	public String getEndDate() {
 		Date refDate = getLastDateForWeekNumber();
 		Format formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return formatter.format(refDate.getTime());
@@ -123,15 +146,17 @@ public class WeekEntry {
 	private Date getFirstDateForWeekNumber() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
 		calendar.set(Calendar.YEAR, yearNumber);
 
 		return calendar.getTime();
 	}
-	
+
 	private Date getLastDateForWeekNumber() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		calendar.set(Calendar.WEEK_OF_YEAR, weekNumber);
 		calendar.set(Calendar.YEAR, yearNumber);
 		calendar.add(Calendar.DAY_OF_YEAR, 6);
