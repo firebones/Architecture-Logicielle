@@ -37,12 +37,7 @@
 							<input name="rateHour" class="input-block-level1" id="${entry.rateHour}" type="text" value="${entry.rateHour}"/>
 						</td>
 						<td>
-<<<<<<< HEAD
-							<a href="${entryUrl}/delete">Supprimer l'employé</a>
-=======
-							<a href="${entryUrl}/delete">Supprimer l'employé</a>
->>>>>>> 2633fe2dc8502ff413d1a230d108c1a4b7eed8ba
-						</td>
+							<a href="${entryUrl}/delete">Supprimer l'employé</a>				</td>
 				</c:forEach>
 			</tbody>
 		</table>
