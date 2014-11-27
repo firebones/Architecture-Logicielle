@@ -54,26 +54,21 @@
 			</table>
 		</div>
 		<div class="row">
-			<c:choose>
-				<c:when test="${not freeWeeks.isEmpty()} }">
-					<form:form method="POST" commandName="entry"
-						action="weekEntriesList">
-						<table>
-							<tr>
-								<td>Numéro de semaine :</td>
-								<td><form:select path="weekNumber">
-										<form:options items="${freeWeeks}" />
-									</form:select></td>
+			<form:form method="POST" commandName="entry" action="weekEntriesList">
+				<table>
+					<tr>
+						<td>Numéro de semaine :</td>
+						<td><form:select path="weekNumber">
+								<form:options items="${freeWeeks}" />
+							</form:select></td>
 
-								<td><input class="col-lg-offset=2 btn btn-primary"
-									type="submit" value="Ajouter une semaine" /></td>
-							</tr>
-							<tr>
-							</tr>
-						</table>
-					</form:form>
-				</c:when>
-			</c:choose>
+						<td><input class="col-lg-offset=2 btn btn-primary"
+							type="submit" value="Ajouter une semaine" /></td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			</form:form>
 		</div>
 	</div>
 </body>

@@ -219,6 +219,9 @@ public class WeekEntryController {
 		String email = ((UserEntry) auth.getPrincipal()).getEmail();
 		int year = getCurrentYear();
 		int currentWeek = getCurrentWeekInYear();
+		if (createdWeekNumber.getWeekNumber() == null) {
+			return "redirect:/weekEntriesList";
+		}
 		int weekNumber = createdWeekNumber.getWeekNumber();
 
 		String intervalleString = Configuration
