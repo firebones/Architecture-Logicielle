@@ -16,7 +16,7 @@
 			<thead>
 				<tr>
 					<th>Nom</th>
-					<th>Email</th>
+					<th>Courriel</th>
 					<th>Rôle</th>
 					<th>Taches</th>
 					<th>Taux Horaire</th>
@@ -37,7 +37,8 @@
 							<input name="rateHour" class="input-block-level1" id="${entry.rateHour}" type="text" value="${entry.rateHour}"/>
 						</td>
 						<td>
-							<a href="${entryUrl}/delete">Supprimer</a>
+							<a href="${entryUrl}/delete">Supprimer l'employé</a>
+
 						</td>
 				</c:forEach>
 			</tbody>
