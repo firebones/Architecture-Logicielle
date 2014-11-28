@@ -1,7 +1,10 @@
 package ca.ulaval.glo4003.architecture_logicielle.appConfig;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +24,7 @@ import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.CreatedWeekNumber;
 
 @Configuration
 public class AppConfiguration {
@@ -209,5 +213,96 @@ public class AppConfiguration {
 		weekEntry.setState(StateWeekEntry.REFUSED);
 		updateWeekEntry(weekEntry);
 
+	}
+	
+	public void createWeekEntry(CreatedWeekNumber createdWeekNumber){
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String email = ((UserEntry) auth.getPrincipal()).getEmail();
+		int year = getCurrentYear();
+		int currentWeek = getCurrentWeekInYear();
+		if (createdWeekNumber.getWeekNumber() == null) {
+//			return "redirect:/weekEntriesList";
+		}
+		int weekNumber = createdWeekNumber.getWeekNumber();
+
+		String intervalleString = ca.ulaval.glo4003.architecture_logicielle.util.Configuration.getConfig("FURTHER_WK_CREATION");
+		int intervalle = 0;
+		try {
+			intervalle = Integer.parseInt(intervalleString);
+		} catch (Exception e) {
+
+		}
+		if (weekNumber < currentWeek - intervalle) {
+			year++;
+		} else if (weekNumber > currentWeek + intervalle) {
+			year--;
+		}
+		createWeekEntry(email, weekNumber, year);
+	}
+	
+	
+	public Map<String, Integer> getNoCreatedWeeks(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = ((UserEntry) auth.getPrincipal()).getEmail();
+
+		Map<String, Integer> noCreatedWeeks = new LinkedHashMap<>();
+		
+
+		String intervalleString = ca.ulaval.glo4003.architecture_logicielle.util.Configuration.getConfig("FURTHER_WK_CREATION");
+		int intervalle = 0;
+		try {
+			intervalle = Integer.parseInt(intervalleString);
+		} catch (Exception e) {
+
+		}
+
+		if (intervalle > 25) {
+			intervalle = 25;
+		}
+		int weekNb = getCurrentWeekInYear() - intervalle;
+		int year = getCurrentYear();
+		int weeksInCurrentYear = getNumberWeeksInYear(year);
+		if (weekNb <= 0) {
+			year--;
+			weeksInCurrentYear = getNumberWeeksInYear(year);
+			weekNb += weeksInCurrentYear;
+		}
+		for (int i = 0; i <= intervalle * 2; i++) {
+			if (getUserWeekEntry(email, weekNb, year) == null) {
+				noCreatedWeeks.put("" + weekNb, weekNb);
+			}
+			weekNb++;
+			if (weekNb > weeksInCurrentYear) {
+				year++;
+				weekNb = 1;
+				weeksInCurrentYear = getNumberWeeksInYear(year);
+			}
+		}
+		
+		return noCreatedWeeks;
+	}
+	
+	public int getCurrentWeekInYear() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(Calendar.WEEK_OF_YEAR);
+	}
+
+	public int getCurrentYear() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(Calendar.YEAR);
+	}
+	
+	public int getNumberWeeksInYear(int year) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+		calendar.set(year, Calendar.DECEMBER, 31);
+		int weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
+		while (weekNumber <= 1) {
+			calendar.add(Calendar.DAY_OF_YEAR, -1);
+			weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
+		}
+		return weekNumber;
 	}
 }
