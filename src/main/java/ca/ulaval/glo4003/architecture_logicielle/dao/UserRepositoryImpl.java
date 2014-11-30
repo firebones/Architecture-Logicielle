@@ -211,15 +211,17 @@ public class UserRepositoryImpl implements UserRepository
 		userElement.add(3, user.getHashedPassword());
 				
 		
-		if (user instanceof EmployeeEntry && ((EmployeeEntry) user).getTasks().size() > 0) {
+		if (user instanceof EmployeeEntry) {
 			
 			userElement.add(4, ((EmployeeEntry)user).getCompany());
 			userElement.add(5, ((EmployeeEntry)user).getDepartment());
 			userElement.add(6, ((EmployeeEntry)user).getRateHour().toString());
 			
-			for (int i = 7; i < ((EmployeeEntry) user).getTasks().size(); i++) {
-				TaskEntry task = ((EmployeeEntry) user).getTasks().get(i);
-				userElement.add(i, task.getId().toString());
+			if (((EmployeeEntry) user).getTasks().size() > 0) {
+				for (int i = 7; i < ((EmployeeEntry) user).getTasks().size(); i++) {
+					TaskEntry task = ((EmployeeEntry) user).getTasks().get(i);
+					userElement.add(i, task.getId().toString());
+				}
 			}
 		}
 		

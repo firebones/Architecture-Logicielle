@@ -13,6 +13,9 @@ import ca.ulaval.glo4003.architecture_logicielle.web.converters.ProjectEntryConv
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.AssignedTasks;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.ProjectViewModel;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.TaskViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
+import ca.ulaval.glo4003.architecture_logicielle.web.converters.EmployeeEntryConverter;
 
 @Controller
 public class DeptManagerController {
@@ -20,6 +23,7 @@ public class DeptManagerController {
 	private AppConfiguration configuration = new AppConfiguration();
 
 	private ProjectEntryConverter projectConverter = new ProjectEntryConverter();
+	private EmployeeEntryConverter employeeConverter = new EmployeeEntryConverter();
 
 
 	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
@@ -123,5 +127,18 @@ public class DeptManagerController {
 	@RequestMapping(value = "/{id}/cancel", method = RequestMethod.GET)
 	public String cancelTask() {
 		return "redirect:/projectList";
+	}
+	
+	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+	public String addNewEmployee(Model model) {
+	    model.addAttribute("newEmployee", new EmployeeEntry());
+	    return "addEmployee";
+	}
+	
+	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
+		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
+		configuration.addUser(newEmployee);
+		return "redirect:/employeeList";
 	}
 }

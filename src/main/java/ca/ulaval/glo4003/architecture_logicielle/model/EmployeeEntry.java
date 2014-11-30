@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
-	private Double rateHour;
-	private String companyName;
-	private String departmentName;
+	private Double rateHour = 20.0;
+	private String companyName = "Company1";
+	private String departmentName = "Department1";
 
 	public EmployeeEntry() {
 		this.role = RoleUser.EMPLOYEE;
