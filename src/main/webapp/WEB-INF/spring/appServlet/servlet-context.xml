@@ -20,6 +20,30 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- configuration to send mails with gmail port 465 -->
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <beans:property name="host" value="smtp.gmail.com"/>
+        <beans:property name="username" value="tparchitecture2014@gmail.com"/>
+        <beans:property name="password" value="architecture123"/>
+        <beans:property name="port" value="465"/>
+        <beans:property name="javaMailProperties">
+                <beans:value>
+                        mail.debug=true
+                        mail.smtp.auth=true
+                        mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+                        mail.smtp.socketFactory.fallback=false
+                </beans:value>
+        </beans:property>
+ 
+    </beans:bean>
+ 
+    <!-- default template  -->
+    <beans:bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+      <beans:property name="from" value="tparchitecture@gmail.com"/>
+      <beans:property name="to" value="sebasbravo@gmail.com"/>
+      <beans:property name="subject" value="test mail architecture"/>
+    </beans:bean>  
 	
 	
 </beans:beans>
+

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service("SendMailMessageService")
 public class MailServiceImpl implements MailService {
 	
-	//@Autowired
+	@Autowired
     private MailSender mailSender;
     
     public void setMailSender(MailSender mailSender) {  
@@ -23,6 +23,51 @@ public class MailServiceImpl implements MailService {
 
 	@Override
 	public void send(String to, String subject, String text) throws Exception {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		
+	     
+        msg.setTo(to);
+        msg.setSubject(subject);
+        msg.setText(text);
+        
+ 
+        try{
+            mailSender.send(msg);
+        }
+        catch(MailException ex) {
+            System.err.println(ex.getMessage());
+        }
+		
+	}
+
+	@Override
+	public void aprovedSend(String to) throws Exception {
+		
+		String subject= "Transaction Aproved";
+		String text = "The Week Entry is aproved";
+		
+		SimpleMailMessage msg = new SimpleMailMessage();
+		
+	     
+        msg.setTo(to);
+        msg.setSubject(subject);
+        msg.setText(text);
+        
+ 
+        try{
+            mailSender.send(msg);
+        }
+        catch(MailException ex) {
+            System.err.println(ex.getMessage());
+        }
+		
+	}
+
+	@Override
+	public void refusedSend(String to) throws Exception {
+		String subject= "Transaction refused";
+		String text = "The Week Entry is refused";
+		
 		SimpleMailMessage msg = new SimpleMailMessage();
 		
 	     

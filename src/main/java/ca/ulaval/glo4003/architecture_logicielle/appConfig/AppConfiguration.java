@@ -24,6 +24,8 @@ import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailService;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailServiceImpl;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.CreatedWeekNumber;
 
 @Configuration
@@ -31,6 +33,7 @@ public class AppConfiguration {
 	UserRepository userRepository = new UserRepositoryImpl();
 	WeekEntryRepository weekRepository = new WeekEntryRepositoryImpl();
 	ProjectRepository projectRepository = new ProjectRepositoryImpl();
+	MailService mailService = new MailServiceImpl();
 
 	public String getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext()
@@ -304,5 +307,13 @@ public class AppConfiguration {
 			weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
 		}
 		return weekNumber;
+	}
+	
+	public void aprovedSend(String to) throws Exception{
+		mailService.aprovedSend(to);
+	}
+	
+	public void refusedSend(String to) throws Exception{
+		mailService.refusedSend(to);
 	}
 }

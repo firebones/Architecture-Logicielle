@@ -10,7 +10,12 @@
         <rateHour>20.0</rateHour>
     
     
+    
+    
     <tasks>
+            <taskId>3</taskId>
+            <taskId>6</taskId>
+            <taskId>7</taskId>
             <taskId>4</taskId>
             <taskId>5</taskId>
             <taskId>8</taskId>
@@ -24,11 +29,18 @@
 		<company>Company1</company>
 		<department>Department1</department>
 		<rateHour>20.0</rateHour>
-		<tasks>
+		
+	
+    
+    <tasks>
+            <taskId>3</taskId>
+            <taskId>6</taskId>
+            <taskId>7</taskId>
             <taskId>4</taskId>
             <taskId>5</taskId>
+            <taskId>8</taskId>
         </tasks>
-	</user>
+    </user>
 	<user>
         <name>hamid</name>
         <email>hamid@gmail.com</email>
@@ -60,6 +72,14 @@
         <company>Company1</company>
 		<department>Department1</department>
 		<rateHour>20.0</rateHour>
+    <tasks>
+            <taskId>3</taskId>
+            <taskId>6</taskId>
+            <taskId>7</taskId>
+            <taskId>4</taskId>
+            <taskId>5</taskId>
+            <taskId>8</taskId>
+        </tasks>
     </user>
 <user>
         <name>employee2</name>
@@ -94,5 +114,6 @@
             <taskId>7</taskId>
         </tasks>
     </user>
+
 
 </users>

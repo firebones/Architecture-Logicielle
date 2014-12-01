@@ -10,8 +10,9 @@
     <context:annotation-config/>
  
     
-    <context:component-scan base-package="ca" scoped-proxy="interfaces" />  
- 
+    <context:component-scan base-package="ca.ulaval.glo4003.architecture_logicielle" scoped-proxy="interfaces" />
+    
+     
     <!-- configuration to send mails with gmail port 465 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
