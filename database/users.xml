@@ -116,4 +116,13 @@
     </user>
 
 
+<user>
+        <name>Pape</name>
+        <email>tahyriman@gmail.com</email>
+        <role>EMPLOYEE</role>
+        <hashedPassword>default</hashedPassword>
+        <company>Company1</company>
+        <department>Department1</department>
+        <rateHour>20.0</rateHour>
+    </user>
 </users>

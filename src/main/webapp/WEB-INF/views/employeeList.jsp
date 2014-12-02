@@ -33,11 +33,13 @@
 						<td>
 							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
 						</td>
+						<td>${entry.rateHour}</td>
 						<td>
-							<input name="rateHour" class="input-block-level1" id="${entry.rateHour}" type="text" value="${entry.rateHour}"/>
+							<a href="${entryUrl}/updateRateHour">Modifier Taux Horaire</a>				
 						</td>
 						<td>
-							<a href="${entryUrl}/delete">Supprimer l'employé</a>				</td>
+							<a href="${entryUrl}/delete">Supprimer l'employé</a>				
+						</td>
 				</c:forEach>
 			</tbody>
 		</table>
