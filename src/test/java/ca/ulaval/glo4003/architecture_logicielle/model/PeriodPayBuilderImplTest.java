@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CompanyEntryTest
+public class PeriodPayBuilderImplTest
 {
 
 	@Before
@@ -14,31 +14,37 @@ public class CompanyEntryTest
 	}
 
 	@Test
-	public void testCompanyEntry()
+	public void testPeriodPayBuilderImpl()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddDepartment()
+	public void testSetInformation()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testRemoveDepartment()
+	public void testSetEmployeeKilometers()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetDepartments()
+	public void testSetEmployeeExpenses()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetDepartments()
+	public void testSetEmployeeHours()
+	{
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public void testGetPeriodPayEntry()
 	{
 		fail("Not yet implemented"); // TODO
 	}

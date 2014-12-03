@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.dao;
+package ca.ulaval.glo4003.architecture_logiciel.web.converters;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ProjectRepositoryImplTest
+public class WeekEntryConverterTest
 {
 
 	@Before
@@ -14,61 +14,49 @@ public class ProjectRepositoryImplTest
 	}
 
 	@Test
-	public void testProjectRepositoryImpl()
+	public void testConvertStringsToIntegers()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetAllProjects()
+	public void testConvertStringsToDoubles()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetProjectById()
+	public void testConvertIntegerToStringList()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetTaskById()
+	public void testConvertDoublesToStringList()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddProject()
+	public void testConvertToDoubleList()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testDeleteProject()
+	public void testToHoursEntryViewModel()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testUpdateProject()
+	public void testToExpensesEntryViewModel()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddTaskToProject()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testUpdateTask()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRemoveTaskFromProject()
+	public void testToKilometersEntryViewModel()
 	{
 		fail("Not yet implemented"); // TODO
 	}

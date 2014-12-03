@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AdminEntryTest
+public class ModelFacadeTest
 {
 
 	@Before
@@ -14,7 +14,7 @@ public class AdminEntryTest
 	}
 
 	@Test
-	public void testAdminEntry()
+	public void test()
 	{
 		fail("Not yet implemented"); // TODO
 	}

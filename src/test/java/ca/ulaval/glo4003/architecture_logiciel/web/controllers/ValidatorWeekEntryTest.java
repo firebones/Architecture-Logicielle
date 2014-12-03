@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logiciel.web.controllers;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class CompanyEntryTest
+public class ValidatorWeekEntryTest
 {
 
 	@Before
@@ -14,31 +14,37 @@ public class CompanyEntryTest
 	}
 
 	@Test
-	public void testCompanyEntry()
+	public void testValidateAssignedKilometers()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddDepartment()
+	public void testValidateAssignedHours()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testRemoveDepartment()
+	public void testValidateAssignedExpenses()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetDepartments()
+	public void testValidateTasksRate()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetDepartments()
+	public void testTryParseInt()
+	{
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public void testTryParseDouble()
 	{
 		fail("Not yet implemented"); // TODO
 	}

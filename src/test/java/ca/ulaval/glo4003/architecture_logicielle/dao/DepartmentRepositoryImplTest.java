@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ProjectRepositoryImplTest
+public class DepartmentRepositoryImplTest
 {
 
 	@Before
@@ -14,61 +14,55 @@ public class ProjectRepositoryImplTest
 	}
 
 	@Test
-	public void testProjectRepositoryImpl()
+	public void testGetAllDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetAllProjects()
+	public void testGetDepartmentByName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetProjectById()
+	public void testAddDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetTaskById()
+	public void testDeleteDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddProject()
+	public void testAddEmployeeToDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testDeleteProject()
+	public void testRemoveEmployeeFromDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testUpdateProject()
+	public void testAddManagerToDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddTaskToProject()
+	public void testRemoveManagerFromDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testUpdateTask()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRemoveTaskFromProject()
+	public void testUpdateDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}

@@ -7,87 +7,64 @@ import org.junit.Test;
 
 public class UserEntryTest
 {
-	private UserEntry user;
 
 	@Before
 	public void setUp() throws Exception
-	{		
-		user = new EmployeeEntry();
-		user.setName("Pape");
-		user.setEmail("pape@gmail.com");
-		user.setHashedPassword("1234");
+	{
 	}
 
 	@Test
 	public void testGetName()
 	{
-		String name = user.getName();
-		
-		assertEquals(name, "Pape");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testSetName()
 	{
-		user.setName("Jean");
-		
-		assertEquals(user.getName(), "Jean");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testGetEmail()
 	{
-		String email = user.getEmail();
-		
-		assertEquals(email, "pape@gmail.com");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testSetEmail()
 	{
-		user.setEmail("jean@gmail.com");
-		
-		assertEquals(user.getEmail(), "jean@gmail.com");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testGetHashedPassword()
 	{
-		String hashedPassword = user.getHashedPassword();
-		
-		assertEquals(hashedPassword, "1234");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testSetHashedPassword()
 	{
-		user.setHashedPassword("4321");
-		
-		assertEquals(user.getHashedPassword(), "4321");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testGetRole()
 	{
-		RoleUser role = user.getRole();
-		
-		assertEquals(role, RoleUser.EMPLOYEE);
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testIsPasswordValid()
 	{
-		boolean test = user.isPasswordValid("1234");
-		
-		assertEquals(test, true);
+		fail("Not yet implemented"); // TODO
 	}
-	
+
 	@Test
-	public void testIsNotPasswordValid()
+	public void testEqualsObject()
 	{
-		boolean test = user.isPasswordValid("4321");
-		
-		assertEquals(test, false);
+		fail("Not yet implemented"); // TODO
 	}
 
 }

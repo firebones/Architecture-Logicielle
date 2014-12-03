@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ProjectRepositoryImplTest
+public class XMLWeekPersistanceTest
 {
 
 	@Before
@@ -14,61 +14,43 @@ public class ProjectRepositoryImplTest
 	}
 
 	@Test
-	public void testProjectRepositoryImpl()
+	public void testGetInstance()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetAllProjects()
+	public void testGetAllWeekEntries()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetProjectById()
+	public void testGetWeekEntryByEmailAndWeek()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetTaskById()
+	public void testGetWeekEntryByEmail()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddProject()
+	public void testAddPeriodPay()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testDeleteProject()
+	public void testAddWeekEntry()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testUpdateProject()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testAddTaskToProject()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testUpdateTask()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRemoveTaskFromProject()
+	public void testUpdateWeekEntry()
 	{
 		fail("Not yet implemented"); // TODO
 	}

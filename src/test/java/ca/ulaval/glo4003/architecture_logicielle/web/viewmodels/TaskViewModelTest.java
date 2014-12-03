@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.dao;
+package ca.ulaval.glo4003.architecture_logicielle.web.viewmodels;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ProjectRepositoryImplTest
+public class TaskViewModelTest
 {
 
 	@Before
@@ -14,61 +14,49 @@ public class ProjectRepositoryImplTest
 	}
 
 	@Test
-	public void testProjectRepositoryImpl()
+	public void testGetId()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetAllProjects()
+	public void testSetId()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetProjectById()
+	public void testGetName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetTaskById()
+	public void testSetName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddProject()
+	public void testGetIsAssigned()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testDeleteProject()
+	public void testSetIsAssigned()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testUpdateProject()
+	public void testGetRate()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddTaskToProject()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testUpdateTask()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testRemoveTaskFromProject()
+	public void testSetRate()
 	{
 		fail("Not yet implemented"); // TODO
 	}

@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logicielle.web.viewmodels;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class CompanyEntryTest
+public class ProjectViewModelTest
 {
 
 	@Before
@@ -14,31 +14,37 @@ public class CompanyEntryTest
 	}
 
 	@Test
-	public void testCompanyEntry()
+	public void testGetId()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddDepartment()
+	public void testSetId()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testRemoveDepartment()
+	public void testGetName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetDepartments()
+	public void testSetName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetDepartments()
+	public void testGetTasks()
+	{
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public void testSetTasks()
 	{
 		fail("Not yet implemented"); // TODO
 	}

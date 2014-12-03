@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logicielle.web.viewmodels;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class AdminEntryTest
+public class AssignedTasksTest
 {
 
 	@Before
@@ -14,7 +14,13 @@ public class AdminEntryTest
 	}
 
 	@Test
-	public void testAdminEntry()
+	public void testGetTasks()
+	{
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public void testSetTasks()
 	{
 		fail("Not yet implemented"); // TODO
 	}

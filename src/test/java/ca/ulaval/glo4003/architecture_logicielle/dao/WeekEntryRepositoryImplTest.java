@@ -2,73 +2,63 @@ package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
-
 public class WeekEntryRepositoryImplTest
 {
-	ArrayList<WeekEntry> weeks = new ArrayList<WeekEntry>();
-	WeekEntryRepositoryImpl repository; 
-	
+
 	@Before
 	public void setUp() throws Exception
 	{
-		repository = new WeekEntryRepositoryImpl();
+	}
+
+	@Test
+	public void testWeekEntryRepositoryImpl()
+	{
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	public void testGetAllWeekEntries()
 	{
-		weeks = repository.getAllWeekEntries();
-		
-		assertEquals(weeks.isEmpty(), false);
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetWeekEntryByEmailAndWeek()
+	public void testGetWeekEntryByEmailAndWeekAndYear()
 	{
-		WeekEntry week = repository.getWeekEntryByEmailAndWeekAndYear("joe@gmail.com", 41, 2014);
-		
-//		assertEquals(week.getStartDate(), "2014-10-05");
-//		assertEquals(week.getEndDate(), "2014-10-11");
-		assertEquals(week.getEmployeeExpensesEntries().size(), 7);
-		assertEquals(week.getKilometersEntries().size(), 7);
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetWeekEntryByNotExistingEmailAndWeek()
+	public void testGetWeekEntryByEmail()
 	{
-		WeekEntry week = repository.getWeekEntryByEmailAndWeekAndYear("pape@gmail.com", 999, 2014);
-		
-		assertEquals(week, null);
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetExpenses()
+	public void testAddEmployeeWeekEntry()
 	{
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetKilometers()
+	public void testDeleteWeekEntry()
 	{
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetEmployeeExpenses()
+	public void testAddWeekEntry()
 	{
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetHours()
+	public void testUpdateWeekEntry()
 	{
-		fail("Not yet implemented");
+		fail("Not yet implemented"); // TODO
 	}
 
 }

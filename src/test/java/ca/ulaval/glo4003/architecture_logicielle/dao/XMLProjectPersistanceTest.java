@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logicielle.dao;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class CompanyEntryTest
+public class XMLProjectPersistanceTest
 {
 
 	@Before
@@ -14,31 +14,37 @@ public class CompanyEntryTest
 	}
 
 	@Test
-	public void testCompanyEntry()
+	public void testGetInstance()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddDepartment()
+	public void testGetAllProjects()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testRemoveDepartment()
+	public void testAddProject()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetDepartments()
+	public void testAddTaskToProject()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetDepartments()
+	public void testUpdateProject()
+	{
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public void testUpdateTask()
 	{
 		fail("Not yet implemented"); // TODO
 	}

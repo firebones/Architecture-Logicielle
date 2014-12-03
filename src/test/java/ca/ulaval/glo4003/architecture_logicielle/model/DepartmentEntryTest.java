@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class WeekEntryTest
+public class DepartmentEntryTest
 {
 
 	@Before
@@ -14,133 +14,109 @@ public class WeekEntryTest
 	}
 
 	@Test
-	public void testWeekEntry()
+	public void testDepartmentEntry()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetWeekNumber()
+	public void testDepartmentEntryString()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetWeekNumber()
+	public void testAddDepartmentManager()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetYearNumber()
+	public void testRemoveDepartmentManager()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetYearNumber()
+	public void testIsManagerInDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetEmail()
+	public void testAddEmployee()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetEmail()
+	public void testRemoveEmployee()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetState()
+	public void testIsEmployeeInDepartment()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetState()
+	public void testGetDepartmentName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testCanSubmit()
+	public void testSetDepartmentName()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetKilometersEntries()
+	public void testGetEmployees()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetKilometersEntries()
+	public void testSetEmployees()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetEmployeeExpensesEntries()
+	public void testGetDeptManagers()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetEmployeeExpensesEntries()
+	public void testSetDeptManagers()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetExpensesEntries()
+	public void testGetSubmittedWeekEntries()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetExpensesEntries()
+	public void testGetApprovedWeekEntries()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetHoursEntries()
+	public void testGetRefusedWeekEntries()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testSetHoursEntries()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetDaysOfWeek()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetDatesOfWeek()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetStartDate()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetEndDate()
+	public void testGetInProgressWeekEntries()
 	{
 		fail("Not yet implemented"); // TODO
 	}

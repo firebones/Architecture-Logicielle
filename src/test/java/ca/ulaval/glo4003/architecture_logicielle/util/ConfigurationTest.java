@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logicielle.util;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class AdminEntryTest
+public class ConfigurationTest
 {
 
 	@Before
@@ -14,7 +14,7 @@ public class AdminEntryTest
 	}
 
 	@Test
-	public void testAdminEntry()
+	public void testGetConfig()
 	{
 		fail("Not yet implemented"); // TODO
 	}

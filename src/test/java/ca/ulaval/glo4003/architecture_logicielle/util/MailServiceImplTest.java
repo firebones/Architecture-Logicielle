@@ -1,11 +1,11 @@
-package ca.ulaval.glo4003.architecture_logicielle.model;
+package ca.ulaval.glo4003.architecture_logicielle.util;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class CompanyEntryTest
+public class MailServiceImplTest
 {
 
 	@Before
@@ -14,31 +14,25 @@ public class CompanyEntryTest
 	}
 
 	@Test
-	public void testCompanyEntry()
+	public void testSetMailSender()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testAddDepartment()
+	public void testSend()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testRemoveDepartment()
+	public void testAprovedSend()
 	{
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
-	public void testGetDepartments()
-	{
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testSetDepartments()
+	public void testRefusedSend()
 	{
 		fail("Not yet implemented"); // TODO
 	}
