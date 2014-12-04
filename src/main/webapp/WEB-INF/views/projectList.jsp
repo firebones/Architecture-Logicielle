@@ -19,7 +19,7 @@
 					<tr>
 						<td><strong>Projet: ${project.name}</strong></td>
 						<td>
-								<a href="${projectUrl}/editProject">Modifier</a>
+								<a href="${projectUrl}/editProject">Modifier le projet</a>
 							</td>
 						<td>
 							<a href="${projectUrl}/addTask">Créer une tâche</a>
@@ -37,7 +37,7 @@
 							<td>${task.name}</td>		
 							<td>${task.rate}</td>
 							<td>
-								<a href="${taskUrl}/editTask">Modifier</a>
+								<a href="${taskUrl}/editTask">Modifier la tâche</a>
 							</td>
 						</tr>
 					</c:forEach>

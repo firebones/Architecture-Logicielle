@@ -13,9 +13,8 @@
 				<li><a href="/weekEntriesList">Liste des semaines</a></li>
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-				<li><a href="/j_spring_security_logout"> Bienvenue, <sec:authentication
-							property="principal.name" /> <%-- This corresponds to employee.getName() --%>
-						Déconnexion
+				<li><a href="/j_spring_security_logout"> Bienvenue <sec:authentication
+							property="principal.name" /> <%-- This corresponds to employee.getName() --%>- Déconnexion
 				</a></li>
 			</sec:authorize>
 		</ul>
