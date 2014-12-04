@@ -235,7 +235,7 @@ public class EmployeeEntryTest
 	@Test
 	public void testEnterExpenses()
 	{		
-		WeekEntry newWeekEntry = employee.enterWorkHours(weekEntry, expenses);
+		WeekEntry newWeekEntry = employee.enterExpenses(weekEntry, expenses);
 		
 		assertEquals(newWeekEntry.getEmployeeExpensesEntries(), expenses);
 	}
