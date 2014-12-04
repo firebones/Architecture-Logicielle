@@ -18,7 +18,7 @@
 					<th>Nom</th>
 					<th>Courriel</th>
 					<th>Rôle</th>
-					<th>Taches</th>
+					<th>Tâches</th>
 					<th>Taux Horaire</th>
 					<th colspan="4"></th>
 				</tr>
@@ -35,7 +35,7 @@
 						</td>
 						<td>${entry.rateHour}</td>
 						<td>
-							<a href="${entryUrl}/updateRateHour">Modifier Taux Horaire</a>				
+							<a href="${entryUrl}/updateRateHour">Modifier le taux horaire</a>				
 						</td>
 						<td>
 							<a href="${entryUrl}/delete">Supprimer l'employé</a>				
