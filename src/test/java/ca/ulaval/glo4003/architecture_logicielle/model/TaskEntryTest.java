@@ -7,52 +7,81 @@ import org.junit.Test;
 
 public class TaskEntryTest
 {
-
+	private TaskEntry task;
+	
 	@Before
 	public void setUp() throws Exception
 	{
+		Integer id = 1;
+		String name = "tache1";
+		Double rate = 1.11;
+		
+		task = new TaskEntry();
+		task.setId(id);
+		task.setName(name);
+		task.setRate(rate);
+
 	}
 
 	@Test
 	public void testGetId()
 	{
-		fail("Not yet implemented"); // TODO
+		int id1 = task.getId();
+		
+		assertEquals(id1, 1);
 	}
 
 	@Test
 	public void testSetId()
 	{
-		fail("Not yet implemented"); // TODO
+		task.setId(2);
+		
+		assertEquals((Object)task.getId(), 2);
+
 	}
 
 	@Test
 	public void testGetName()
 	{
-		fail("Not yet implemented"); // TODO
+		String name = task.getName();
+		
+		assertEquals(name, "tache1");
 	}
 
 	@Test
 	public void testSetName()
 	{
-		fail("Not yet implemented"); // TODO
+		task.setName("newTache");
+		
+		assertEquals(task.getName(), "newTache");
+
 	}
 
 	@Test
 	public void testGetRate()
 	{
-		fail("Not yet implemented"); // TODO
+		Double id1 = task.getRate();
+		
+		assertEquals((Object)id1, 1.11);
+
 	}
 
 	@Test
 	public void testSetRate()
 	{
-		fail("Not yet implemented"); // TODO
+		task.setRate(1.21);
+		
+		assertEquals((Object)task.getRate(), 1.21);
+
 	}
 
 	@Test
 	public void testEqualsObject()
 	{
-		fail("Not yet implemented"); // TODO
+		boolean test = task.equals(task);
+		
+		assertEquals(test, true);
+
 	}
 
 }

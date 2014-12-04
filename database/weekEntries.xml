@@ -681,4 +681,34 @@
         <hour>0.0</hour>
         <hours/>
     </weekEntry>
+<weekEntry>
+        <email>tahyriman@gmail.com</email>
+        <weekNumber>39</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>Refused</state>
+        <kilometer>0</kilometer>
+        <kilometer>13</kilometer>
+        <kilometer>24</kilometer>
+        <kilometer>2</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>7.0</hour>
+        <hour>7.5</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
 </weekEntries>
