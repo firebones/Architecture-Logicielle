@@ -12,6 +12,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -240,4 +244,21 @@ public class EmployeeEntryTest
 		assertEquals(newWeekEntry.getEmployeeExpensesEntries(), expenses);
 	}
 
+	@Test
+	public void testGetWeekEntry(){
+		
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public void testGetWeekEntries(){
+			
+		fail("Not yet implemented"); // TODO
+	}
+	
+	@Test
+	public void testCreateWeekEntry(){		
+		
+		fail("Not yet implemented"); // TODO
+	}
 }

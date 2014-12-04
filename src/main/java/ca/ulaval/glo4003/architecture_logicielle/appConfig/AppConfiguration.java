@@ -18,13 +18,11 @@ import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
-import ca.ulaval.glo4003.architecture_logicielle.util.MailService;
-import ca.ulaval.glo4003.architecture_logicielle.util.MailServiceImpl;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.CreatedWeekNumber;
 
 @Configuration
 public class AppConfiguration {
-	MailService mailService = new MailServiceImpl();
+	
 	ModelFacade facade = new ModelFacade(); 
 
 	// Week Entry Repository
@@ -78,8 +76,6 @@ public class AppConfiguration {
 	public void deniedWeekEntry(String email, Integer week, Integer year) {
 		facade.deniedWeekEntry(email, week, year);
 	}
-	
-	
 	
 	// Project
 	@Bean
@@ -151,71 +147,27 @@ public class AppConfiguration {
 	}
 	
 	public DepartmentEntry getDepartmentEntryByName(String name) {
-		return new DepartmentEntry(name);
+		return facade.getDepartmentEntryByName(name);
 	}
 
+	// Mailing Treatment
 	
+	public void aprovedSend(String to) throws Exception{
+		facade.aprovedSend(to);
+	}
 	
-	
-	///////////////////////traitement //////////////////////////////
-	
-	
-
-	
-		
-
-		
-		
-
-		
-
-		
-
-		
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-	
-///////////////// traitement a revoir ou supprimer/////	
+	public void refusedSend(String to) throws Exception{
+		facade.refusedSend(to);
+	}
 	
 	
 
-//	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
-//		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
-//	}	
-	
-//	public void updateWeekEntry(WeekEntry weekEntry) {
-//		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
-//	}
-
-/////////////////////////////////////////////////////////////////	
-
-
-
-	
-	
-
-	
-
-	
-
-
-	
 	public void createWeekEntry(CreatedWeekNumber createdWeekNumber){
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String email = ((UserEntry) auth.getPrincipal()).getEmail();
+		
 		int year = getCurrentYear();
 		int currentWeek = getCurrentWeekInYear();
+		
+		
 		if (createdWeekNumber.getWeekNumber() == null) {
 //			return "redirect:/weekEntriesList";
 		}
@@ -233,13 +185,11 @@ public class AppConfiguration {
 		} else if (weekNumber > currentWeek + intervalle) {
 			year--;
 		}
-		createWeekEntry(email, weekNumber, year);
+		createWeekEntry(getCurrentUser(), weekNumber, year);
 	}
 	
 	
 	public Map<String, Integer> getNoCreatedWeeks(){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = ((UserEntry) auth.getPrincipal()).getEmail();
 
 		Map<String, Integer> noCreatedWeeks = new LinkedHashMap<>();
 		
@@ -264,7 +214,7 @@ public class AppConfiguration {
 			weekNb += weeksInCurrentYear;
 		}
 		for (int i = 0; i <= intervalle * 2; i++) {
-			if (getUserWeekEntry(email, weekNb, year) == null) {
+			if (getUserWeekEntry(getCurrentUser(), weekNb, year) == null) {
 				noCreatedWeeks.put("" + weekNb, weekNb);
 			}
 			weekNb++;
@@ -299,13 +249,5 @@ public class AppConfiguration {
 			weekNumber = calendar.get(Calendar.WEEK_OF_YEAR);
 		}
 		return weekNumber;
-	}
-	
-	public void aprovedSend(String to) throws Exception{
-		mailService.aprovedSend(to);
-	}
-	
-	public void refusedSend(String to) throws Exception{
-		mailService.refusedSend(to);
 	}
 }

@@ -2,7 +2,6 @@ package ca.ulaval.glo4003.architecture_logicielle.appConfig;
 
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

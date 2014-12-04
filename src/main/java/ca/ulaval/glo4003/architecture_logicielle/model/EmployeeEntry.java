@@ -82,12 +82,10 @@ public class EmployeeEntry extends UserEntry {
 	public void becomeEmployee() {
 		role = RoleUser.EMPLOYEE;
 	}
-	/////////////////////////// ajout a tester/////////////////////////////
 	
 	public WeekEntry getWeekEntry(int weekNumber, int yearNumber){
 		
-		return weekRepository.getWeekEntryByEmailAndWeekAndYear(this.getEmail(),
-				weekNumber, yearNumber);
+		return weekRepository.getWeekEntryByEmailAndWeekAndYear(this.getEmail(), weekNumber, yearNumber);
 	}
 	
 	public List<WeekEntry> getWeekEntries(){
@@ -117,9 +115,6 @@ public class EmployeeEntry extends UserEntry {
 		return weekEntry;
 	}
 	
-	
-	/////////////////////////////// a revoir 
-	
 	public WeekEntry enterKilometers(WeekEntry weekEntry, List<Integer> kilometers){
 		weekEntry.setKilometersEntries(kilometers);
 		return weekEntry;
@@ -130,10 +125,4 @@ public class EmployeeEntry extends UserEntry {
 		return weekEntry;
 	}
 	
-/*	public void assignTasks(List<TaskEntry> assignTasks){
-		
-		for (TaskEntry task : assignTasks) {
-			this.assignTask(task);
-		}
-	}*/
 }

@@ -7,6 +7,8 @@ import ca.ulaval.glo4003.architecture_logicielle.dao.DepartmentRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailService;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailServiceImpl;
 
 
 public class ModelFacade
@@ -15,6 +17,7 @@ public class ModelFacade
 	WeekEntryRepository weekRepository = new WeekEntryRepositoryImpl();
 	ProjectRepository projectRepository = new ProjectRepositoryImpl();
 	DepartmentRepository departmentRepository = new DepartmentRepositoryImpl();
+	MailService mailService = new MailServiceImpl();
 	
 	//WeekEntry treatment
 	public void createWeekEntry(String email, int weekNumber, int year){
@@ -78,10 +81,6 @@ public class ModelFacade
 		weekEntry.setState(StateWeekEntry.REFUSED);
 		weekRepository.updateWeekEntry(weekEntry);
 	}
-	
-//	public void updateWeekEntry(WeekEntry weekEntry) {
-//		weekRepository.updateWeekEntry(weekEntry);
-//	}
 	
 	//Project Treatment
 	
@@ -155,4 +154,18 @@ public class ModelFacade
 	}
 	
 	// Department Treatment
+	
+	public DepartmentEntry getDepartmentEntryByName(String name) {
+		return new DepartmentEntry(name);
+	}
+	
+	// Mail Service Treatment
+	
+	public void aprovedSend(String to) throws Exception{
+		mailService.aprovedSend(to);
+	}
+	
+	public void refusedSend(String to) throws Exception{
+		mailService.refusedSend(to);
+	}
 }
