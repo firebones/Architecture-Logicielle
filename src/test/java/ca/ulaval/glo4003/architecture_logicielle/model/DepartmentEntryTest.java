@@ -2,105 +2,191 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 
 import static org.junit.Assert.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.util.Assert;
 
 public class DepartmentEntryTest
 {
-
+	DepartmentEntry department;
+	EmployeeEntry manager;
+	EmployeeEntry employee;
+	
 	@Before
 	public void setUp() throws Exception
 	{
+		department = new DepartmentEntry();
+		department.setDepartmentName("Department11");
+		
+		manager = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(manager.getRole()).thenReturn(RoleUser.MANAGER);
+		employee = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(employee.getRole()).thenReturn(RoleUser.EMPLOYEE);
 	}
 
 	@Test
 	public void testDepartmentEntry()
 	{
-		fail("Not yet implemented"); // TODO
+		DepartmentEntry newdepartment = new DepartmentEntry();
+		
+		assertNotNull(newdepartment);
 	}
 
 	@Test
 	public void testDepartmentEntryString()
 	{
-		fail("Not yet implemented"); // TODO
+		String nameDepartment = "DepartmentTest";
+		DepartmentEntry newdepartment = new DepartmentEntry(nameDepartment);
+		
+		assertEquals(newdepartment.getDepartmentName(), "DepartmentTest");
 	}
 
 	@Test
 	public void testAddDepartmentManager()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addDepartmentManager(manager);
+		
+		Assert.notEmpty(department.getDeptManagers());
 	}
 
 	@Test
 	public void testRemoveDepartmentManager()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addDepartmentManager(manager);
+		
+		EmployeeEntry manager2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(manager2.getRole()).thenReturn(RoleUser.MANAGER);
+		department.addDepartmentManager(manager2);
+		
+		department.removeDepartmentManager(manager);
+		
+		assertEquals(department.getDeptManagers().size(), 1);
 	}
 
 	@Test
 	public void testIsManagerInDepartment()
-	{
-		fail("Not yet implemented"); // TODO
+	{		
+		EmployeeEntry manager2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(manager2.getRole()).thenReturn(RoleUser.MANAGER);
+		department.addDepartmentManager(manager2);
+		
+		assertEquals(department.isManagerInDepartment(manager2), true);
+		assertEquals(department.isManagerInDepartment(manager), false);
 	}
 
 	@Test
 	public void testAddEmployee()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addEmployee(employee);
+		
+		Assert.notEmpty(department.getEmployees());
 	}
 
 	@Test
 	public void testRemoveEmployee()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addEmployee(employee);
+		
+		EmployeeEntry employee2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(employee2.getRole()).thenReturn(RoleUser.EMPLOYEE);
+		department.addDepartmentManager(employee2);
+		
+		department.removeEmployee(employee2);
+		
+		assertEquals(department.getEmployees().size(), 1);
 	}
 
 	@Test
 	public void testIsEmployeeInDepartment()
 	{
-		fail("Not yet implemented"); // TODO
+		EmployeeEntry employee2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(employee2.getRole()).thenReturn(RoleUser.EMPLOYEE);
+		department.addEmployee(employee2);
+				
+		assertEquals(department.isEmployeeInDepartment(employee2), true);
+		assertEquals(department.isEmployeeInDepartment(manager), false);
 	}
 
 	@Test
 	public void testGetDepartmentName()
 	{
-		fail("Not yet implemented"); // TODO
+		assertEquals(department.getDepartmentName(), "Department11");
 	}
 
 	@Test
 	public void testSetDepartmentName()
 	{
-		fail("Not yet implemented"); // TODO
+		department.setDepartmentName("Department22");
+		
+		assertEquals(department.getDepartmentName(), "Department22");
 	}
 
 	@Test
 	public void testGetEmployees()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addEmployee(employee);
+		
+		EmployeeEntry employee2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(employee2.getRole()).thenReturn(RoleUser.EMPLOYEE);
+		department.addEmployee(employee2);
+		
+		assertEquals(department.getEmployees().size(), 2);
 	}
 
 	@Test
 	public void testSetEmployees()
-	{
-		fail("Not yet implemented"); // TODO
+	{	
+		List<EmployeeEntry> listEmployees = new LinkedList<EmployeeEntry>();
+		
+		EmployeeEntry employee2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(employee2.getRole()).thenReturn(RoleUser.EMPLOYEE);
+		
+		listEmployees.add(employee);
+		listEmployees.add(employee2);
+		
+		department.setEmployees(listEmployees);
+		
+		assertEquals(department.getEmployees().size(), 2);
 	}
 
 	@Test
 	public void testGetDeptManagers()
 	{
-		fail("Not yet implemented"); // TODO
+		department.addDepartmentManager(manager);
+		
+		EmployeeEntry manager2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(manager2.getRole()).thenReturn(RoleUser.MANAGER);
+		department.addDepartmentManager(manager2);
+		
+		assertEquals(department.getDeptManagers().size(), 2);
 	}
 
 	@Test
 	public void testSetDeptManagers()
 	{
-		fail("Not yet implemented"); // TODO
+		List<EmployeeEntry> listManager = new LinkedList<EmployeeEntry>();
+		
+		EmployeeEntry manager2 = Mockito.mock(EmployeeEntry.class);
+		Mockito.when(manager2.getRole()).thenReturn(RoleUser.MANAGER);
+		
+		listManager.add(manager2);
+		listManager.add(manager);
+		
+		department.setDeptManagers(listManager);
+		
+		assertEquals(department.getDeptManagers().size(), 2);
 	}
 
 	@Test
 	public void testGetSubmittedWeekEntries()
 	{
-		fail("Not yet implemented"); // TODO
+//		WeekEntry weekEntry = Mockito.mock(WeekEntry.class);
+//		Mockito.when(weekEntry.getState()).thenReturn(StateWeekEntry.SUBMITTED);
+		fail("Not yet implemented");
 	}
 
 	@Test

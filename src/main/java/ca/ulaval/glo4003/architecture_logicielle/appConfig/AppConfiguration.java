@@ -11,212 +11,204 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
-import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
-import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.ModelFacade;
 import ca.ulaval.glo4003.architecture_logicielle.model.ProjectEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
-import ca.ulaval.glo4003.architecture_logicielle.model.StateWeekEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
 import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
 import ca.ulaval.glo4003.architecture_logicielle.util.MailService;
 import ca.ulaval.glo4003.architecture_logicielle.util.MailServiceImpl;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.CreatedWeekNumber;
 
 @Configuration
 public class AppConfiguration {
-	UserRepository userRepository = new UserRepositoryImpl();
-	WeekEntryRepository weekRepository = new WeekEntryRepositoryImpl();
-	ProjectRepository projectRepository = new ProjectRepositoryImpl();
 	MailService mailService = new MailServiceImpl();
+	ModelFacade facade = new ModelFacade(); 
 
+	// Week Entry Repository
 	public String getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		return ((UserEntry) auth.getPrincipal()).getEmail();
 	}
 
-	public WeekEntry getUserWeekEntry(String email, int weekNumber,
-			int yearNumber) {
-		return weekRepository.getWeekEntryByEmailAndWeekAndYear(email,
-				weekNumber, yearNumber);
+	public WeekEntry getUserWeekEntry(String email, int weekNumber, int yearNumber) {
+		return facade.getWeekEntry(email, weekNumber, yearNumber);
 	}
-
+	
 	public List<WeekEntry> getCurrentUserWeekEntries() {
-
-		String currentUser = getCurrentUser();
-		List<WeekEntry> userWeekEntries = new ArrayList<WeekEntry>();
-
-		for (WeekEntry weekEntry : new WeekEntryRepositoryImpl()
-				.getAllWeekEntries()) {
-			if (weekEntry.getEmail().equals(currentUser))
-				userWeekEntries.add(weekEntry);
-		}
-
-		return userWeekEntries;
+		
+		String currentUserEmail = getCurrentUser();
+		return facade.getWeekEntries(currentUserEmail);
 	}
-
-	// Week Entry Repository
 
 	@Bean
 	public ArrayList<WeekEntry> getAllWeekEntries() {
-		return new WeekEntryRepositoryImpl().getAllWeekEntries();
+		
+		return facade.getAllWeekEntries();
 	}
-
+	
 	public void createWeekEntry(String email, int weekNumber, int year) {
-		WeekEntry weekEntry = new WeekEntry();
-		weekEntry.setEmail(email);
-		weekEntry.setWeekNumber(weekNumber);
-		weekEntry.setYearNumber(year);
-		weekRepository.addWeekEntry(weekEntry);
+		
+		facade.createWeekEntry(email, weekNumber, year);
+	}
+	
+	public void assignHoursToEmployeeWeek(String email, int weekNumber, int yearNumber, List<Double> hours) {
+		facade.assignHoursToEmployeeWeek(email, weekNumber, yearNumber, hours);
+	}
+	
+	public void assignKilometersToEmployeeWeek(String email, int weekNumber, int yearNumber, List<Integer> kilometers) {
+		facade.assignKilometersToEmployeeWeek(email, weekNumber, yearNumber, kilometers);
+	}
+	
+	public void assignExpensesToEmployeeWeek(String email, int weekNumber,int yearNumber, List<Double> expenses) {
+		facade.assignExpensesToEmployeeWeek(email, weekNumber, yearNumber, expenses);
+	}
+	
+	public void submitWeekEntry(String email, Integer week, Integer year) {
+		facade.submitWeekEntry(email, week, year);
 	}
 
-	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
-		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
+	public void approvedWeekEntry(String email, Integer week, Integer year) {
+		facade.approvedWeekEntry(email, week, year);
 	}
 
-	public void assignHoursToEmployeeWeek(String email, int weekNumber,
-			int yearNumber, List<Double> hours) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry) userRepository
-				.getUserByEmail(getCurrentUser());
-		weekEntry = user.enterWorkHours(weekEntry, hours);
-		updateWeekEntry(weekEntry);
+	public void deniedWeekEntry(String email, Integer week, Integer year) {
+		facade.deniedWeekEntry(email, week, year);
 	}
-
-	public void assignKilometersToEmployeeWeek(String email, int weekNumber,
-			int yearNumber, List<Integer> kilometers) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry) userRepository
-				.getUserByEmail(getCurrentUser());
-		weekEntry = user.enterKilometers(weekEntry, kilometers);
-		updateWeekEntry(weekEntry);
-	}
-
-	public void assignExpensesToEmployeeWeek(String email, int weekNumber,
-			int yearNumber, List<Double> expenses) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				getCurrentUser(), weekNumber, yearNumber);
-		EmployeeEntry user = (EmployeeEntry) userRepository
-				.getUserByEmail(getCurrentUser());
-		weekEntry = user.enterExpenses(weekEntry, expenses);
-		updateWeekEntry(weekEntry);
-	}
-
+	
+	
+	
 	// Project
 	@Bean
 	public ArrayList<ProjectEntry> getAllProjects() {
-		return projectRepository.getAllProjects();
+		return facade.getAllProjects();
 	}
-
+	
 	public ProjectEntry getProjectById(Integer id) {
-		return projectRepository.getProjectById(id);
+		return facade.getProjectById(id);
 	}
-
+	
 	public TaskEntry getTaskById(Integer id) {
-		return projectRepository.getTaskById(id);
+		return facade.getTaskById(id);
 	}
-
-	public void assignedTaskToEmployee(String email, List<String> assignTasks) {
-		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
-
-		List<TaskEntry> tasksList = new ArrayList<TaskEntry>();
-
-		for (String taskId : assignTasks) {
-			TaskEntry task = projectRepository.getTaskById(Integer
-					.parseInt(taskId));
-			tasksList.add(task);
-		}
-		userRepository.setTasksToUser(tasksList, employee);
-	}
-
+	
 	public void addProject(ProjectEntry project) {
-		projectRepository.addProject(project);
+		facade.addProject(project);
 	}
-
+	
 	public void addTask(Integer projectId, TaskEntry task) {
-		projectRepository.addTaskToProject(projectId, task);
+		facade.addTask(projectId, task);
 	}
-
+	
 	public void updateProject(Integer projectId, ProjectEntry project) {
-		projectRepository.updateProject(projectId, project);
+		facade.updateProject(projectId, project);
 	}
 
 	public void updateTask(Integer taskId, TaskEntry task) {
-		projectRepository.updateTask(taskId, task);
+		facade.updateTask(taskId, task);
 	}
-
+	
+	public void assignedTaskToEmployee(String email, List<String> assignTasks) {
+		facade.assignedTaskToEmployee(email, assignTasks);
+	}
+	
 	// Employee - User
+	
 	@Bean
 	public ArrayList<UserEntry> getAllUsers() {
-		return userRepository.getAllUsers();
+		return facade.getAllUsers();
 	}
 
 	@Bean
 	public ArrayList<EmployeeEntry> getAllEmployees() {
-		return userRepository.getAllEmployees();
+		return facade.getAllEmployees();
 	}
-
+	
 	public UserEntry getUserByEmail(String email) {
-		return userRepository.getUserByEmail(email);
+		return facade.getUserByEmail(email);
 	}
-
+	
 	public void addUser(UserEntry user) {
-		userRepository.addUser(user);
+		facade.addUser(user);
 	}
-
-	public List<TaskEntry> getTasksEmployee(String email) {
-		EmployeeEntry employee = (EmployeeEntry) getUserByEmail(email);
-
-		return employee.getTasks();
-	}
-
+	
 	public void deleteUser(UserEntry user) {
-		new UserRepositoryImpl().deleteUser(user);
+		facade.deleteUser(user);
 	}
-
+	
+	public List<TaskEntry> getTasksEmployee(String email) {
+		return facade.getTasksEmployee(email);
+	}
+	
 	// Department Entry Repository
+	
 	@Bean
 	public ArrayList<DepartmentEntry> getAllDepartmentEntries() {
 		return null;
 	}
-
+	
 	public DepartmentEntry getDepartmentEntryByName(String name) {
 		return new DepartmentEntry(name);
 	}
 
-	public void updateWeekEntry(WeekEntry weekEntry) {
-		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
-	}
+	
+	
+	
+	///////////////////////traitement //////////////////////////////
+	
+	
 
-	public void submitWeekEntry(String email, Integer week, Integer year) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				email, week, year);
-		weekEntry.setState(StateWeekEntry.SUBMITTED);
-		updateWeekEntry(weekEntry);
-	}
+	
+		
 
-	public void approvedWeekEntry(String email, Integer week, Integer year) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				email, week, year);
-		weekEntry.setState(StateWeekEntry.APPROVED);
-		updateWeekEntry(weekEntry);
-	}
+		
+		
 
-	public void deniedWeekEntry(String email, Integer week, Integer year) {
-		WeekEntry weekEntry = weekRepository.getWeekEntryByEmailAndWeekAndYear(
-				email, week, year);
-		weekEntry.setState(StateWeekEntry.REFUSED);
-		updateWeekEntry(weekEntry);
+		
 
-	}
+		
+
+		
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+///////////////// traitement a revoir ou supprimer/////	
+	
+	
+
+//	public ArrayList<WeekEntry> getWeekEntryByEmail(String email) {
+//		return new WeekEntryRepositoryImpl().getWeekEntryByEmail(email);
+//	}	
+	
+//	public void updateWeekEntry(WeekEntry weekEntry) {
+//		new WeekEntryRepositoryImpl().updateWeekEntry(weekEntry);
+//	}
+
+/////////////////////////////////////////////////////////////////	
+
+
+
+	
+	
+
+	
+
+	
+
+
 	
 	public void createWeekEntry(CreatedWeekNumber createdWeekNumber){
 		Authentication auth = SecurityContextHolder.getContext()

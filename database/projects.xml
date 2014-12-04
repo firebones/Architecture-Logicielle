@@ -7,7 +7,7 @@
 			<task>
                 <id>3</id>
                 <name>Heures regulieres</name>
-                <rate>1.0</rate>
+                <rate>14.0</rate>
             </task>
 		<task>
                 <id>6</id>
@@ -17,7 +17,7 @@
         <task>
                 <id>7</id>
                 <name>test</name>
-                <rate>2.3</rate>
+                <rate>2.5</rate>
             </task>
         </tasks>
 	</project>

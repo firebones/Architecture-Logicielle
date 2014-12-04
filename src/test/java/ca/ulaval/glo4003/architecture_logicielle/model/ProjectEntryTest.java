@@ -7,11 +7,17 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ProjectEntryTest
 {
 	ProjectEntry project;
 	List<TaskEntry> tasks = new ArrayList<TaskEntry>();
+	TaskEntry task1;
+	TaskEntry task2;
 	
 	@Before
 	public void setUp() throws Exception
@@ -19,13 +25,13 @@ public class ProjectEntryTest
 		Integer id = 1;
 		String name = "projet1";
 		
-		TaskEntry task1 = new TaskEntry();
-		task1.setId(1);
-		task1.setName("tache1");
+		task1 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task1.getId()).thenReturn(1);
+		Mockito.when(task1.getName()).thenReturn("tache1");
 		
-		TaskEntry task2 = new TaskEntry();
-		task2.setId(2);
-		task2.setName("tache2");
+		task2 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task1.getId()).thenReturn(2);
+		Mockito.when(task1.getName()).thenReturn("tache2");
 		
 		project = new ProjectEntry();
 		project.setId(id);
@@ -81,9 +87,9 @@ public class ProjectEntryTest
 	@Test
 	public void testAddTask()
 	{
-		TaskEntry task3 = new TaskEntry();
-		task3.setId(3);
-		task3.setName("tache3");
+		TaskEntry task3 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task3.getId()).thenReturn(3);
+		Mockito.when(task3.getName()).thenReturn("tache3");
 		
 		project.addTask(task3);
 		
@@ -93,11 +99,7 @@ public class ProjectEntryTest
 
 	@Test
 	public void testRemoveTask()
-	{
-		TaskEntry task2 = new TaskEntry();
-		task2.setId(2);
-		task2.setName("tache2");
-		
+	{		
 		project.removeTask(task2);
 		
 		assertEquals(project.getTasks().size(), 1);
@@ -106,17 +108,17 @@ public class ProjectEntryTest
 	@Test
 	public void testUpdateTasks()
 	{
-		TaskEntry task3 = new TaskEntry();
-		task3.setId(3);
-		task3.setName("tache1");
+		TaskEntry task3 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task3.getId()).thenReturn(3);
+		Mockito.when(task3.getName()).thenReturn("tache3");
 		
-		TaskEntry task4 = new TaskEntry();
-		task4.setId(4);
-		task4.setName("tache2");
+		TaskEntry task4 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task4.getId()).thenReturn(4);
+		Mockito.when(task4.getName()).thenReturn("tache4");
 		
-		TaskEntry task5 = new TaskEntry();
-		task5.setId(5);
-		task5.setName("tache2");
+		TaskEntry task5 = Mockito.mock(TaskEntry.class);
+		Mockito.when(task5.getId()).thenReturn(5);
+		Mockito.when(task5.getName()).thenReturn("tache5");
 		
 		tasks.add(task3);
 		tasks.add(task4);

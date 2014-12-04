@@ -2,27 +2,69 @@ package ca.ulaval.glo4003.architecture_logicielle.appConfig;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import ca.ulaval.glo4003.architecture_logicielle.dao.ProjectRepositoryImpl;
+import ca.ulaval.glo4003.architecture_logicielle.dao.UserRepositoryImpl;
+import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
+import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
+import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailService;
+import ca.ulaval.glo4003.architecture_logicielle.util.MailServiceImpl;
 
 public class AppConfigurationTest
 {
-
+	AppConfiguration appConfiguration;
+	UserRepository userRepository;
+	WeekEntryRepository weekRepository;
+	ProjectRepository projectRepository;
+	MailService mailService;
+	
+	WeekEntry weekEntry;
+	UserEntry user1;
+	String email = "joe@gmail.com";		
+	Integer yearNumber = 2014;
+	Integer weekNumber = 41;
+	
 	@Before
 	public void setUp() throws Exception
 	{
+		appConfiguration = new AppConfiguration();
+		userRepository = new UserRepositoryImpl();
+		weekRepository = new WeekEntryRepositoryImpl();
+		projectRepository = new ProjectRepositoryImpl();
+		mailService = new MailServiceImpl();
+		
+		user1 = Mockito.mock(UserEntry.class);
+		Mockito.when(user1.getEmail()).thenReturn(email);
+		
+		weekEntry = Mockito.mock(WeekEntry.class);
+		Mockito.when(weekEntry.getEmail()).thenReturn(email);
+		Mockito.when(weekEntry.getWeekNumber()).thenReturn(weekNumber);
+		Mockito.when(weekEntry.getYearNumber()).thenReturn(yearNumber);
 	}
 
 	@Test
 	public void testGetCurrentUser()
 	{
-		fail("Not yet implemented"); // TODO
+//		String email = appConfiguration.getCurrentUser();
+		
+//		assertNotNull(email);
 	}
 
 	@Test
 	public void testGetUserWeekEntry()
 	{
-		fail("Not yet implemented"); // TODO
+		
+		WeekEntry w = appConfiguration.getUserWeekEntry(email, weekNumber, yearNumber);
+		
+		assertEquals(w.getEmail(), email);
 	}
 
 	@Test

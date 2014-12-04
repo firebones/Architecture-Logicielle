@@ -3,11 +3,15 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 import java.util.List;
 import java.util.ArrayList;
 
+import ca.ulaval.glo4003.architecture_logicielle.dao.WeekEntryRepositoryImpl;
+
 public class EmployeeEntry extends UserEntry {
 	private List<TaskEntry> tasks = new ArrayList<TaskEntry>();
 	private Double rateHour = 20.0;
 	private String companyName = "Company1";
 	private String departmentName = "Department1";
+	
+	WeekEntryRepository weekRepository = new WeekEntryRepositoryImpl();
 
 	public EmployeeEntry() {
 		this.role = RoleUser.EMPLOYEE;
@@ -78,11 +82,43 @@ public class EmployeeEntry extends UserEntry {
 	public void becomeEmployee() {
 		role = RoleUser.EMPLOYEE;
 	}
+	/////////////////////////// ajout a tester/////////////////////////////
+	
+	public WeekEntry getWeekEntry(int weekNumber, int yearNumber){
+		
+		return weekRepository.getWeekEntryByEmailAndWeekAndYear(this.getEmail(),
+				weekNumber, yearNumber);
+	}
+	
+	public List<WeekEntry> getWeekEntries(){
+		
+		List<WeekEntry> userWeekEntries = new ArrayList<WeekEntry>();
+
+		for (WeekEntry weekEntry : weekRepository.getAllWeekEntries()) {
+			if (weekEntry.getEmail().equals(this.getEmail()))
+				userWeekEntries.add(weekEntry);
+		}
+
+		return userWeekEntries;
+		
+	}
+	
+	public void createWeekEntry(int weekNumber, int year){		
+		
+		WeekEntry weekEntry = new WeekEntry();
+		weekEntry.setEmail(this.getEmail());
+		weekEntry.setWeekNumber(weekNumber);
+		weekEntry.setYearNumber(year);
+		weekRepository.addWeekEntry(weekEntry);
+	}
 	
 	public WeekEntry enterWorkHours(WeekEntry weekEntry, List<Double> listHours){
 		weekEntry.setHoursEntries(listHours);
 		return weekEntry;
 	}
+	
+	
+	/////////////////////////////// a revoir 
 	
 	public WeekEntry enterKilometers(WeekEntry weekEntry, List<Integer> kilometers){
 		weekEntry.setKilometersEntries(kilometers);

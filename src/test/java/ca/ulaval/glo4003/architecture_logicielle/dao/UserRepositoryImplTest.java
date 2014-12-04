@@ -8,12 +8,16 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
+
 /**
  * @author Tahyre
  *
  */
 public class UserRepositoryImplTest
 {
+	UserRepository repository;
+
 
 	/**
 	 * @throws java.lang.Exception
@@ -21,6 +25,7 @@ public class UserRepositoryImplTest
 	@Before
 	public void setUp() throws Exception
 	{
+		repository = new UserRepositoryImpl();
 	}
 
 	/**
