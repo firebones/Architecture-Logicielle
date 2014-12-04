@@ -26,7 +26,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>Nom</th>
+						<th>Nom de la tâche</th>
 						<th>Taux</th>
 						<th colspan="4"></th>
 					</tr>
