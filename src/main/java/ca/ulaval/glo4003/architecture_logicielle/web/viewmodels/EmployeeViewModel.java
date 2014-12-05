@@ -8,7 +8,7 @@ public class EmployeeViewModel {
 	public String email;
 	public String name;
 	public List<String> tasks = new ArrayList<String>();
-	public Double tauxHoraire; 
+	public Double rateHour; 
 	
 	public String getEmail() {
 		return email;
@@ -28,10 +28,10 @@ public class EmployeeViewModel {
 	public void setTasks(List<String> tasks) {
 		this.tasks = tasks;
 	}
-	public Double getTauxHoraire() {
-		return tauxHoraire;
+	public Double getRateHour() {
+		return rateHour;
 	}
-	public void setTauxHoraie(Double tauxHoraire) {
-		this.tauxHoraire = tauxHoraire;
+	public void setRateHour(Double rateHour) {
+		this.rateHour = rateHour;
 	}
 }

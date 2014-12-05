@@ -28,6 +28,7 @@ public class EmployeeEntryConverter {
 		viewModel.name = entry.getName();
 		viewModel.email = entry.getEmail();
 		viewModel.tasks = entry.getTasksString();
+		viewModel.rateHour = entry.getRateHour();
 		return viewModel;
 	}
 	
@@ -36,6 +37,7 @@ public class EmployeeEntryConverter {
 		employee.setName(entry.getName());
 		employee.setEmail(entry.getEmail());
 		employee.setHashedPassword("default");
+		employee.setRateHour(entry.getRateHour());
 		return employee;
 	}
 }

@@ -141,4 +141,16 @@ public class DeptManagerController {
 		configuration.addUser(newEmployee);
 		return "redirect:/employeeList";
 	}
+	
+	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.GET)
+	public String editRateHour(@PathVariable String email, Model model) {
+		model.addAttribute("employee", employeeConverter.toEmployeeViewModel((EmployeeEntry) configuration.getUserByEmail(email)));
+		return "updateRateHour";
+	}
+
+	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.POST)
+	public String editRateHour(EmployeeViewModel employeeViewModel) {
+		configuration.updateUser(employeeConverter.toEmployee(employeeViewModel));
+		return "redirect:/employeeList";
+	}
 }

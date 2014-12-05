@@ -143,6 +143,10 @@ public class ModelFacade
 		userRepository.addUser(user);
 	}
 	
+	public void updateUser(UserEntry user) {
+		userRepository.updateUser(user);
+	}
+	
 	public void deleteUser(UserEntry user) {
 		userRepository.deleteUser(user);
 	}

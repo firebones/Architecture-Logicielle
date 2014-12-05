@@ -131,6 +131,10 @@ public class AppConfiguration {
 		facade.addUser(user);
 	}
 	
+	public void updateUser(UserEntry user) {
+		facade.updateUser(user);
+	}
+	
 	public void deleteUser(UserEntry user) {
 		facade.deleteUser(user);
 	}
