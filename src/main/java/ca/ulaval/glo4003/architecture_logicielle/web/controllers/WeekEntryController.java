@@ -153,7 +153,7 @@ public class WeekEntryController {
 		return "redirect:/weekEntriesList";
 	}
 
-	@RequestMapping(value = "/submittedEntryList", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/submittedEntryList", method = RequestMethod.GET)
 	public String submittedEntries(Model model) {
 
 		List<WeekEntry> weekEntries = new LinkedList<WeekEntry>();
@@ -168,7 +168,7 @@ public class WeekEntryController {
 		return "submittedEntries";
 	}
 
-	@RequestMapping(value = "/{email}/{year}/{week}/approved", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/{year}/{week}/approved", method = RequestMethod.GET)
 	public String approve(@PathVariable String email,
 			@PathVariable String week, @PathVariable String year, Model model) {
 		
@@ -184,10 +184,10 @@ public class WeekEntryController {
 		configuration.approvedWeekEntry(email, Integer.parseInt(week),
 				Integer.parseInt(year));
 		
-		return "redirect:/submittedEntryList";
+		return "redirect:/manager/submittedEntryList";
 	}
 
-	@RequestMapping(value = "/{email}/{year}/{week}/denied", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/{year}/{week}/denied", method = RequestMethod.GET)
 	public String deny(@PathVariable String email, @PathVariable Integer week,
 			@PathVariable Integer year, Model model) {
 		configuration.deniedWeekEntry(email, week, year);
@@ -199,7 +199,7 @@ public class WeekEntryController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/submittedEntryList";
+		return "redirect:/manager/submittedEntryList";
 	}
 
 

@@ -15,6 +15,7 @@
         <!-- Be careful, the order matters -->
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/denied" access="permitAll" />
+        <intercept-url pattern="/manager/**" access="hasRole('MANAGER')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()" />
 

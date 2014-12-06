@@ -5,9 +5,9 @@
 	<div class="container">
 		<ul class="nav navbar-nav">
 			<sec:authorize access="hasRole('MANAGER')">
-				<li><a href="/employeeList">Liste des employés</a></li>
-				<li><a href="/projectList">Liste des projets</a></li>
-				<li><a href="/submittedEntryList">Saisies soumises</a></li>
+				<li><a href="/manager/employeeList">Liste des employés</a></li>
+				<li><a href="/manager/projectList">Liste des projets</a></li>
+				<li><a href="/manager/submittedEntryList">Saisies soumises</a></li>
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('EMPLOYEE, MANAGER')">
 				<li><a href="/weekEntriesList">Liste des semaines</a></li>

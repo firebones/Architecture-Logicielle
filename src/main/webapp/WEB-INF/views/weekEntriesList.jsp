@@ -24,9 +24,9 @@
 				</thead>
 				<tbody>
 					<c:forEach var="entry" items="${weekEntries}">
-						<c:url var="emailUrl" value="/${entry.getEmail()}" />
-						<c:url var="weekUrl" value="/${entry.getWeekNumber()}" />
-						<c:url var="yearUrl" value="/${entry.getYearNumber()}" />
+						<c:url var="emailUrl" value="${entry.getEmail()}" />
+						<c:url var="weekUrl" value="${entry.getWeekNumber()}" />
+						<c:url var="yearUrl" value="${entry.getYearNumber()}" />
 						<tr>
 							<td>${entry.getWeekNumber()}</td>
 							<td>${entry.getState()}</td>
@@ -43,7 +43,7 @@
 							</td>
 							<td>
 								<c:choose>
-									<c:when test="${entry.canSubmit()}"><a href="${emailUrl}${yearUrl}${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
+									<c:when test="${entry.canSubmit()}"><a href="${emailUrl}/${yearUrl}/${weekUrl}/submitWeekEntry" class="col-lg-offset=2 btn btn-primary">Soumettre</a></c:when>
 									<c:otherwise><button type="submit" class="btn btn-default" disabled>Soumettre</button></c:otherwise>
 								</c:choose>
 							</td>

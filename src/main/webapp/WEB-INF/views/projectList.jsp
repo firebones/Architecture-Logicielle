@@ -15,7 +15,7 @@
 		<table class="table col-lg-8">
 			<tbody>
 				<c:forEach var="project" items="${projects}">
-					<c:url var="projectUrl" value="/${project.id}"/>
+					<c:url var="projectUrl" value="${project.id}"/>
 					<tr>
 						<td><strong>Projet: ${project.name}</strong></td>
 						<td>
@@ -31,7 +31,7 @@
 						<th colspan="4"></th>
 					</tr>
 					<c:forEach var="task" items="${project.getTasks()}">
-						<c:url var="taskUrl" value="/${task.id}"/>
+						<c:url var="taskUrl" value="/manager/${task.id}"/>
 
 						<tr>
 							<td>${task.name}</td>		
@@ -46,7 +46,7 @@
 		</table>
 	</div>
 	<div class="row">
-		<a href="<c:url value="addProject" />" class="col-lg-offset=2 btn btn-primary">Ajouter un projet</a>
+		<a href="<c:url value="/manager/addProject" />" class="col-lg-offset=2 btn btn-primary">Ajouter un projet</a>
 	</div>
 </div>
 

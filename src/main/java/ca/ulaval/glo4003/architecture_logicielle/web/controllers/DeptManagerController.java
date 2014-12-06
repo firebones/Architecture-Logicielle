@@ -26,7 +26,7 @@ public class DeptManagerController {
 	private EmployeeEntryConverter employeeConverter = new EmployeeEntryConverter();
 
 
-	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/assignTasks", method = RequestMethod.GET)
 	public String buildAssignTasksView(@PathVariable String email, Model model) {
 		String employeeId = configuration.getUserByEmail(email).getName() + " - " + configuration.getUserByEmail(email).getEmail();
 		model.addAttribute("assignTasksView", projectConverter
@@ -39,123 +39,123 @@ public class DeptManagerController {
 		return new AssignedTasks();
 	}
 
-	@RequestMapping(value = "/{email}/assignTasks", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/{email}/assignTasks", method = RequestMethod.POST)
 	public String getAssignedTasks(@PathVariable String email, @ModelAttribute("assignedTasks") AssignedTasks assignTasks) {
 		configuration.assignedTaskToEmployee(email, assignTasks.getTasks());
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 
-	@RequestMapping(value = "/{email}/assignTasksCancel", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/assignTasksCancel", method = RequestMethod.GET)
 	public String cancel() {
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 
-	@RequestMapping(value = "/employeeList", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/employeeList", method = RequestMethod.GET)
 	public String list(Model model) {
 		
 		model.addAttribute("entries", configuration.getAllEmployees());
 		return "employeeList";
 	}
 
-	@RequestMapping(value = "/{email}/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/delete", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable String email) {
 
 		configuration.deleteUser(configuration.getUserByEmail(email));
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 
-	@RequestMapping(value = "/projectList", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/projectList", method = RequestMethod.GET)
 	public String projectlist(Model model) {
 		model.addAttribute("projects", configuration.getAllProjects());
 		return "projectList";
 	}
 
-	@RequestMapping(value = "/addProject", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/addProject", method = RequestMethod.GET)
 	public String addNewProject(Model model) {
 		model.addAttribute("project", new ProjectViewModel());
 		return "addProject";
 	}
 
-	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/addProject", method = RequestMethod.POST)
 	public String addNewProject(ProjectViewModel newProjectViewModel) {
 		configuration.addProject(projectConverter.toProjectEntry(newProjectViewModel));
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 
-	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{id}/editProject", method = RequestMethod.GET)
 	public String editProject(@PathVariable Integer id, Model model) {
 		model.addAttribute("project", configuration.getProjectById(id));
 		return "editProject";
 	}
 
-	@RequestMapping(value = "/{id}/editProject", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/{id}/editProject", method = RequestMethod.POST)
 	public String editProject(@PathVariable Integer id, ProjectViewModel updatedProjectViewModel) {
 		configuration.updateProject(id, projectConverter.toProjectEntry(updatedProjectViewModel));
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 
-	@RequestMapping(value = "/{id}/addTask", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{id}/addTask", method = RequestMethod.GET)
 	public String addNewTask(Model model) {
 		model.addAttribute("task", new TaskViewModel());
 		return "addTask";
 	}
 
-	@RequestMapping(value = "/{id}/addTask", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/{id}/addTask", method = RequestMethod.POST)
 	public String addNewTask(@PathVariable Integer id, TaskViewModel newTaskViewModel) {
 		newTaskViewModel.setId(0);
 		configuration.addTask(id, projectConverter.toTaskEntry(newTaskViewModel));
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 
-	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{id}/editTask", method = RequestMethod.GET)
 	public String editTask(@PathVariable Integer id, Model model) {
 		model.addAttribute("task", configuration.getTaskById(id));
 		return "editTask";
 	}
 
-	@RequestMapping(value = "/{id}/editTask", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/{id}/editTask", method = RequestMethod.POST)
 	public String editTask(@PathVariable Integer id, TaskViewModel updatedTaskViewModel) {
 		configuration.updateTask(id, projectConverter.toTaskEntry(updatedTaskViewModel));
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 
-	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/cancel", method = RequestMethod.GET)
 	public String cancelProject() {
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 
-	@RequestMapping(value = "/{id}/cancel", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{id}/cancel", method = RequestMethod.GET)
 	public String cancelTask() {
-		return "redirect:/projectList";
+		return "redirect:/manager/projectList";
 	}
 	
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
 	    model.addAttribute("newEmployee", new EmployeeViewModel());
 	    return "addEmployee";
 	}
 	
-	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.POST)
 	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
 		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
 		configuration.addUser(newEmployee);
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 	
-	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{email}/updateRateHour", method = RequestMethod.GET)
 	public String editRateHour(@PathVariable String email, Model model) {
 		model.addAttribute("employee", (EmployeeEntry)configuration.getUserByEmail(email));
 		return "updateRateHour";
 	}
 
-	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/{email}/updateRateHour", method = RequestMethod.POST)
 	public String editRateHour(@PathVariable String email, EmployeeViewModel employeeViewModel) {
 		configuration.updateRateHourUser((EmployeeEntry)configuration.getUserByEmail(email), Double.parseDouble(employeeViewModel.rateHour));
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 	
-	@RequestMapping(value = "/{id}/employeeList", method = RequestMethod.GET)
+	@RequestMapping(value = "/manager/{id}/employeeList", method = RequestMethod.GET)
 	public String cancelChangeRateHour() {
-		return "redirect:/employeeList";
+		return "redirect:/manager/employeeList";
 	}
 }

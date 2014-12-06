@@ -25,27 +25,27 @@
 			</thead>
 			<tbody>
 				<c:forEach var="entry" items="${entries}">
-					<c:url var="entryUrl" value="/${entry.email}" />
+					<c:url var="entryUrl" value="manager/${entry.email}" />
 					<tr>
 						<td>${entry.name}</td>
 						<td>${entry.email}</td>
 						<td>${entry.role}</td>
 						<td>
-							<a href="${entryUrl}/assignTasks">Assigner des tâches</a>
+							<a href="/${entryUrl}/assignTasks">Assigner des tâches</a>
 						</td>
 						<td>${entry.rateHour}</td>
 						<td>
-							<a href="${entryUrl}/updateRateHour">Modifier le taux horaire</a>				
+							<a href="/${entryUrl}/updateRateHour">Modifier le taux horaire</a>				
 						</td>
 						<td>
-							<a href="${entryUrl}/delete">Supprimer l'employé</a>				
+							<a href="/${entryUrl}/delete">Supprimer l'employé</a>				
 						</td>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
 	<div class="row">
-		<a href="<c:url value="addEmployee" />" class="col-lg-offset=2 btn btn-primary">Ajouter un employé</a>
+		<a href="<c:url value="/manager/addEmployee" />" class="col-lg-offset=2 btn btn-primary">Ajouter un employé</a>
 	</div>
 </div>
 
