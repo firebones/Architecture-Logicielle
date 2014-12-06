@@ -3,10 +3,8 @@ package ca.ulaval.glo4003.architecture_logicielle.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.ulaval.glo4003.architecture_logicielle.model.AbstractFactory;
+import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
-import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
-import ca.ulaval.glo4003.architecture_logicielle.model.RoleUser;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
@@ -15,10 +13,10 @@ import ca.ulaval.glo4003.architecture_logicielle.model.WeekEntryRepository;
 
 public class UserRepositoryImpl implements UserRepository {
 	XMLUserPersistance xmluserpersistance;
-
+	
+	
 	public UserRepositoryImpl() {
-
-		xmluserpersistance = XMLUserPersistance.getInstance();
+		xmluserpersistance = XMLUserPersistance.getInstance();	
 	}
 
 	@Override
@@ -27,31 +25,11 @@ public class UserRepositoryImpl implements UserRepository {
 
 		ArrayList<ArrayList<String>> userlist = xmluserpersistance
 				.getAllUsers();
-
+		AppConfiguration configuration = new AppConfiguration();
+		
 		for (ArrayList<String> tabuser : userlist) {
-
-			AbstractFactory factory = AbstractFactory.createFactory(tabuser
-					.get(2));
-			UserEntry user = factory.createUser();
-			user.setName(tabuser.get(0));
-			user.setEmail(tabuser.get(1));
-			user.setHashedPassword(tabuser.get(3));
-
-			if (tabuser.size() > 7
-					&& (user.getRole() == RoleUser.EMPLOYEE || user.getRole() == RoleUser.MANAGER)) {
-				((EmployeeEntry) user).setCompany(tabuser.get(4));
-				((EmployeeEntry) user).setDepartment(tabuser.get(5));
-				((EmployeeEntry) user).setRateHour(Double.parseDouble(tabuser
-						.get(6)));
-				int j = 7;
-				do {
-					ProjectRepository projects = new ProjectRepositoryImpl();
-					TaskEntry task = projects.getTaskById(Integer
-							.parseInt(tabuser.get(j)));
-					((EmployeeEntry) user).assignTask(task);
-					j++;
-				} while (j < tabuser.size());
-			}
+		
+			UserEntry user = configuration.createEmployee(tabuser);
 
 			users.add(user);
 		}
@@ -65,39 +43,11 @@ public class UserRepositoryImpl implements UserRepository {
 
 		ArrayList<ArrayList<String>> userlist = xmluserpersistance
 				.getAllUsers();
-
+		AppConfiguration configuration = new AppConfiguration();
+		
 		for (ArrayList<String> tabuser : userlist) {
 
-			AbstractFactory factory = AbstractFactory.createFactory(tabuser
-					.get(2));
-			UserEntry user = factory.createUser();
-			user.setName(tabuser.get(0));
-			user.setEmail(tabuser.get(1));
-			user.setHashedPassword(tabuser.get(3));
-
-			if (user.getRole() == RoleUser.EMPLOYEE
-					|| user.getRole() == RoleUser.MANAGER) {
-
-				((EmployeeEntry) user).setCompany(tabuser.get(4));
-				((EmployeeEntry) user).setDepartment(tabuser.get(5));
-				((EmployeeEntry) user).setRateHour(Double.parseDouble(tabuser
-						.get(6)));
-
-				if (tabuser.size() > 7) {
-
-					int j = 7;
-
-					do {
-
-						ProjectRepository projects = new ProjectRepositoryImpl();
-						TaskEntry task = projects.getTaskById(Integer
-								.parseInt(tabuser.get(j)));
-						((EmployeeEntry) user).assignTask(task);
-						j++;
-					} while (j < tabuser.size());
-				}
-			}
-
+			UserEntry user = configuration.createEmployee(tabuser);
 			users.add((EmployeeEntry) user);
 
 		}

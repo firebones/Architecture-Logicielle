@@ -143,6 +143,9 @@ public class AppConfiguration {
 		return facade.getTasksEmployee(email);
 	}
 	
+	public UserEntry createEmployee(ArrayList<String> tabuser){
+		return facade.createEmployee(tabuser);
+	}
 	// Department Entry Repository
 	
 	@Bean
