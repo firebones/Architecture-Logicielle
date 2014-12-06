@@ -3,10 +3,10 @@ package ca.ulaval.glo4003.architecture_logicielle.model;
 public enum RoleUser
 {
 
-	EMPLOYEE("EMPLOYEE"),
-	MANAGER("MANAGER"), 
-	COMPANY("COMPANY"), 
-	ADMIN("ADMIN");
+	EMPLOYEE("Employé"),
+	MANAGER("Gestionnaire"), 
+	COMPANY("Entreprise"), 
+	ADMIN("Administrateur");
 
 	private final String roleString;
 
