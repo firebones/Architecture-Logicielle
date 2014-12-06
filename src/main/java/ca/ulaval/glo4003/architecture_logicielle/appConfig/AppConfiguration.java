@@ -131,8 +131,8 @@ public class AppConfiguration {
 		facade.addUser(user);
 	}
 	
-	public void updateUser(UserEntry user) {
-		facade.updateUser(user);
+	public void updateRateHourUser(UserEntry user, Double rateHour) {
+		facade.updateUser(user , rateHour);
 	}
 	
 	public void deleteUser(UserEntry user) {

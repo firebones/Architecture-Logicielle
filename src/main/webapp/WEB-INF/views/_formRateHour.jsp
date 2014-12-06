@@ -28,7 +28,8 @@
        <div class="form-group">
          <div class="col-lg-offset-2 col-lg-10">
            <button type="submit" class="btn btn-default">Soumettre</button>
-           <a href="<c:url value="cancel"/>" class="col-lg-offset=2 btn btn-primary">Annuler</a>
+           <a href="<c:url value="employeeList"/>" class="col-lg-offset=2 btn btn-primary">Annuler</a>
          </div>
        </div>
 </form:form>
+

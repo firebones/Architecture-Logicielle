@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.RoleUser;
 import ca.ulaval.glo4003.architecture_logicielle.web.viewmodels.EmployeeViewModel;
 
 @Component
@@ -27,8 +28,13 @@ public class EmployeeEntryConverter {
 		EmployeeViewModel viewModel = new EmployeeViewModel();
 		viewModel.name = entry.getName();
 		viewModel.email = entry.getEmail();
+		viewModel.hashedPassword = entry.getHashedPassword();
+		viewModel.rateHour = entry.getRateHour().toString();
+		viewModel.roleUser = entry.getRole().toString();
+		viewModel.companyName = entry.getCompany();
+		viewModel.departmentName = entry.getDepartment();
 		viewModel.tasks = entry.getTasksString();
-		viewModel.rateHour = entry.getRateHour();
+		
 		return viewModel;
 	}
 	
@@ -37,7 +43,24 @@ public class EmployeeEntryConverter {
 		employee.setName(entry.getName());
 		employee.setEmail(entry.getEmail());
 		employee.setHashedPassword("default");
-		employee.setRateHour(entry.getRateHour());
+//		employee.setRateHour(Double.parseDouble(entry.getRateHour()));
+//		employee.setCompany(entry.getCompany());
+//		employee.setDepartment(entry.getDepartment());
+		return employee;
+	}
+	
+	public EmployeeEntry toExistEmployee(EmployeeViewModel entry) {
+		EmployeeEntry employee = new EmployeeEntry();
+		employee.setName(entry.getName());
+		employee.setEmail(entry.getEmail());
+		employee.setHashedPassword(entry.getHashedPassword());
+		employee.setRateHour(Double.parseDouble(entry.getRateHour()));
+		employee.setCompany(entry.getCompany());
+		employee.setDepartment(entry.getDepartment());
+		if(entry.getRoleUser() == "EMPLOYEE")
+			employee.setRoleUser(RoleUser.EMPLOYEE);
+		if(entry.getRoleUser() == "MANAGER")
+			employee.setRoleUser(RoleUser.MANAGER);
 		return employee;
 	}
 }

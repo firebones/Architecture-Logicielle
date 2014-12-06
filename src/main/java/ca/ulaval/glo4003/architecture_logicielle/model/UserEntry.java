@@ -5,7 +5,7 @@ import java.security.Principal;
 public abstract class UserEntry implements Principal {
 	private String name;
 	private String email;
-	private String hashedPassword;
+	private String hashedPassword = "default";
 	protected RoleUser role;
 	
 	public String getName() {
@@ -35,7 +35,11 @@ public abstract class UserEntry implements Principal {
 	public RoleUser getRole() {
 		return role;
 	}
-
+	
+	public void setRoleUser(RoleUser role) {
+		this.role = role;
+	}
+	
 	public boolean isPasswordValid(String password) {
 		return (hashedPassword.equals(password));
 	}

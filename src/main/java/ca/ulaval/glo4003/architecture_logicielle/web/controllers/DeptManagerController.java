@@ -131,7 +131,7 @@ public class DeptManagerController {
 	
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
-	    model.addAttribute("newEmployee", new EmployeeEntry());
+	    model.addAttribute("newEmployee", new EmployeeViewModel());
 	    return "addEmployee";
 	}
 	
@@ -144,13 +144,18 @@ public class DeptManagerController {
 	
 	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.GET)
 	public String editRateHour(@PathVariable String email, Model model) {
-		model.addAttribute("employee", employeeConverter.toEmployeeViewModel((EmployeeEntry) configuration.getUserByEmail(email)));
+		model.addAttribute("employee", (EmployeeEntry)configuration.getUserByEmail(email));
 		return "updateRateHour";
 	}
 
 	@RequestMapping(value = "/{email}/updateRateHour", method = RequestMethod.POST)
-	public String editRateHour(EmployeeViewModel employeeViewModel) {
-		configuration.updateUser(employeeConverter.toEmployee(employeeViewModel));
+	public String editRateHour(@PathVariable String email, EmployeeViewModel employeeViewModel) {
+		configuration.updateRateHourUser((EmployeeEntry)configuration.getUserByEmail(email), Double.parseDouble(employeeViewModel.rateHour));
+		return "redirect:/employeeList";
+	}
+	
+	@RequestMapping(value = "/{id}/employeeList", method = RequestMethod.GET)
+	public String cancelChangeRateHour() {
 		return "redirect:/employeeList";
 	}
 }

@@ -22,7 +22,7 @@
        <div class="form-group">
          <label for="role" class="control-label col-lg-2">Rôle</label>
          <div class="col-lg-10">
-           <form:input class="form-control" path="role" disabled="true" value="EMPLOYEE" />
+           <form:input class="form-control" path="roleUser" disabled="true" value="EMPLOYEE" />
          </div>
        </div>
        

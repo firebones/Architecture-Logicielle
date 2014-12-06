@@ -143,7 +143,10 @@ public class ModelFacade
 		userRepository.addUser(user);
 	}
 	
-	public void updateUser(UserEntry user) {
+	public void updateUser(UserEntry user, Double rateHour) {
+		
+		if(user.getRole().toString() == "EMPLOYEE" || user.getRole().toString() == "MANAGER")
+			((EmployeeEntry)user).setRateHour(rateHour);
 		userRepository.updateUser(user);
 	}
 	
