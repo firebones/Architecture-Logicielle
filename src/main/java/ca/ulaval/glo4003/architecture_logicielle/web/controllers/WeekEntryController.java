@@ -58,7 +58,7 @@ public class WeekEntryController {
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedKilometers", assignedKilometers);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/{year}/{week}/vehicleExpenses";
+			return "redirect:/{email}/{year}/{week}/vehicleExpenses";
 		}
 
 		configuration.assignKilometersToEmployeeWeek(email, week, year, converter.convertStringsToIntegers(assignedKilometers.getKilometers()));
@@ -87,7 +87,7 @@ public class WeekEntryController {
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedExpenses", assignedExpenses);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/{year}/{week}/employeeExpenses";
+			return "redirect:/{email}/{year}/{week}/employeeExpenses";
 		}
 
 		configuration.assignExpensesToEmployeeWeek(email, week, year, converter.convertStringsToDoubles(assignedExpenses.getExpenses()));
@@ -115,7 +115,7 @@ public class WeekEntryController {
 		if (!errorMessage.isEmpty()) {
 			redirectAttributes.addFlashAttribute("assignedHours", assignedHours);
 			redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			return "redirect:/{year}/{week}/workingHours";
+			return "redirect:/{email}/{year}/{week}/workingHours";
 		}
 
 		configuration.assignHoursToEmployeeWeek(email, week, year, converter.convertStringsToDoubles(assignedHours.getHours()));
