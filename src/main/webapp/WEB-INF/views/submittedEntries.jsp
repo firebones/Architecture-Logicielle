@@ -32,13 +32,13 @@
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
+								<a href="/${emailUrl}/${yearUrl}/${weekUrl}/vehicleExpenses">Dépenses pour véhicule</a>
 							</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
+								<a href="/${emailUrl}/${yearUrl}/${weekUrl}/employeeExpenses">Dépenses de l'employé</a>
 							</td>
 							<td>
-								<a href="${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
+								<a href="/${emailUrl}/${yearUrl}/${weekUrl}/workingHours">Heures réalisées</a>
 							</td>
 							<td>
 								
