@@ -29,7 +29,7 @@
 						<c:url var="yearUrl" value="${entry.getYearNumber()}" />
 						<tr>
 							<td>${entry.getWeekNumber()}</td>
-							<td>${entry.getState()}</td>
+							<td><%@include file="_weekEntryStatusTranslate.jsp"%></td>
 							<td>${entry.getStartDate()}</td>
 							<td>${entry.getEndDate()}</td>
 							<td>

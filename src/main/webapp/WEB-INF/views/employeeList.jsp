@@ -29,7 +29,7 @@
 					<tr>
 						<td>${entry.name}</td>
 						<td>${entry.email}</td>
-						<td>${entry.role}</td>
+						<td><%@include file="_roleTranslate.jsp"%></td>
 						<td>
 							<a href="/${entryUrl}/assignTasks">Assigner des tâches</a>
 						</td>
