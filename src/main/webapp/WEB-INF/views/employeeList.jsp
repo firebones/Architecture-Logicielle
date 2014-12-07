@@ -19,7 +19,7 @@
 					<th>Courriel</th>
 					<th>Rôle</th>
 					<th>Tâches</th>
-					<th>Taux Horaire</th>
+					<th>Taux horaire</th>
 					<th colspan="4"></th>
 				</tr>
 			</thead>

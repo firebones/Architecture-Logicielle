@@ -8,7 +8,7 @@
 <body>
 <div class="container">
 <h1>
-	Modifier le Taux Horaire de l'Employee: 
+	Modifier le taux horaire de l'employé
 </h1>
 	<div class="row">
 		<jsp:include page="_formRateHour.jsp" />
