@@ -129,7 +129,7 @@ public class DeptManagerController {
 		return "redirect:/manager/projectList";
 	}
 	
-	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.GET)
 	public String addNewEmployee(Model model) {
 	    model.addAttribute("newEmployee", new EmployeeViewModel());
 	    return "addEmployee";
@@ -140,7 +140,7 @@ public class DeptManagerController {
 		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
 		configuration.addUser(newEmployee);
 		return "redirect:/manager/employeeList";
-	}
+	}*/
 	
 	@RequestMapping(value = "/manager/{email}/updateRateHour", method = RequestMethod.GET)
 	public String editRateHour(@PathVariable String email, Model model) {
