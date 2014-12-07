@@ -4,10 +4,10 @@
         <name>Joe</name>
         <email>joe@gmail.com</email>
         <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
+        <hashedPassword>1234</hashedPassword>
         <company>Company1</company>
         <department>Department1</department>
-        <rateHour>25.0</rateHour>
+        <rateHour>27.0</rateHour>
     </user>
 	<user>
         <name>Jane</name>
@@ -18,44 +18,8 @@
         <department>Department1</department>
         <rateHour>20.0</rateHour>
     </user>
-	<user>
-        <name>hamid</name>
-        <email>hamid@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-        <company>Company1</company>
-        <department>Department1</department>
-        <rateHour>10.0</rateHour>
-    </user>
-	<user>
-        <name>juan</name>
-        <email>jb@ulaval.ca</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-        <company>Company1</company>
-		<department>Department1</department>
-		<rateHour>20.0</rateHour>
-    
-    </user>
 <user>
         <name>employee1</name>
-        <email>employee1@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>1234</hashedPassword>
-        <company>Company1</company>
-		<department>Department1</department>
-		<rateHour>20.0</rateHour>
-    <tasks>
-            <taskId>3</taskId>
-            <taskId>6</taskId>
-            <taskId>7</taskId>
-            <taskId>4</taskId>
-            <taskId>5</taskId>
-            <taskId>8</taskId>
-        </tasks>
-    </user>
-<user>
-        <name>employee2</name>
         <email>employee2@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>1234</hashedPassword>
@@ -92,34 +56,6 @@
 <user>
         <name>Pape</name>
         <email>tahyriman@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-        <company>Company1</company>
-        <department>Department1</department>
-        <rateHour>20.0</rateHour>
-    </user>
-
-<user>
-        <name>Testeur</name>
-        <email>testeur@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-        <company>Company1</company>
-        <department>Department1</department>
-        <rateHour>20.0</rateHour>
-    </user>
-<user>
-        <name>Nouveau</name>
-        <email>new@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>default</hashedPassword>
-        <company>Company1</company>
-        <department>Department1</department>
-        <rateHour>23.0</rateHour>
-    </user>
-<user>
-        <name>Testeur2</name>
-        <email>testeur2@gmail.com</email>
         <role>EMPLOYEE</role>
         <hashedPassword>default</hashedPassword>
         <company>Company1</company>

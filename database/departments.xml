@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <departments>
 	<department>
-		<name>Departement 1</name>
+		<name>Department1</name>
 		<employees>
 			<employee>employee1@gmail.com</employee>
-			<employee>employee2@gmail.com</employee>
 		</employees>
 		<managers>
 			<manager>manager1@gmail.com</manager>
@@ -12,7 +11,7 @@
 		</managers>
 	</department>
 	<department>
-		<name>Departement 2</name>
+		<name>Department2</name>
 		<employees>
 			<employee>employee1@gmail.com</employee>
 		</employees>
@@ -20,10 +19,4 @@
 			<manager>manager1@gmail.com</manager>
 		</managers>
 	</department>
-<department>
-        <name>Department test</name>
-        <employees>
-            <employee>employee1@gmail.com</employee>
-        </employees>
-    </department>
 </departments>

@@ -2,10 +2,10 @@
 <weekEntries>
 	<weekEntry>
         <email>joe@gmail.com</email>
-        <weekNumber>41</weekNumber>
+        <weekNumber>39</weekNumber>
         <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
+        <state>Refused</state>
+        <kilometer>3</kilometer>
         <kilometer>3</kilometer>
         <kilometer>4</kilometer>
         <kilometer>5</kilometer>
@@ -13,7 +13,7 @@
         <kilometer>7</kilometer>
         <kilometer>0</kilometer>
         <kilometers/>
-        <employeeExpense>4.0</employeeExpense>
+        <employeeExpense>5.0</employeeExpense>
         <employeeExpense>350.65</employeeExpense>
         <employeeExpense>450.0</employeeExpense>
         <employeeExpense>501.25</employeeExpense>
@@ -21,7 +21,7 @@
         <employeeExpense>75.1</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpenses/>
-        <hour>6.0</hour>
+        <hour>7.0</hour>
         <hour>7.0</hour>
         <hour>8.0</hour>
         <hour>6.5</hour>
@@ -62,10 +62,10 @@
     </weekEntry>
 	<weekEntry>
         <email>joe@gmail.com</email>
-        <weekNumber>39</weekNumber>
+        <weekNumber>41</weekNumber>
         <yearNumber>2014</yearNumber>
-        <state>Refused</state>
-        <kilometer>3</kilometer>
+        <state>Approved</state>
+        <kilometer>0</kilometer>
         <kilometer>3</kilometer>
         <kilometer>4</kilometer>
         <kilometer>5</kilometer>
@@ -73,7 +73,7 @@
         <kilometer>7</kilometer>
         <kilometer>0</kilometer>
         <kilometers/>
-        <employeeExpense>5.0</employeeExpense>
+        <employeeExpense>4.0</employeeExpense>
         <employeeExpense>350.65</employeeExpense>
         <employeeExpense>450.0</employeeExpense>
         <employeeExpense>501.25</employeeExpense>
@@ -81,7 +81,7 @@
         <employeeExpense>75.1</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpenses/>
-        <hour>7.0</hour>
+        <hour>6.0</hour>
         <hour>7.0</hour>
         <hour>8.0</hour>
         <hour>6.5</hour>
@@ -90,592 +90,61 @@
         <hour>0.0</hour>
         <hours/>
     </weekEntry>
-	<weekEntry>
-        <email>hamid@gmail.com</email>
-        <weekNumber>41</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Refused</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-	<weekEntry>
-        <email>jb@ulaval.ca</email>
-        <weekNumber>41</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-	<weekEntry>
-		<email>pape@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>inProgress</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>41</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-	<weekEntry>
-		<email>pape@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>inProgress</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-		<email>employee1@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>STATE_INPROGRESS</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-		<email>employee2@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>STATE_INPROGRESS</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-		<email>manager1@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>STATE_INPROGRESS</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-		<email>manager2@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>STATE_INPROGRESS</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-	<weekEntry>
-		<email>pape@gmail.com</email>
-		<weekNumber>41</weekNumber>
-		<yearNumber>2014</yearNumber>
-		<state>STATE_INPROGRESS</state>
-		<kilometers>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-			<kilometer>0</kilometer>
-		</kilometers>
-		<employeeExpenses>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-			<employeeExpense>0.0</employeeExpense>
-		</employeeExpenses>
-		<hours>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-			<hour>0.0</hour>
-		</hours>
-	</weekEntry>
-<weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>42</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
 <weekEntry>
         <email>joe@gmail.com</email>
         <weekNumber>42</weekNumber>
         <yearNumber>2014</yearNumber>
-        <state>inProgress</state>
+        <state>Submitted</state>
         <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>joe@gmail.com</email>
-        <weekNumber>38</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>inProgress</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
+        <kilometer>17</kilometer>
+        <kilometer>21</kilometer>
+        <kilometer>19</kilometer>
+        <kilometer>14</kilometer>
+        <kilometer>1</kilometer>
         <kilometer>0</kilometer>
         <kilometers/>
         <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>39</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>10.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>14.0</employeeExpense>
+        <employeeExpense>11.0</employeeExpense>
+        <employeeExpense>22.0</employeeExpense>
+        <employeeExpense>33.0</employeeExpense>
+        <employeeExpense>9.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpenses/>
         <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>43</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>15.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>pape@gmail.com</email>
-        <weekNumber>41</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>inProgress</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>40</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>3</kilometer>
-        <kilometer>4</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>joe@gmail.com</email>
-        <weekNumber>43</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>4</kilometer>
-        <kilometer>4</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hours/>
-    </weekEntry>
-<weekEntry>
-        <email>tahyriman@gmail.com</email>
-        <weekNumber>41</weekNumber>
-        <yearNumber>2014</yearNumber>
-        <state>Approved</state>
-        <kilometer>10</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>10</kilometer>
-        <kilometer>0</kilometer>
-        <kilometers/>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>10.0</employeeExpense>
-        <employeeExpense>10.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpenses/>
-        <hour>0.0</hour>
+        <hour>5.0</hour>
+        <hour>6.0</hour>
+        <hour>6.0</hour>
         <hour>7.0</hour>
+        <hour>1.0</hour>
         <hour>0.0</hour>
-        <hour>8.0</hour>
+        <hours/>
+    </weekEntry>
+<weekEntry>
+        <email>joe@gmail.com</email>
+        <weekNumber>43</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>inProgress</state>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
         <hour>0.0</hour>
         <hour>0.0</hour>
         <hour>0.0</hour>
@@ -712,40 +181,40 @@
         <hours/>
     </weekEntry>
 <weekEntry>
-        <email>jane@gmail.com</email>
-        <weekNumber>44</weekNumber>
+        <email>tahyriman@gmail.com</email>
+        <weekNumber>41</weekNumber>
         <yearNumber>2014</yearNumber>
-        <state>Refused</state>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
-        <kilometer>0</kilometer>
+        <state>Approved</state>
+        <kilometer>10</kilometer>
+        <kilometer>10</kilometer>
+        <kilometer>10</kilometer>
+        <kilometer>10</kilometer>
+        <kilometer>10</kilometer>
+        <kilometer>10</kilometer>
         <kilometer>0</kilometer>
         <kilometers/>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
-        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>10.0</employeeExpense>
+        <employeeExpense>10.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpenses/>
         <hour>0.0</hour>
+        <hour>7.0</hour>
         <hour>0.0</hour>
-        <hour>0.0</hour>
-        <hour>0.0</hour>
+        <hour>8.0</hour>
         <hour>0.0</hour>
         <hour>0.0</hour>
         <hour>0.0</hour>
         <hours/>
     </weekEntry>
 <weekEntry>
-        <email>testeur@gmail.com</email>
-        <weekNumber>41</weekNumber>
+        <email>jane@gmail.com</email>
+        <weekNumber>44</weekNumber>
         <yearNumber>2014</yearNumber>
-        <state>inProgress</state>
+        <state>Refused</state>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
         <kilometer>0</kilometer>
@@ -783,6 +252,66 @@
         <kilometer>10</kilometer>
         <kilometer>10</kilometer>
         <kilometer>10</kilometer>
+        <kilometers/>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
+<weekEntry>
+        <email>jane@gmail.com</email>
+        <weekNumber>46</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>Submitted</state>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometers/>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpense>0.0</employeeExpense>
+        <employeeExpenses/>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hour>0.0</hour>
+        <hours/>
+    </weekEntry>
+<weekEntry>
+        <email>jane@gmail.com</email>
+        <weekNumber>47</weekNumber>
+        <yearNumber>2014</yearNumber>
+        <state>inProgress</state>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
+        <kilometer>0</kilometer>
         <kilometers/>
         <employeeExpense>0.0</employeeExpense>
         <employeeExpense>0.0</employeeExpense>
