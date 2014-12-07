@@ -162,27 +162,27 @@ public class ModelFacade
 	
 	public UserEntry createEmployee(ArrayList<String> tabuser){
 
-		AbstractFactory factory = AbstractFactory.createFactory(tabuser
-				.get(2));
+		AbstractFactory factory = AbstractFactory.createFactory(tabuser.get(2));
 		UserEntry user = factory.createUser();
 		user.setName(tabuser.get(0));
 		user.setEmail(tabuser.get(1));
 		user.setHashedPassword(tabuser.get(3));
 
-		if (tabuser.size() > 7
-				&& (user.getRole() == RoleUser.EMPLOYEE || user.getRole() == RoleUser.MANAGER)) {
+		if (user.getRole() == RoleUser.EMPLOYEE || user.getRole() == RoleUser.MANAGER) {
 			((EmployeeEntry) user).setCompany(tabuser.get(4));
 			((EmployeeEntry) user).setDepartment(tabuser.get(5));
-			((EmployeeEntry) user).setRateHour(Double.parseDouble(tabuser
-					.get(6)));
-			int j = 7;
-			do {
-//				ProjectRepository projects = new ProjectRepositoryImpl();
-				TaskEntry task = projectRepository.getTaskById(Integer
-						.parseInt(tabuser.get(j)));
-				((EmployeeEntry) user).assignTask(task);
-				j++;
-			} while (j < tabuser.size());
+			((EmployeeEntry) user).setRateHour(Double.parseDouble(tabuser.get(6)));
+			
+			if(tabuser.size() > 7){ 
+				int j = 7;
+				do {
+	//				ProjectRepository projects = new ProjectRepositoryImpl();
+					TaskEntry task = projectRepository.getTaskById(Integer
+							.parseInt(tabuser.get(j)));
+					((EmployeeEntry) user).assignTask(task);
+					j++;
+				} while (j < tabuser.size());
+			}
 		}
 		return user;
 	}

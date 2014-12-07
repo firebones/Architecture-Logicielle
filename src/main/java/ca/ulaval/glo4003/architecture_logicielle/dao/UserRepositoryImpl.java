@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.ulaval.glo4003.architecture_logicielle.appConfig.AppConfiguration;
+import ca.ulaval.glo4003.architecture_logicielle.model.AbstractFactory;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
+import ca.ulaval.glo4003.architecture_logicielle.model.ProjectRepository;
+import ca.ulaval.glo4003.architecture_logicielle.model.RoleUser;
 import ca.ulaval.glo4003.architecture_logicielle.model.TaskEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.UserRepository;
