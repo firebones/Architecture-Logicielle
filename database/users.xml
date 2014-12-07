@@ -17,42 +17,12 @@
         <company>Company1</company>
         <department>Department1</department>
         <rateHour>20.0</rateHour>
-    </user>
-<user>
-        <name>employee1</name>
-        <email>employee2@gmail.com</email>
-        <role>EMPLOYEE</role>
-        <hashedPassword>1234</hashedPassword>
-        <company>Company1</company>
-		<department>Department1</department>
-		<rateHour>20.0</rateHour>
-    </user>
-<user>
-        <name>manager1</name>
-        <email>manager1@gmail.com</email>
-        <role>MANAGER</role>
-        <hashedPassword>1234</hashedPassword>
-        <company>Company1</company>
-		<department>Department1</department>
-		<rateHour>20.0</rateHour>
-    </user>
-<user>
-        <name>manager2</name>
-        <email>manager2@gmail.com</email>
-        <role>MANAGER</role>
-        <hashedPassword>1234</hashedPassword>
-        <company>Company1</company>
-		<department>Department1</department>
-    	<rateHour>20.0</rateHour>
-    
     <tasks>
             <taskId>3</taskId>
             <taskId>6</taskId>
             <taskId>7</taskId>
         </tasks>
     </user>
-
-
 <user>
         <name>Pape</name>
         <email>tahyriman@gmail.com</email>
