@@ -14,11 +14,20 @@
 		<div class="row">
 			<table class="table col-lg-8">
 				<tbody>
+				<th>
+					Nom de la tâche
+				</th>
+				<th>
+					Taux horaire
+				</th>
 			<c:forEach var="task" items="${tasks}">
 	
 				<tr>
 					<td>
 						${task.name}
+					</td>
+					<td>
+						${task.rate}
 					</td>
 				</tr>
 			</c:forEach>
