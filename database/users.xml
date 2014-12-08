@@ -8,6 +8,9 @@
         <company>Company1</company>
         <department>Department1</department>
         <rateHour>20.0</rateHour>
+    <tasks>
+            <taskId>3</taskId>
+        </tasks>
     </user>
 	<user>
         <name>Jane</name>

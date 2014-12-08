@@ -12,6 +12,9 @@
 			<sec:authorize access="hasAnyRole('EMPLOYEE, MANAGER')">
 				<li><a href="/weekEntriesList">Liste des semaines</a></li>
 			</sec:authorize>
+			<sec:authorize access="hasAnyRole('EMPLOYEE, MANAGER')">
+				<li><a href="/tasksList">Liste des Tâches</a></li>
+			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<li><a href="/j_spring_security_logout"> Bienvenue <sec:authentication
 							property="principal.name" /> <%-- This corresponds to employee.getName() --%>- Déconnexion

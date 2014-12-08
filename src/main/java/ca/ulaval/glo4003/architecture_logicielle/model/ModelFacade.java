@@ -160,6 +160,10 @@ public class ModelFacade
 		return employee.getTasks();
 	}
 	
+	public void updateTasksEmployee(List<TaskEntry> tasks, UserEntry user){
+		userRepository.setTasksToUser(tasks, user);
+	}
+	
 	public UserEntry createEmployee(ArrayList<String> tabuser){
 
 		AbstractFactory factory = AbstractFactory.createFactory(tabuser.get(2));

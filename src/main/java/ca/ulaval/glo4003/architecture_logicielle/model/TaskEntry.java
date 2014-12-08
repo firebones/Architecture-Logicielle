@@ -4,6 +4,7 @@ public class TaskEntry {
 	private Integer id;
 	private String name;
 	private Double rate;
+	private Double hours;
 	
 	public Integer getId() {
 		return id;
@@ -27,6 +28,14 @@ public class TaskEntry {
 	
 	public void setRate(Double rate) {
 		this.rate = rate;
+	}
+	
+	public Double getHours(){
+		return hours;
+	}
+	
+	public void setHours(Double hours){
+		this.hours = hours;
 	}
 	
 	@Override

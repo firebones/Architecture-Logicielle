@@ -8,8 +8,10 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.config.Task;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 import ca.ulaval.glo4003.architecture_logicielle.model.DepartmentEntry;
 import ca.ulaval.glo4003.architecture_logicielle.model.EmployeeEntry;
@@ -141,6 +143,10 @@ public class AppConfiguration {
 	
 	public List<TaskEntry> getTasksEmployee(String email) {
 		return facade.getTasksEmployee(email);
+	}
+	
+	public void updateTasksEmployee(List<TaskEntry> tasks,UserEntry user){
+		facade.updateTasksEmployee(tasks, user);
 	}
 	
 	public UserEntry createEmployee(ArrayList<String> tabuser){
