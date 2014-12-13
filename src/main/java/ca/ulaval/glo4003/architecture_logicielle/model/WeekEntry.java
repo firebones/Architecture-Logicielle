@@ -163,4 +163,38 @@ public class WeekEntry {
 
 		return calendar.getTime();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!obj.getClass().equals(getClass())) {
+			return false;
+		}
+		WeekEntry we = (WeekEntry) obj;
+		if (!((we.state == state)
+				&& (we.kilometersEntries.equals(kilometersEntries))
+				&& (we.employeeExpensesEntries.equals(employeeExpensesEntries))
+				&& (we.expensesEntries.equals(expensesEntries)) && (we.hoursEntries
+					.equals(hoursEntries)))) {
+			return false;
+		}
+		if (((we.weekNumber == null) && (weekNumber != null))
+				|| ((we.weekNumber != null) && (weekNumber == null))
+				|| ((weekNumber != null))
+				&& !(we.weekNumber.equals(weekNumber))) {
+			return false;
+		}
+		if (((we.yearNumber == null) && (yearNumber != null))
+				|| ((we.yearNumber != null) && (yearNumber == null))
+				|| ((yearNumber != null))
+				&& !(we.yearNumber.equals(yearNumber))) {
+			return false;
+		}
+		if (((we.email == null) && (email != null))
+				|| ((we.email != null) && (email == null))
+				|| ((email != null))
+				&& !(we.email.equals(email))) {
+			return false;
+		}
+		return true;
+	}
 }

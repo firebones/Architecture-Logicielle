@@ -18,9 +18,6 @@ public class PeriodPayBuilderImpl implements PeriodPayBuilder
 		this.weekEntry.setWeekNumber(weekNumber);
 		this.weekEntry.setYearNumber(yearNumber);
 		this.weekEntry.setState(state);
-//		this.weekEntry.setApproved(isApproved);
-//		this.weekEntry.setSubmitted(isSubmitted);
-//		this.weekEntry.setProgess(inProgess);
 
 	}
 
@@ -49,6 +46,16 @@ public class PeriodPayBuilderImpl implements PeriodPayBuilder
 	public WeekEntry getPeriodPayEntry()
 	{
 		return this.weekEntry;
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if ((!obj.getClass().equals(getClass())) || (obj == null)) {
+			return false;
+		}
+		PeriodPayBuilderImpl ppbl = (PeriodPayBuilderImpl) obj;
+		return weekEntry.equals(ppbl.weekEntry);
 	}
 
 }
