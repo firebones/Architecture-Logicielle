@@ -7,58 +7,68 @@ import org.junit.Test;
 
 public class TaskViewModelTest
 {
+	TaskViewModel taskViewModel;
 
 	@Before
 	public void setUp() throws Exception
 	{
+		taskViewModel = new TaskViewModel();
+		taskViewModel.id = 2;
+		taskViewModel.isAssigned = false;
+		taskViewModel.name = "Task 1";
+		taskViewModel.rate = 2.3;
 	}
 
 	@Test
 	public void testGetId()
 	{
-		fail("Not yet implemented"); // TODO
+		assertEquals(taskViewModel.getId(), new Integer(2));
 	}
 
 	@Test
 	public void testSetId()
 	{
-		fail("Not yet implemented"); // TODO
+		taskViewModel.setId(5);
+		assertEquals(taskViewModel.getId(), new Integer(5));
 	}
 
 	@Test
 	public void testGetName()
 	{
-		fail("Not yet implemented"); // TODO
+		assertEquals(taskViewModel.getName(), "Task 1");
 	}
 
 	@Test
 	public void testSetName()
 	{
-		fail("Not yet implemented"); // TODO
+		taskViewModel.setName("Task 2");
+		assertEquals(taskViewModel.getName(), "Task 2");
 	}
 
 	@Test
 	public void testGetIsAssigned()
 	{
-		fail("Not yet implemented"); // TODO
+		assertFalse(taskViewModel.isAssigned);
 	}
 
 	@Test
 	public void testSetIsAssigned()
 	{
-		fail("Not yet implemented"); // TODO
+		taskViewModel.setIsAssigned(true);
+		assertTrue(taskViewModel.isAssigned);
 	}
 
 	@Test
 	public void testGetRate()
 	{
-		fail("Not yet implemented"); // TODO
+		assertEquals(taskViewModel.getRate(), new Double(2.3));
 	}
 
 	@Test
 	public void testSetRate()
 	{
-		fail("Not yet implemented"); // TODO
+		taskViewModel.setRate(4.5);
+		assertEquals(taskViewModel.getRate(), new Double(4.5));
 	}
 
 }

@@ -22,32 +22,4 @@ public class AssignedKilometers {
 		return isNull;
 	}
 	
-//	public boolean validate() {
-//		
-//		int kilometerMin = Integer.parseInt(Configuration.getConfig("MIN_KM_DAY"));
-//		int kilometerMax = Integer.parseInt(Configuration.getConfig("MAX_KM_DAY"));
-//		
-//		Boolean error = false;
-//		
-//		for (String km : kilometers)
-//		{
-//			if(tryParseInt(km) && (Integer.parseInt(km) < kilometerMin || Integer.parseInt(km) > kilometerMax))
-//			{
-//				errors.rejectValue("name", "field.role.required","Max value");
-//				return false;
-//			}
-//		}
-//	}
-//	
-//	boolean tryParseInt(String value)  
-//	{  
-//	     try  
-//	     {  
-//	         Integer.parseInt(value);  
-//	         return true;  
-//	      } catch(NumberFormatException nfe)  
-//	      {  
-//	          return false;  
-//	      }  
-//	}
 }
