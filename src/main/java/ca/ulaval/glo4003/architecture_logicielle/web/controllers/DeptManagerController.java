@@ -129,19 +129,6 @@ public class DeptManagerController {
 		return "redirect:/manager/projectList";
 	}
 	
-/*	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.GET)
-	public String addNewEmployee(Model model) {
-	    model.addAttribute("newEmployee", new EmployeeViewModel());
-	    return "addEmployee";
-	}
-	
-	@RequestMapping(value = "/manager/addEmployee", method = RequestMethod.POST)
-	public String addNewEmployee(EmployeeViewModel newEmployeeViewModel){
-		EmployeeEntry newEmployee = employeeConverter.toEmployee(newEmployeeViewModel);
-		configuration.addUser(newEmployee);
-		return "redirect:/manager/employeeList";
-	}*/
-	
 	@RequestMapping(value = "/manager/{email}/updateRateHour", method = RequestMethod.GET)
 	public String editRateHour(@PathVariable String email, Model model) {
 		model.addAttribute("employee", (EmployeeEntry)configuration.getUserByEmail(email));

@@ -6,15 +6,13 @@ public class AdminFactory extends AbstractFactory
 	@Override
 	public UserEntry createUser()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new AdminEntry();
 	}
 
 	@Override
 	public TaskEntry createtask()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new TaskEntry();
 	}
 
 }

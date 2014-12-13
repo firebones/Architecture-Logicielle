@@ -12,8 +12,7 @@ public class ManagerFactory extends AbstractFactory
 	@Override
 	public TaskEntry createtask()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new TaskEntry();
 	}
 
 }

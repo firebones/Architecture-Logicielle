@@ -6,14 +6,12 @@ public class NullFactory extends AbstractFactory
 	@Override
 	public UserEntry createUser()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public TaskEntry createtask()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
