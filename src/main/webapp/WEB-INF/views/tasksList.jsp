@@ -21,10 +21,9 @@
 					Taux horaire
 				</th>
 			<c:forEach var="task" items="${tasks}">
-	
 				<tr>
 					<td>
-						${task.name}
+						<a href="${task.id}/submitTaskHours">${task.name}</a>
 					</td>
 					<td>
 						${task.rate}

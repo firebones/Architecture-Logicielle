@@ -31,7 +31,10 @@ public class TaskEntry {
 	}
 	
 	public Double getHours(){
-		return hours;
+		if(hours!=null)
+			return hours;
+		else
+			return 0.0;
 	}
 	
 	public void setHours(Double hours){
