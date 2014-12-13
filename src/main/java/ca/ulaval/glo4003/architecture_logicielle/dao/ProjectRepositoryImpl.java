@@ -67,8 +67,11 @@ public class ProjectRepositoryImpl implements ProjectRepository
 		ArrayList<ProjectEntry> projects = getAllProjects();
 		for (int i = 0; i < projects.size(); i++) {
 			for (int j = 0; j < projects.get(i).getTasks().size(); j++) {
-				if (projects.get(i).getTasks().get(j).getId() == id)
-					return projects.get(i).getTasks().get(j);
+				if (projects.get(i).getTasks().get(j).getId() == id){
+					TaskEntry temp = projects.get(i).getTasks().get(j);
+					temp.setHours(8.5);
+					return temp;
+				}
 			}
 		}
 		return null;
