@@ -7,22 +7,26 @@ import org.junit.Test;
 
 public class CreatedWeekNumberTest
 {
+	private CreatedWeekNumber createdWeekNumber;
 
 	@Before
 	public void setUp() throws Exception
 	{
+		createdWeekNumber = new CreatedWeekNumber();
+		createdWeekNumber.setWeekNumber(43);
 	}
 
 	@Test
 	public void testGetWeekNumber()
 	{
-		fail("Not yet implemented"); // TODO
+		assertEquals(createdWeekNumber.getWeekNumber(), new Integer(43));
 	}
 
 	@Test
 	public void testSetWeekNumber()
 	{
-		fail("Not yet implemented"); // TODO
+		createdWeekNumber.setWeekNumber(45);
+		assertEquals(createdWeekNumber.getWeekNumber(), new Integer(45));
 	}
 
 }
